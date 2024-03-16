@@ -26,7 +26,7 @@ Rscript -e "remotes::install_gitlab('water/analysis-tools/smwrBase', host='code.
 Rscript -e "remotes::install_gitlab('water/analysis-tools/smwrGraphs', host='code.usgs.gov')"
 
 # Install ggtern for the ternary plots
-mamba install r-ggtern
+mamba install r-ggtern -y
 
 # Install devtools for downgrading ggplot2 (see https://stackoverflow.com/a/78098253)
 mamba install r-devtools -y
