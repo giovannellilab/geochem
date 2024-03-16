@@ -10,6 +10,9 @@ mamba activate geochem
 ## Installation of dependencies
 
 ```{bash}
+# Install rio for importing data
+Rscript -e "install.packages('rio')"
+
 # Install remotes packages for installing smwrGraphs
 Rscript -e "install.packages('remotes')"
 
