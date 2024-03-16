@@ -51,3 +51,4 @@ rsconnect/
 # Data folders
 data/
 .DS_Store
+old/
