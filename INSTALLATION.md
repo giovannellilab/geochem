@@ -28,6 +28,10 @@ Rscript -e "remotes::install_gitlab('water/analysis-tools/smwrGraphs', host='cod
 # Install ggtern for the ternary plots
 mamba install r-ggtern
 
+# Install devtools for downgrading ggplot2 (see https://stackoverflow.com/a/78098253)
+mamba install r-devtools -y
+Rscript -e "devtools::install_version('ggplot2', version='3.4.4')"
+
 # Install kernel for Jupyter
 Rscript -e "install.packages('IRkernel')"
 ```
