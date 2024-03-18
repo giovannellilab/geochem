@@ -127,7 +127,7 @@ plot_base_gigg = function() {
 
     # Modify theme
     theme_hidemask() +
-    theme_bw(base_size=25) +
+    theme_bw(base_size=15) +
     theme_hidegrid_major() +
     theme_nogrid_minor() +
     theme_nomask()
