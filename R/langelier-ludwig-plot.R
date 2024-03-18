@@ -8,7 +8,7 @@ plot_ll = function(df) {
         )
 
     ggplot(data=df) + 
-        geom_point(aes(x=axis_anions, y=axis_cations, color=axis_cations)) +
+        geom_point(aes(x=axis_anions, y=axis_cations, color=ID)) +
         labs(
             x=expression(
                 sqrt(frac(2, 3)) * log(frac("HCO"[3]^"-", "Cl"^"-" * "SO"[4]^"2-"))
