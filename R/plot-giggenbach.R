@@ -1,3 +1,6 @@
+library(ggplot2)
+library(ggtern)
+
 plot_base_gigg = function() {
 
     # Giggenbach values
