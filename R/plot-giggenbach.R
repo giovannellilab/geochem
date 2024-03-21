@@ -103,7 +103,7 @@ plot_base_gigg = function() {
         x=0.2,
         y=0.8,
         z=0.2,
-        size=6,
+        size=4,
         alpha=.5,
         fontface="bold"
     ) +
@@ -113,7 +113,7 @@ plot_base_gigg = function() {
         x=0.2,
         y=0.225,
         z=0.2,
-        size=6,
+        size=4,
         alpha=.5,
         fontface="bold"
     ) +
@@ -123,7 +123,7 @@ plot_base_gigg = function() {
         x=0.2,
         y=0.05,
         z=0.2,
-        size=6,
+        size=4,
         alpha=.5,
         fontface="bold"
     ) +
