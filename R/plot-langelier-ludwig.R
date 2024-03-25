@@ -17,25 +17,30 @@ plot_ll = function(df) {
             r_cl_so4=50 - r_bicarb
         )
 
-    plot = ggplot(data=df) + 
-        geom_point(
+    plot = ggplot(
+            data=df,
             aes(
                 x=r_bicarb,
                 y=r_na_k,
                 color=ID
             )
-        ) +
-        labs(
-            x=expression("R"("HCO"[3]^"-")),
-            y=expression("R"("Na"^"+" + "K"^"+"))
-        ) +
+        ) + 
+        geom_point() +
         scale_x_continuous(
-            expression("R"("Cl"^"-" + "SO"[4]^"2-")),
-            sec.axis=sec_axis(r_cl_so4~., name=derive())
+            name=expression("R"("HCO"[3]^"-")),
+            limits=c(0, 50),
+            sec.axis=sec_axis(
+                r_cl_so4~.,
+                name=expression("R"("Cl"^"-" + "SO"[4]^"2-"))
+            )
         ) +
         scale_y_continuous(
-            expression("R"("Ca"^"2+" + "Mg"^"2+")),
-            sec.axis=sec_axis(r_ca_mg~., name=derive())
+            name=expression("R"("Na"^"+" + "K"^"+")),
+            limits=c(0, 50),
+            sec.axis=sec_axis(
+                r_ca_mg~.,
+                name=expression("R"("Ca"^"2+" + "Mg"^"2+"))
+            )
         )
 
     return(plot)
