@@ -8,16 +8,16 @@ plot_ll = function(df) {
             r_bicarb=50 * (HCO3.meq) / sum(
                 HCO3.meq + Cl.meq + SO4.meq
             ),
-            r_ca_mg=50 * (Mg.meq + Ca.meq) / sum(
+            r_na_k=50 * (Na.meq + K.meq) / sum(
                 Na.meq + K.meq + Mg.meq + Ca.meq
             )
         ) %>%
         mutate(
-            r_na_k=50 - r_ca_mg,
+            r_ca_mg=50 - r_na_k,
             r_cl_so4=50 - r_bicarb
         )
 
-    ggplot(data=df) + 
+    plot = ggplot(data=df) + 
         geom_point(
             aes(
                 x=r_bicarb,
@@ -28,5 +28,15 @@ plot_ll = function(df) {
         labs(
             x=expression("R"("HCO"[3]^"-")),
             y=expression("R"("Na"^"+" + "K"^"+"))
+        ) +
+        scale_x_continuous(
+            expression("R"("Cl"^"-" + "SO"[4]^"2-")),
+            sec.axis=sec_axis(r_cl_so4~., name=derive())
+        ) +
+        scale_y_continuous(
+            expression("R"("Ca"^"2+" + "Mg"^"2+")),
+            sec.axis=sec_axis(r_ca_mg~., name=derive())
         )
+
+    return(plot)
 }
