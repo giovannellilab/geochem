@@ -29,17 +29,21 @@ plot_ll = function(df) {
         scale_x_continuous(
             name=expression("R"("HCO"[3]^"-")),
             limits=c(0, 50),
+            breaks=seq(from=0, to=50, by=10),
             sec.axis=sec_axis(
                 r_cl_so4~.,
-                name=expression("R"("Cl"^"-" + "SO"[4]^"2-"))
+                name=expression("R"("Cl"^"-" + "SO"[4]^"2-")),
+                labels=rev(seq(from=0, to=50, by=10))
             )
         ) +
         scale_y_continuous(
             name=expression("R"("Na"^"+" + "K"^"+")),
             limits=c(0, 50),
+            breaks=seq(from=0, to=50, by=10),
             sec.axis=sec_axis(
                 r_ca_mg~.,
-                name=expression("R"("Ca"^"2+" + "Mg"^"2+"))
+                name=expression("R"("Ca"^"2+" + "Mg"^"2+")),
+                labels=rev(seq(from=0, to=50, by=10))
             )
         )
 
