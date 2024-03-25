@@ -188,7 +188,7 @@ process_icp_data = function(filepath) {
         mutate(
             element=str_replace_all(
                 string=element,
-                pattern=space(),
+                pattern=" ",
                 replacement=""
             )
         ) %>%
