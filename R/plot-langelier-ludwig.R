@@ -5,16 +5,28 @@ plot_ll = function(df) {
     # Add anions and cations transformations as columns
     df = df %>%
         mutate(
-            axis_anions=sqrt(2/3) * log(HCO3.meq / (Cl.meq * SO4.meq)),
-            axis_cations=log((Na.meq * K.meq) / (Ca.meq * Mg.meq))
+            r_bicarb=50 * (HCO3.meq) / sum(
+                HCO3.meq + Cl.meq + SO4.meq
+            ),
+            r_ca_mg=50 * (Mg.meq + Ca.meq) / sum(
+                Na.meq + K.meq + Mg.meq + Ca.meq
+            )
+        ) %>%
+        mutate(
+            r_na_k=50 - r_ca_mg,
+            r_cl_so4=50 - r_bicarb
         )
 
     ggplot(data=df) + 
-        geom_point(aes(x=axis_anions, y=axis_cations, color=ID)) +
+        geom_point(
+            aes(
+                x=r_bicarb,
+                y=r_na_k,
+                color=ID
+            )
+        ) +
         labs(
-            x=expression(
-                sqrt(frac(2, 3)) * log(frac("HCO"[3]^"-", "Cl"^"-" * "SO"[4]^"2-"))
-            ),
-            y=expression(log(frac("Na"^"+" * "K"^"+", "Ca"^"2+" * "Mg"^"2+")))
+            x=expression("R"("HCO"[3]^"-")),
+            y=expression("R"("Na"^"+" + "K"^"+"))
         )
 }
