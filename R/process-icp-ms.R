@@ -40,11 +40,7 @@ process_icp_data = function(filepath) {
         rename(
             sample="Sample Name",
             dilution="Total Dil."
-        ) %>%
-        # Merge sample IDs (remove "C" and "_1")
-        mutate(sample=str_replace(sample, "C|_1", "")) %>%
-        # Extract dilution from comment
-        mutate(dilution=as.numeric(str_split_i(Comment, "dil. 1:", 2)))
+        )
 
     # Select all "Conc. RSD" columns (names)
     conc_rsd_cols = data_df %>%
@@ -186,7 +182,14 @@ process_icp_data = function(filepath) {
         mutate(
             element=str_extract(
                 string=element,
-                pattern="\\w+(?= \\[.*\\])"
+                pattern="(?<=[\\d+] ).*(?= \\[.*\\])"
+            )
+        ) %>%
+        mutate(
+            element=str_replace_all(
+                string=element,
+                pattern=space(),
+                replacement=""
             )
         ) %>%
         # Get only concentration rows
