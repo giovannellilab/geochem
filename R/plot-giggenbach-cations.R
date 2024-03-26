@@ -1,7 +1,7 @@
 library(ggplot2)
 library(ggtern)
 
-plot_base_gigg = function() {
+plot_base_gigg_cations = function() {
 
     # Giggenbach values
     gigg_df = read.csv(
