@@ -51,7 +51,6 @@ plot_base_gigg_cations = function() {
             z=sqrt(Magnesium)
         )
     ) +
-    # tern_limit(T=1.03, L=1.03, R=1.03)
 
     # Create the guides and labels
     guides(fill=guide_legend(override.aes=list(shape=21))) +
