@@ -44,95 +44,95 @@ plot_base_gigg_cations = function() {
 
     # Create plot
     plot = ggtern(
-        data=gigg_df,
-        aes(
-            x=Potassium/100,
-            y=Sodium/1000,
-            z=sqrt(Magnesium)
-        )
-    ) +
+            data=gigg_df,
+            aes(
+                x=Potassium/100,
+                y=Sodium/1000,
+                z=sqrt(Magnesium)
+            )
+        ) +
 
-    # Create the guides and labels
-    guides(fill=guide_legend(override.aes=list(shape=21))) +
-    labs(
-        x="K/100",
-        y="Na/1000",
-        z=expression(sqrt(Mg)),
-        fill="samples"
-    ) +
+        # Create the guides and labels
+        guides(fill=guide_legend(override.aes=list(shape=21))) +
+        labs(
+            x="K/100",
+            y="Na/1000",
+            z=expression(sqrt(Mg)),
+            fill="samples"
+        ) +
 
-    # Create the first half of the temperature curves
-    geom_point(
-        data=gigg_df %>% filter(TK %in% c("tkn")),
-        size=1,
-        shape=22,
-        fill="black",
-        stroke=.3
-    ) +
-    geom_text(
-        data=gigg_df %>% filter(TK %in% c("tkn")),
-        mapping=aes(label=as.factor(Temperature)),
-        color="black",
-        size=2.5,
-        hjust=0.5,
-        vjust=-1
-    ) +
+        # Create the first half of the temperature curves
+        geom_point(
+            data=gigg_df %>% filter(TK %in% c("tkn")),
+            size=1,
+            shape=22,
+            fill="black",
+            stroke=.3
+        ) +
+        geom_text(
+            data=gigg_df %>% filter(TK %in% c("tkn")),
+            mapping=aes(label=as.factor(Temperature)),
+            color="black",
+            size=2.5,
+            hjust=0.5,
+            vjust=-1
+        ) +
 
-    # Create the second half of the temperature curves
-    geom_point(
-        data=gigg_df %>% filter(TK %in% c("tkm")),
-        size=1,
-        shape=22,
-        fill="black",
-        stroke=.3
-    ) +
-    geom_text(
-        data=gigg_df %>% filter(TK %in% c("tkm")),
-        mapping=aes(label=as.factor(Temperature)),
-        color="black",
-        size=2.5,
-        hjust=0.5,
-        vjust=2
-    ) +
+        # Create the second half of the temperature curves
+        geom_point(
+            data=gigg_df %>% filter(TK %in% c("tkm")),
+            size=1,
+            shape=22,
+            fill="black",
+            stroke=.3
+        ) +
+        geom_text(
+            data=gigg_df %>% filter(TK %in% c("tkm")),
+            mapping=aes(label=as.factor(Temperature)),
+            color="black",
+            size=2.5,
+            hjust=0.5,
+            vjust=2
+        ) +
 
-    # Add annotations
-    annotate(
-        "text",
-        label="Fully Equilibrated",
-        x=0.2,
-        y=0.8,
-        z=0.2,
-        size=4,
-        alpha=.5,
-        fontface="bold"
-    ) +
-    annotate(
-        "text",
-        label="Partially Equilibrated",
-        x=0.2,
-        y=0.225,
-        z=0.2,
-        size=4,
-        alpha=.5,
-        fontface="bold"
-    ) +
-    annotate(
-        "text",
-        label="Immature Waters",
-        x=0.2,
-        y=0.05,
-        z=0.2,
-        size=4,
-        alpha=.5,
-        fontface="bold"
-    ) +
+        # Add annotations
+        annotate(
+            "text",
+            label="Fully Equilibrated",
+            x=0.2,
+            y=0.8,
+            z=0.2,
+            size=3,
+            alpha=1.0,
+            fontface="bold"
+        ) +
+        annotate(
+            "text",
+            label="Partially Equilibrated",
+            x=0.2,
+            y=0.225,
+            z=0.2,
+            size=3,
+            alpha=1.0,
+            fontface="bold"
+        ) +
+        annotate(
+            "text",
+            label="Immature Waters",
+            x=0.2,
+            y=0.05,
+            z=0.2,
+            size=3,
+            alpha=1.0,
+            fontface="bold"
+        ) +
 
-    # Modify theme
-    theme_hidemask() +
-    theme_bw(base_size=15) +
-    theme_hidegrid_major() +
-    theme_nogrid_minor() +
-    theme_nomask()
+        # Modify theme
+        theme_hidemask() +
+        theme_bw(base_size=15) +
+        theme_hidegrid_major() +
+        theme_nogrid_minor() +
+        theme_nomask()
 
     return(plot)
 }
