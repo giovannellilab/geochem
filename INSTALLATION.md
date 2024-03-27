@@ -1,16 +1,22 @@
 ## Creation of the conda environment
 
 ```{bash}
+mamba create -n geochem r-essentials r-base -y
+```
+
+* Installation on Mac (chip M1/2)
+
+```{bash}
 # Must be OSX64 for installing ggtern's dependencies
 CONDA_SUBDIR=osx-64 conda create -n geochem r-essentials r-base -y
-
-mamba activate geochem
 ```
 
 
 ## Installation of dependencies
 
 ```{bash}
+mamba activate geochem
+
 # Install rio for importing data
 Rscript -e "install.packages('rio')"
 
