@@ -44,3 +44,9 @@ mamba install r-corrplot r-factoextra -y
 # Install kernel for Jupyter
 Rscript -e "install.packages('IRkernel')"
 ```
+
+
+## Creation of environment.yml for further installations
+```{bash}
+conda env export --no-builds | grep -v "^prefix: " > environment.yml
+```
