@@ -84,11 +84,11 @@ process_icp_data = function(filepath) {
         row_df = data_df %>%
             # Select columns from data_df
             select(
-            c(
-                sample,
-                dilution,
-                all_of(selected_cols)
-            )
+                c(
+                    sample,
+                    dilution,
+                    all_of(selected_cols)
+                )
             ) %>%
             # Remove "less than" values
             mutate_at(
