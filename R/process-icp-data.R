@@ -1,5 +1,13 @@
 library(tidyverse)
 
+remove_less_than = function(x) as.numeric(
+    str_replace(
+    string=x,
+    pattern="<0.000|<LOD",
+    replacement="NA"
+    )
+)
+
 process_icp_data = function(filepath) {
 
     # Get the element names
@@ -71,15 +79,6 @@ process_icp_data = function(filepath) {
             select(all_of(selected_cols)) %>%
             colnames()
         element_name = selected_cols_names[[1]]
-
-        # Defined function for less than
-        remove_less_than = function(x) as.numeric(
-            str_replace(
-            string=x,
-            pattern="<0.000|<LOD",
-            replacement="NA"
-            )
-        )
 
         row_df = data_df %>%
             # Select columns from data_df
