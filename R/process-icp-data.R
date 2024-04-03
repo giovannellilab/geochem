@@ -130,7 +130,7 @@ process_icp_data = function(filepath) {
             bind_rows(row_df)
     }
 
-    # Add checks to CV
+    # Add checks for standard deviation
     measures_df = measures_df %>%
         mutate(
             value_sd_check=case_when(
