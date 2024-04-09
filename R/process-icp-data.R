@@ -73,6 +73,7 @@ process_icp_data = function(filepath) {
     step = 4
 
     for (col_idx in seq(1, length(conc_rsd_cols_all), by=step)) {
+
         # Get name of the element
         selected_cols = conc_rsd_cols_all[col_idx:(col_idx + step - 1)]
         selected_cols_names = data_df %>%
@@ -100,7 +101,7 @@ process_icp_data = function(filepath) {
         row_df = row_df %>% 
             mutate(element=rep(element_name, n=length(row_df))) %>%
             rename(Concentration=eval(element_name))
-        
+
         row_df = row_df %>%
             # Transform to long format
             pivot_longer(
@@ -117,11 +118,13 @@ process_icp_data = function(filepath) {
 
         # Add as SD the value from RSD since there are no replicates
         row_df = row_df %>%
-            mutate(value_sd=ifelse(
-            str_detect(string=name, pattern="RSD"),
-                value_mean,
-                value_sd
-            )) %>%
+            mutate(
+                value_sd=ifelse(
+                    str_detect(string=name, pattern="RSD"),
+                    value_mean,
+                    value_sd
+                )
+            ) %>%
             group_by(sample, dilution, element) %>%
             fill(value_sd, .direction="up") %>%
             fill(value_sd, .direction="down")
@@ -153,7 +156,9 @@ process_icp_data = function(filepath) {
         group_by(sample, name) %>%
         mutate(dilution_change=dilution/max(dilution)) %>%
         mutate(CPS_adj=value_mean * dilution_change) %>%
-        mutate(CPS_perc_change=100*(abs(CPS_adj - lag(CPS_adj))/lag(CPS_adj))) %>%
+        mutate(
+            CPS_perc_change=100 * (abs(CPS_adj - lag(CPS_adj)) / lag(CPS_adj))
+        ) %>%
         mutate(
             value_cps_perc_check=case_when(
                 CPS_perc_change <= 5.0 ~ "OK",
