@@ -16,8 +16,8 @@ plot_base_gigg_anions = function() {
     # Add mature waters area
     polygon = data.frame(
         x=c(0.1, 0.1, 0.0, 0.0),
-        y=c(0.9, 0.55, 0.6, 1.0),
-        z=c(0.0, 0.35, 0.4, 0.0)
+        y=c(0.9, 0.6, 0.6, 1.0),
+        z=c(0.0, 0.3, 0.4, 0.0)
     )
 
     plot = ggtern() +
@@ -98,7 +98,7 @@ plot_base_gigg_anions = function() {
             "text",
             label="Mature waters",
             x=0.2,
-            y=1.75,
+            y=2.25,
             z=0.7,
             size=3,
             alpha=1.0,
