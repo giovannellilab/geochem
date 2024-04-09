@@ -65,11 +65,11 @@ plot_base_gigg_anions = function() {
         # Add annotations
         annotate(
             "text",
-            label="Steam-heated waters",
+            label="Steam heated waters",
             color="grey",
-            x=0.8,
-            y=0.1,
-            z=0.8,
+            x=0.7,
+            y=0.05,
+            z=0.3,
             size=3,
             alpha=1.0,
             fontface="bold"
@@ -78,8 +78,8 @@ plot_base_gigg_anions = function() {
             "text",
             label="Volcanic waters",
             color="grey",
-            x=0.7,
-            y=0.3,
+            x=0.5,
+            y=0.5,
             z=0.05,
             size=3,
             alpha=1.0,
