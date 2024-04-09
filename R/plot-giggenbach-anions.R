@@ -104,14 +104,7 @@ plot_base_gigg_anions = function() {
             alpha=1.0,
             angle=300,
             fontface="bold"
-        ) +
-
-        # Modify theme
-        theme_hidemask() +
-        theme_bw(base_size=15) +
-        theme_hidegrid_major() +
-        theme_nogrid_minor() +
-        theme_nomask()
+        )
 
     return(plot)
 }

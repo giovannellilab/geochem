@@ -125,14 +125,7 @@ plot_base_gigg_cations = function() {
             size=3,
             alpha=1.0,
             fontface="bold"
-        ) +
-
-        # Modify theme
-        theme_hidemask() +
-        theme_bw(base_size=15) +
-        theme_hidegrid_major() +
-        theme_nogrid_minor() +
-        theme_nomask()
+        )
 
     return(plot)
 }
