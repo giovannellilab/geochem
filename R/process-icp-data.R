@@ -113,7 +113,7 @@ process_icp_data = function(filepath) {
             summarise(
                 .groups="keep",
                 value_mean=mean(value, na.rm=TRUE),
-                value_sd=sd(value, na.rm=TRUE)
+                value_sd=sd(value, na.rm=FALSE)
             )
 
         # Add as SD the value from RSD since there are no replicates
