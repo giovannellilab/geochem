@@ -22,7 +22,7 @@ plot_ll = function(df) {
             aes(
                 x=r_bicarb,
                 y=r_na_k,
-                color=ID
+                fill=ID
             )
         ) +
         scale_x_continuous(
@@ -231,7 +231,11 @@ plot_ll = function(df) {
         theme(aspect.ratio=1) +
 
         # Add points at the end to avoid overlapping
-        geom_point()
+        geom_point(
+            size=4.5,
+            shape=21,
+            stroke=0.3
+        )
 
     return(plot)
 }
