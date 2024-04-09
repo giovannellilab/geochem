@@ -60,7 +60,7 @@ plot_ll = function(df) {
             y=47.5,
             label="Halite dissolution",
             color="black",
-            size=2.25,
+            size=2.15,
             alpha=0.5
         ) +
 
