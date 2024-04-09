@@ -40,7 +40,12 @@ plot_base_major_cations = function() {
             y="Mg",
             z="Na + K",
             fill="samples"
-        )
+        ) +
+
+        # Add theme options
+        ggtern::theme_showgrid() +
+        ggtern::theme_ticksoutside() +
+        ggtern::theme_ticklength_major(major=unit(3.5, "mm"))
 
     return(plot)
 }

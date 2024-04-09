@@ -128,7 +128,12 @@ plot_base_water_maturity = function() {
             size=3,
             alpha=1.0,
             fontface="bold"
-        )
+        ) +
+
+        # Add theme options
+        ggtern::theme_showgrid() +
+        ggtern::theme_ticksoutside() +
+        ggtern::theme_ticklength_major(major=unit(3.5, "mm"))
 
     return(plot)
 }
