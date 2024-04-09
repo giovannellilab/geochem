@@ -31,12 +31,12 @@ Rscript -e "remotes::install_gitlab('water/analysis-tools/smwrData', host='code.
 Rscript -e "remotes::install_gitlab('water/analysis-tools/smwrBase', host='code.usgs.gov')"
 Rscript -e "remotes::install_gitlab('water/analysis-tools/smwrGraphs', host='code.usgs.gov')"
 
-# Install ggtern for the ternary plots
-mamba install r-ggtern -y
-
 # Install devtools for downgrading ggplot2 (see https://stackoverflow.com/a/78098253)
 mamba install r-devtools -y
-Rscript -e "devtools::install_version('ggplot2', version='3.4.4')"
+Rscript -e "devtools::install_version('ggplot2', version='3.3.5')"
+
+# Install a specific version of ggtern (see https://stackoverflow.com/a/75723535)
+Rscript -e "devtools::install_version('ggtern', version='3.3.5', dependencies=FALSE)"
 
 # Install data analysis packages
 mamba install r-corrplot r-factoextra -y
