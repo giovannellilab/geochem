@@ -47,9 +47,11 @@ plot_base_gigg_anions = function() {
                 y=y,
                 z=z
             ),
-            color="lightgrey",
-            alpha=0.25,
-            linewidth=0.15
+            fill="grey",
+            alpha=0.15,
+            color="grey",
+            linewidth=0.25,
+            linetype="dashed"
         ) +
 
         # Create the guides and labels
@@ -99,7 +101,7 @@ plot_base_gigg_anions = function() {
         annotate(
             "text",
             label="Mature waters",
-            color="darkgrey",
+            color="grey",
             x=0.2,
             y=2.25,
             z=0.7,
