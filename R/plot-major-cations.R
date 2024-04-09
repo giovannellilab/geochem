@@ -27,7 +27,7 @@ plot_base_major_cations = function() {
                 yend=yend,
                 zend=zend
             ),
-            color="black",
+            color="grey",
             alpha=0.5,
             linewidth=0.25,
             linetype="dashed"

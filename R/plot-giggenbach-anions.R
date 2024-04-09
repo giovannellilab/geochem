@@ -33,7 +33,7 @@ plot_base_gigg_anions = function() {
                 yend=yend,
                 zend=zend
             ),
-            color="black",
+            color="grey",
             alpha=0.5,
             linewidth=0.25,
             linetype="dashed"
@@ -47,10 +47,9 @@ plot_base_gigg_anions = function() {
                 y=y,
                 z=z
             ),
-            color="black",
+            color="lightgrey",
             alpha=0.25,
-            linewidth=0.15,
-            linetype="dashed"
+            linewidth=0.15
         ) +
 
         # Create the guides and labels
@@ -65,6 +64,7 @@ plot_base_gigg_anions = function() {
         annotate(
             "text",
             label="Steam-heated waters",
+            color="grey",
             x=0.8,
             y=0.1,
             z=0.8,
@@ -75,6 +75,7 @@ plot_base_gigg_anions = function() {
         annotate(
             "text",
             label="Volcanic waters",
+            color="grey",
             x=0.7,
             y=0.3,
             z=0.05,
@@ -86,6 +87,7 @@ plot_base_gigg_anions = function() {
         annotate(
             "text",
             label="Peripherial waters",
+            color="grey",
             x=0.05,
             y=0.3,
             z=0.7,
@@ -97,6 +99,7 @@ plot_base_gigg_anions = function() {
         annotate(
             "text",
             label="Mature waters",
+            color="darkgrey",
             x=0.2,
             y=2.25,
             z=0.7,

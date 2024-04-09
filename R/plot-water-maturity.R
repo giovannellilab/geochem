@@ -66,13 +66,13 @@ plot_base_water_maturity = function() {
             data=gigg_df %>% filter(TK %in% c("tkn")),
             size=1,
             shape=22,
-            fill="black",
+            fill="grey",
             stroke=.3
         ) +
         geom_text(
             data=gigg_df %>% filter(TK %in% c("tkn")),
             mapping=aes(label=as.factor(Temperature)),
-            color="black",
+            color="grey",
             size=2.5,
             hjust=0.5,
             vjust=-1
@@ -83,13 +83,13 @@ plot_base_water_maturity = function() {
             data=gigg_df %>% filter(TK %in% c("tkm")),
             size=1,
             shape=22,
-            fill="black",
+            fill="grey",
             stroke=.3
         ) +
         geom_text(
             data=gigg_df %>% filter(TK %in% c("tkm")),
             mapping=aes(label=as.factor(Temperature)),
-            color="black",
+            color="grey",
             size=2.5,
             hjust=0.5,
             vjust=2
@@ -99,6 +99,7 @@ plot_base_water_maturity = function() {
         annotate(
             "text",
             label="Fully Equilibrated",
+            color="grey",
             x=0.2,
             y=0.8,
             z=0.2,
@@ -109,6 +110,7 @@ plot_base_water_maturity = function() {
         annotate(
             "text",
             label="Partially Equilibrated",
+            color="grey",
             x=0.2,
             y=0.225,
             z=0.2,
@@ -119,6 +121,7 @@ plot_base_water_maturity = function() {
         annotate(
             "text",
             label="Immature Waters",
+            color="grey",
             x=0.2,
             y=0.05,
             z=0.2,
