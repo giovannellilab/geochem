@@ -182,6 +182,13 @@ process_icp_data = function(filepath) {
                 pattern="(?<=\\[).*(?=\\]$)"
             )
         ) %>%
+        # Extract isotope from the element column
+        mutate(
+            isotope=str_extract(
+                string=element,
+                pattern="^\\d+(?= .*)"
+            )
+        ) %>%
         # Extract actual element name from the element column
         mutate(
             element=str_extract(
