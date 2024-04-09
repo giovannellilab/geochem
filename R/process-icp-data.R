@@ -153,11 +153,11 @@ process_icp_data = function(filepath) {
         group_by(sample, name) %>%
         mutate(dilution_change=dilution/max(dilution)) %>%
         mutate(CPS_adj=value_mean * dilution_change) %>%
-        mutate(CPD_perc_change=100*(abs(CPS_adj - lag(CPS_adj))/lag(CPS_adj))) %>%
+        mutate(CPS_perc_change=100*(abs(CPS_adj - lag(CPS_adj))/lag(CPS_adj))) %>%
         mutate(
             value_cps_perc_check=case_when(
-                CPD_perc_change <= 5.0 ~ "OK",
-                CPD_perc_change >  5.0 ~ "DISCARD"
+                CPS_perc_change <= 5.0 ~ "OK",
+                CPS_perc_change >  5.0 ~ "DISCARD"
             )
         )
 
