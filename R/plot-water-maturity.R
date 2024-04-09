@@ -1,7 +1,7 @@
 library(ggplot2)
 library(ggtern)
 
-plot_base_gigg_cations = function() {
+plot_base_water_maturity = function() {
 
     # Giggenbach values
     gigg_df = read.csv(
