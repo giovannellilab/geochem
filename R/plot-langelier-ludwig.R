@@ -181,7 +181,50 @@ plot_ll = function(df) {
             color="gray",
             linewidth=0.2
         ) +
-        
+
+        # Add arrows
+        geom_segment(
+            x=36.5,
+            y=14,
+            xend=7.5,
+            yend=37.5,
+            lineend="butt",
+            linejoin="mitre",
+            linewidth=0.5,
+            arrow=arrow(length=unit(0.15, "inches")),
+            colour="grey"
+        ) +
+        annotate(
+            geom="text",
+            x=20.5,
+            y=23.5,
+            label="Mixing line",
+            color="darkgrey",
+            size=3.5,
+            alpha=0.5
+        ) +
+        geom_segment(
+            x=7.5,
+            y=44.5,
+            xend=37.5,
+            yend=44.5,
+            lineend="butt",
+            linejoin="mitre",
+            linewidth=0.5,
+            arrow=arrow(length=unit(0.15, "inches")),
+            colour="grey"
+        ) +
+        annotate(
+            geom="text",
+            x=25,
+            y=43,
+            parse=TRUE,
+            label="'Interaction with CO'[2]",
+            color="darkgrey",
+            size=3.5,
+            alpha=0.5
+        ) +
+
         theme_glab() +
 
         # Force the diagram to be squared
