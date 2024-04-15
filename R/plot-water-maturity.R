@@ -1,7 +1,7 @@
 library(ggplot2)
 library(ggtern)
 
-plot_base_water_maturity = function() {
+plot_base_water_maturity = function(type) {
 
     # Giggenbach values
     gigg_df = read.csv(
@@ -42,24 +42,51 @@ plot_base_water_maturity = function() {
         340,1000,1394.45436354981,0.302813961608541,tkm"
     )
 
-    # Create plot
-    plot = ggtern(
+    # Choose between Giggenbach and Duchi plots
+    if (type == "giggenbach") {
+        base_plot = ggtern(
             data=gigg_df,
-            aes(
-                x=Potassium/100,
-                y=Sodium/1000,
-                z=sqrt(Magnesium)
+                aes(
+                    x=Potassium/100,
+                    y=Sodium/1000,
+                    z=sqrt(Magnesium)
+                )
+            ) +
+            labs(
+                x="K/100",
+                y="Na/1000",
+                z=expression(sqrt(Mg)),
+                fill="samples"
             )
-        ) +
 
-        # Create the guides and labels
+    } else if (type == "duchi") {
+        base_plot = ggtern(
+            data=gigg_df,
+                aes(
+                    x=Potassium/10,
+                    y=Sodium/400,
+                    z=sqrt(Magnesium)
+                )
+            ) +
+            labs(
+                x="K/10",
+                y="Na/400",
+                z=expression(sqrt(Mg)),
+                fill="samples"
+            )
+
+    } else {
+        stop(
+            paste0(
+                "Type <", type, "> not implemented in plot_base_water_maturity"
+            )
+        )
+    }
+
+    # Create plot
+    plot = base_plot +
+
         guides(fill=guide_legend(override.aes=list(shape=21))) +
-        labs(
-            x="K/100",
-            y="Na/1000",
-            z=expression(sqrt(Mg)),
-            fill="samples"
-        ) +
 
         # Create the first half of the temperature curves
         geom_point(
