@@ -5,7 +5,11 @@ plot_metals = function(df, log_y=FALSE) {
 
     figure_metals_abs = ggplot(
             data=df,
-            aes(fill=element, y=concentration, x=sample)
+            aes(
+                x=sample,
+                y=concentration,
+                fill=element
+            )
         ) +
         geom_col(stat="identity") +
         xlab("Sample") +
@@ -20,7 +24,11 @@ plot_metals = function(df, log_y=FALSE) {
 
     figure_metals_rel = ggplot(
             data=df,
-            aes(fill=element, y=concentration, x=sample)
+            aes(
+                x=sample,
+                y=concentration,
+                fill=element
+            )
         ) +
         geom_bar(position="fill", stat="identity") +
         xlab("Sample") +
