@@ -76,7 +76,7 @@ plot_base_gigg_anions = function() {
         ) +
         annotate(
             "text",
-            label="Volcanic waters",
+            label="Sulfate waters",
             color="grey",
             x=0.5,
             y=0.5,
@@ -88,7 +88,7 @@ plot_base_gigg_anions = function() {
         ) +
         annotate(
             "text",
-            label="Peripherial waters",
+            label="Bicarbonate waters",
             color="grey",
             x=0.05,
             y=0.3,
@@ -100,7 +100,7 @@ plot_base_gigg_anions = function() {
         ) +
         annotate(
             "text",
-            label="Mature waters",
+            label="Chloride waters",
             color="grey",
             x=0.2,
             y=2.25,
