@@ -143,11 +143,8 @@ process_icp_data = function(filepath) {
             )
         )
 
+    # Remove RSD rows
     measures_df = measures_df %>%
-        mutate(
-            element=str_replace(element, "Conc. \\[ ppb \\] ", "")
-        ) %>%
-        # Remove RSD rows
         filter(!str_detect(name, "RSD"))
 
     # Calculate dilution change for further checks
@@ -168,6 +165,10 @@ process_icp_data = function(filepath) {
 
     measures_df = measures_df %>%
         # Remove leading characters from element column
+        mutate(
+            element=str_replace(element, "Conc. \\[ ppb \\] ", "")
+        ) %>%
+        # Remove leading characters from element column (another format)
         mutate(
             element=str_replace(
                 string=element,
