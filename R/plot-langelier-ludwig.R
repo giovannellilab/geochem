@@ -1,30 +1,10 @@
 library(tidyverse)
 
-plot_ll = function(df) {
+plot_base_ll = function() {
 
-    # Add anions and cations transformations as columns
-    df = df %>%
-        mutate(
-            r_bicarb=50 * (HCO3.meq) / sum(
-                HCO3.meq + Cl.meq + SO4.meq
-            ),
-            r_na_k=50 * (Na.meq + K.meq) / sum(
-                Na.meq + K.meq + Mg.meq + Ca.meq
-            )
-        ) %>%
-        mutate(
-            r_ca_mg=50 - r_na_k,
-            r_cl_so4=50 - r_bicarb
-        )
+    plot = ggplot() +
 
-    plot = ggplot(
-            data=df,
-            aes(
-                x=r_bicarb,
-                y=r_na_k,
-                fill=ID
-            )
-        ) +
+        # Format axes
         scale_x_continuous(
             name=expression("R"("HCO"[3]^"-")),
             limits=c(0, 50),
@@ -184,10 +164,7 @@ plot_ll = function(df) {
 
         # Add arrows
         geom_segment(
-            x=36.5,
-            y=14,
-            xend=7.5,
-            yend=37.5,
+            aes(x=36.5, y=14, xend=7.5, yend=37.5),
             lineend="butt",
             linejoin="mitre",
             linewidth=0.5,
@@ -204,10 +181,7 @@ plot_ll = function(df) {
             alpha=0.5
         ) +
         geom_segment(
-            x=7.5,
-            y=44.5,
-            xend=37.5,
-            yend=44.5,
+            aes(x=7.5, y=44.5, xend=37.5, yend=44.5),
             lineend="butt",
             linejoin="mitre",
             linewidth=0.5,
@@ -228,14 +202,7 @@ plot_ll = function(df) {
         theme_glab() +
 
         # Force the diagram to be squared
-        theme(aspect.ratio=1) +
-
-        # Add points at the end to avoid overlapping
-        geom_point(
-            size=4.5,
-            shape=21,
-            stroke=0.3
-        )
+        theme(aspect.ratio=1)
 
     return(plot)
 }
