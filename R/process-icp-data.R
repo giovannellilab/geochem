@@ -179,7 +179,7 @@ process_icp_data = function(filepath) {
         mutate(
             gas=str_extract(
                 string=element,
-                pattern="(?<=\\[).*(?=\\]$)"
+                pattern="(?<=\\[\\s).*(?=\\s\\]$)"
             )
         ) %>%
         # Extract isotope from the element column
