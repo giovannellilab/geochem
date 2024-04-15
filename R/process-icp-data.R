@@ -135,11 +135,12 @@ process_icp_data = function(filepath) {
 
     # Add checks for standard deviation
     measures_df = measures_df %>%
+        mutate(value_sd_perc=100 * value_sd / value_mean) %>%
         mutate(
             value_sd_check=case_when(
-                value_sd >=  0.0 & value_sd <= 15.0 ~ "OK",
-                value_sd >  15.0 & value_sd <= 30.0 ~ "CHECK",
-                value_sd >  30.0 ~ "DISCARD"
+                value_sd_perc >=  0.0 & value_sd_perc <= 15.0 ~ "OK",
+                value_sd_perc >  15.0 & value_sd_perc <= 30.0 ~ "CHECK",
+                value_sd_perc >  30.0 ~ "DISCARD"
             )
         )
 
