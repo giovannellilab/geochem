@@ -31,7 +31,7 @@ plot_base_ll = function() {
             aes(xmin=0, xmax=7, ymin=45, ymax=50),
             fill="cadetblue 1",
             color="black",
-            linewidth=0.2,
+            size=0.25, # linewidth in newer ggplot2 versions
             alpha=0.5
         ) +
         annotate(
@@ -48,7 +48,7 @@ plot_base_ll = function() {
             aes(xmin=12.5, xmax=23, ymin=44, ymax=49),
             fill="coral 1",
             color="black",
-            linewidth=0.2,
+            size=0.25, # linewidth in newer ggplot2 versions
             alpha=0.3
         ) +
         annotate(
@@ -65,7 +65,7 @@ plot_base_ll = function() {
             aes(xmin=44, xmax=50, ymin=39, ymax=50),
             fill="darkolivegreen 1",
             color="black",
-            linewidth=0.2,
+            size=0.25, # linewidth in newer ggplot2 versions
             alpha=0.3
         ) +
         annotate(
@@ -83,7 +83,7 @@ plot_base_ll = function() {
             aes(xmin=0, xmax=7, ymin=37, ymax=45),
             fill="cadetblue 3",
             color="black",
-            linewidth=0.2,
+            size=0.25, # linewidth in newer ggplot2 versions
             alpha=0.9
         ) +
         annotate(
@@ -100,7 +100,7 @@ plot_base_ll = function() {
             aes(xmin=0, xmax=2.5, ymin=0, ymax=20),
             fill="darkolivegreen 3",
             color="black",
-            linewidth=0.2,
+            size=0.25, # linewidth in newer ggplot2 versions
             alpha=0.9
         ) +
         annotate(
@@ -118,7 +118,7 @@ plot_base_ll = function() {
             aes(xmin=10, xmax=20, ymin=2.5, ymax=10),
             fill="cornsilk 1",
             color="black",
-            linewidth=0.2,
+            size=0.25, # linewidth in newer ggplot2 versions
             alpha=0.9
         ) +
         annotate(
@@ -135,7 +135,7 @@ plot_base_ll = function() {
             aes(xmin=37, xmax=50, ymin=0, ymax=15),
             fill="aliceblue",
             color="black",
-            linewidth=0.2,
+            size=0.25, # linewidth in newer ggplot2 versions
             alpha=0.9
         ) +
         annotate(
@@ -153,13 +153,13 @@ plot_base_ll = function() {
             xintercept=25,
             linetype="dashed",
             color="gray",
-            linewidth=0.2
+            size=0.25, # linewidth in newer ggplot2 versions
         ) +
         geom_hline(
             yintercept=25,
             linetype="solid",
             color="gray",
-            linewidth=0.2
+            size=0.25, # linewidth in newer ggplot2 versions
         ) +
 
         # Add arrows
@@ -167,7 +167,7 @@ plot_base_ll = function() {
             aes(x=36.5, y=14, xend=7.5, yend=37.5),
             lineend="butt",
             linejoin="mitre",
-            linewidth=0.5,
+            size=0.5, # linewidth in newer ggplot2 versions
             arrow=arrow(length=unit(0.15, "inches")),
             colour="grey"
         ) +
@@ -184,7 +184,7 @@ plot_base_ll = function() {
             aes(x=7.5, y=44.5, xend=37.5, yend=44.5),
             lineend="butt",
             linejoin="mitre",
-            linewidth=0.5,
+            size=0.5, # linewidth in newer ggplot2 versions
             arrow=arrow(length=unit(0.15, "inches")),
             colour="grey"
         ) +

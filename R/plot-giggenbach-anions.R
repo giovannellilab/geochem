@@ -35,7 +35,7 @@ plot_base_gigg_anions = function() {
             ),
             color="grey",
             alpha=0.5,
-            linewidth=0.25,
+            size=0.25, # linewidth in newer ggplot2 versions
             linetype="dashed"
         ) +
 
@@ -50,7 +50,7 @@ plot_base_gigg_anions = function() {
             fill="grey",
             alpha=0.15,
             color="grey",
-            linewidth=0.25,
+            size=0.25, # linewidth in newer ggplot2 versions
             linetype="dashed"
         ) +
 
