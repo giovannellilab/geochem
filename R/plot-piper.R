@@ -37,6 +37,84 @@ transform_data_piper = function(Mg, Ca, Cl, SO4, id) {
 
 plot_base_piper = function() {
 
+    # ------------------------------------------------------------------------ #
+    # Color water regions (adapted from https://gist.github.com/johnDorian/5561272?permalink_comment_id=2896380#gistcomment-2896380)
+
+    # Upper diamond
+    ids_upper = factor(
+        c(
+            "Sodium Bicarbonate",
+            "Sodium Chloride",
+            "Calcium Bicarbonate",
+            "Calcium Sulfate"
+        )
+    )
+    values_upper = data.frame(
+        id=ids_upper,
+        value=c(1, 2, 3, 4)
+    )
+    positions_upper = data.frame(
+        id=rep(ids_upper, each=4),
+        x=c(
+            110, 85,  110, 135,
+            135, 110, 135, 160,
+            85,  60,  85,  110,
+            110, 85,  110, 135
+        ),
+        y=c(
+            17.3206,  60.6221,  103.9236, 60.6221,
+            60.6221,  103.9236, 147.2251, 103.9236,
+            60.6221,  103.9236, 147.2251, 103.9236,
+            103.9236, 147.2251, 190.5266, 147.2251
+        )
+    )
+    polygons_upper = merge(values_upper, positions_upper)
+
+    # Left ternary plot
+    ids_left = factor(c("5", "6", "7", "8"))
+    values_left = data.frame(
+        id=ids_left,
+        value=c(5, 6, 7, 8)
+    )
+    positions_left = data.frame(
+        id=rep(ids_left, each=3),
+        x=c(
+            50,   0,  25,  50,
+            25,  75, 100,  50,
+            75,  75,  25,  50
+        ),
+        y=c(
+                  0,       0, 43.3015,      0,
+            43.3015, 43.3015,       0,      0,
+            43.3015, 43.3015, 43.3015, 86.603
+        )
+    )
+    polygons_left = merge(values_left, positions_left)
+
+    # Right ternary plot
+    ids_right = factor(c("9", "10", "11", "12"))
+    values_right = data.frame(
+        id=ids_right,
+        value=c(9, 10, 11, 12)
+    )
+    positions_right = data.frame(
+        id=rep(ids_right, each=3),
+        x=c(
+            170, 120, 145, 170,
+            145, 195, 220, 170,
+            195, 195, 145, 170
+        ),
+        y=c(
+                  0,       0, 43.3015,      0,
+            43.3015, 43.3015,       0,      0,
+            43.3015, 43.3015, 43.3015, 86.603
+        )
+    )
+    polygons_right = merge(values_right, positions_right)
+
+    # ------------------------------------------------------------------------ #
+    # Create base plot
+
     plot = ggplot() +
 
         # -------------------------------------------------------------------- #
@@ -328,6 +406,40 @@ plot_base_piper = function() {
             size=3.5,
             parse=TRUE
         ) + 
+
+        # -------------------------------------------------------------------- #
+        # Add water regions
+
+        geom_polygon(
+            data=polygons_upper,
+            aes(
+                x=x,
+                y=y,
+                fill=id
+            ),
+            alpha=0.25,
+            show.legend=FALSE
+        ) +
+        geom_polygon(
+            data=polygons_left,
+            aes(
+                x=x,
+                y=y,
+                fill=id
+            ),
+            alpha=0.25,
+            show.legend=FALSE
+        ) +
+        geom_polygon(
+            data=polygons_right,
+            aes(
+                x=x,
+                y=y,
+                fill=id
+            ),
+            alpha=0.25,
+            show.legend=FALSE
+        ) +
 
         # -------------------------------------------------------------------- #
         # Remove axes
