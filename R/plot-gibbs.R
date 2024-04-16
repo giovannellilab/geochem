@@ -51,7 +51,7 @@ plot_base_gibbs = function() {
             x=0.2,
             y=2e+2,
             label="Rock",
-            color="black",
+            color="grey",
             size=3,
             alpha=0.6
         ) +
@@ -60,7 +60,7 @@ plot_base_gibbs = function() {
             x=0.6,
             y=1e+2,
             label="Precipitation",
-            color="black",
+            color="grey",
             size=3,
             alpha=0.6
         ) +
@@ -69,7 +69,7 @@ plot_base_gibbs = function() {
             x=0.4,
             y=2e+4,
             label="Evaporation",
-            color="black",
+            color="grey",
             size=3,
             alpha=0.6
         ) +
