@@ -46,34 +46,34 @@ plot_base_water_maturity = function(type) {
     if (type == "giggenbach") {
         base_plot = ggtern(
             data=gigg_df,
-                aes(
-                    x=Potassium/100,
-                    y=Sodium/1000,
-                    z=sqrt(Magnesium)
-                )
-            ) +
-            labs(
-                x="K/100",
-                y="Na/1000",
-                z=expression(sqrt(Mg)),
-                fill="samples"
+            aes(
+                x=Potassium/100,
+                y=Sodium/1000,
+                z=sqrt(Magnesium)
             )
+        ) +
+        labs(
+            x="K/100",
+            y="Na/1000",
+            z=expression(sqrt(Mg)),
+            fill="samples"
+        )
 
     } else if (type == "duchi") {
         base_plot = ggtern(
             data=gigg_df,
-                aes(
-                    x=Potassium/10,
-                    y=Sodium/400,
-                    z=sqrt(Magnesium)
-                )
-            ) +
-            labs(
-                x="K/10",
-                y="Na/400",
-                z=expression(sqrt(Mg)),
-                fill="samples"
+            aes(
+                x=Potassium/10,
+                y=Sodium/400,
+                z=sqrt(Magnesium)
             )
+        ) +
+        labs(
+            x="K/10",
+            y="Na/400",
+            z=expression(sqrt(Mg)),
+            fill="samples"
+        )
 
     } else {
         stop(
