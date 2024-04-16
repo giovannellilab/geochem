@@ -1,4 +1,6 @@
-# Adapted from https://gist.github.com/johnDorian/5561272
+# Adapted from the following sources:
+# https://gist.github.com/johnDorian/5561272
+# https://github.com/markolipka/ggplot_Piper/blob/master/ggplot_Piper.R
 
 library(ggplot2)
 
@@ -149,7 +151,7 @@ plot_base_piper = function() {
         ) +
 
         # -------------------------------------------------------------------- #
-        # Add grid labels
+        # Add axes ticks
 
         # X Cation
         geom_text(
@@ -245,6 +247,87 @@ plot_base_piper = function() {
             ),
             size=2.5
         ) +
+
+        # -------------------------------------------------------------------- #
+        # Add axes labels
+        geom_text(
+            aes(
+                x=17,
+                y=50,
+                label="Mg^'2+'"
+            ),
+            angle=60,
+            size=3.5,
+            parse=TRUE
+        ) +
+        geom_text(
+            aes(
+                x=82.5,
+                y=50,
+                label="Na^'+'~+~K^'+'"
+            ),
+            angle=-60,
+            size=3.5,
+            parse=TRUE
+        ) +
+        geom_text(
+            aes(
+                x=50,
+                y=-10,
+                label="Ca^'2+'"
+            ),
+            size=3.5,
+            parse=TRUE
+        ) +
+        geom_text(
+            aes(
+                x=170,
+                y=-10,
+                label="Cl^'-'"
+            ),
+            size=3.5,
+            parse=TRUE
+        ) +
+        geom_text(
+            aes(
+                x=205,
+                y=50,
+                label="SO[4]^'2-'"
+            ),
+            angle=-60,
+            size=3.5,
+            parse=TRUE
+        ) +
+        geom_text(
+            aes(
+                x=137.5,
+                y=50,
+                label="Alkalinity~as~HCO[3]^'-'"
+            ),
+            angle=60,
+            size=3.5,
+            parse=TRUE
+        ) +
+        geom_text(
+            aes(
+                x=72.5,
+                y=150,
+                label="SO[4]^'2-'~+~Cl^'-'"
+            ),
+            angle=60,
+            size=3.5,
+            parse=TRUE
+        ) +
+        geom_text(
+            aes(
+                x=147.5,
+                y=150,
+                label="Ca^'2+'~+~Mg^'2+'"
+            ),
+            angle=-60,
+            size=3.5,
+            parse=TRUE
+        ) + 
 
         # -------------------------------------------------------------------- #
         # Remove axes
