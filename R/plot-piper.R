@@ -328,8 +328,7 @@ plot_base_piper = function() {
                 y=c(17.3206,  60.6221, 60.6221)
             ),
             fill="#8B4513",
-            alpha=0.25,
-            show.legend=FALSE
+            alpha=0.25
         ) +
 
         # Mixing zone (lower)
@@ -343,8 +342,7 @@ plot_base_piper = function() {
                 y=c(103.9236,  60.6221, 60.6221)
             ),
             fill="#5F6E5D",
-            alpha=0.25,
-            show.legend=FALSE
+            alpha=0.25
         ) +
 
         # Na-Cl waters (marine and deep ancient ground waters)
@@ -358,8 +356,7 @@ plot_base_piper = function() {
                 y=c(60.6221, 103.9236, 147.2251, 103.9236)
             ),
             fill="#40E0D0",
-            alpha=0.25,
-            show.legend=FALSE
+            alpha=0.25
         ) +
 
         # Ca-HCO3 waters (shallow, fresh ground waters)
@@ -373,8 +370,7 @@ plot_base_piper = function() {
                 y=c(60.6221, 103.9236, 147.2251, 103.9236)
             ),
             fill="#7FFFD4",
-            alpha=0.25,
-            show.legend=FALSE
+            alpha=0.25
         ) +
 
         # Ca-SO4 waters (gypsum ground waters and mine drainage)
@@ -388,8 +384,7 @@ plot_base_piper = function() {
                 y=c(147.2251, 147.2251, 190.5266, 147.2251)
             ),
             fill="#98FB98",
-            alpha=0.25,
-            show.legend=FALSE
+            alpha=0.25
         ) +
 
         # Mixing zone (upper)
@@ -403,8 +398,97 @@ plot_base_piper = function() {
                 y=c(103.9236, 147.2251, 147.2251)
             ),
             fill="#5F6E5D",
-            alpha=0.25,
-            show.legend=FALSE
+            alpha=0.25
+        ) +
+
+        # -------------------------------------------------------------------- #
+        # Add cations regions
+
+        # Mg-Ca region
+        geom_polygon(
+            aes(
+                x=x,
+                y=y
+            ),
+            data=data.frame(
+                x=c(0, 25, 50),
+                y=c(0, 43.3015, 0)
+            ),
+            fill="#CB4149",
+            alpha=0.25
+        ) +
+
+        # Mg-NA+K region
+        geom_polygon(
+            aes(
+                x=x,
+                y=y
+            ),
+            data=data.frame(
+                x=c(25, 50, 75),
+                y=c(43.3015, 86.603, 43.3015)
+            ),
+            fill="#390963",
+            alpha=0.25
+        ) +
+
+        # Ca-NA+K region
+        geom_polygon(
+            aes(
+                x=x,
+                y=y
+            ),
+            data=data.frame(
+                x=c(50, 75, 100),
+                y=c(0, 43.3015, 0)
+            ),
+            fill="#85216B",
+            alpha=0.25
+        ) +
+
+        # -------------------------------------------------------------------- #
+        # Add anions regions
+
+        # HCO3-Cl region
+        geom_polygon(
+            aes(
+                x=x,
+                y=y
+            ),
+            data=data.frame(
+                x=c(120, 145, 170),
+                y=c(0, 43.3015, 0)
+            ),
+            fill="#FCFFA4",
+            alpha=0.25
+        ) +
+
+        # HCO3-SO4 region
+        geom_polygon(
+            aes(
+                x=x,
+                y=y
+            ),
+            data=data.frame(
+                x=c(145, 170, 195),
+                y=c(43.3015, 86.603, 43.3015)
+            ),
+            fill="#FCAE12",
+            alpha=0.25
+        ) +
+
+        # Cl-SO4 region
+        geom_polygon(
+            aes(
+                x=x,
+                y=y
+            ),
+            data=data.frame(
+                x=c(170, 195, 220),
+                y=c(0, 43.3015, 0)
+            ),
+            fill="#E65D2F",
+            alpha=0.25
         ) +
 
         # -------------------------------------------------------------------- #
