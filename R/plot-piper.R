@@ -289,24 +289,6 @@ plot_base_piper = function() {
             size=2.5
         ) +
 
-        # Left lower diamond
-        geom_text(
-            aes(
-                x=c(95, 85, 75, 65),
-                y=c(34.6412, 51.9618, 69.2824, 86.603),
-                label=c(80, 60, 40, 20)
-            ),
-            size=2.5
-        ) +
-        # Right upper diamond
-        geom_text(
-            aes(
-                x=c(155, 145, 135, 125),
-                y=c(121.2442, 138.5648, 155.8854, 173.2060),
-                label=c(20, 40, 60, 80)
-            ),
-            size=2.5
-        ) +
         # Left upper diamond
         geom_text(
             aes(
@@ -316,12 +298,12 @@ plot_base_piper = function() {
             ),
             size=2.5
         ) +
-        # Right lower diamond
+        # Right upper diamond
         geom_text(
             aes(
-                x=c(125, 135, 145, 155),
-                y=c(34.6412, 51.9618, 69.2824, 86.603),
-                label=c(80, 60, 40, 20)
+                x=c(155, 145, 135, 125),
+                y=c(121.2442, 138.5648, 155.8854, 173.2060),
+                label=c(20, 40, 60, 80)
             ),
             size=2.5
         ) +
@@ -341,7 +323,7 @@ plot_base_piper = function() {
         geom_text(
             aes(
                 x=82.5,
-                y=50,
+                y=51.5,
                 label="Na^'+'~+~K^'+'"
             ),
             angle=-60,
@@ -379,7 +361,7 @@ plot_base_piper = function() {
         geom_text(
             aes(
                 x=137.5,
-                y=50,
+                y=51.5,
                 label="Alkalinity~as~HCO[3]^'-'"
             ),
             angle=60,
