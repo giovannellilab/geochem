@@ -327,7 +327,7 @@ plot_base_piper = function() {
                 x=c(110, 85, 135),
                 y=c(17.3206,  60.6221, 60.6221)
             ),
-            fill="#8B4513",
+            fill="#2AB07F",
             alpha=0.25
         ) +
 
@@ -342,7 +342,7 @@ plot_base_piper = function() {
                 y=c(103.9236,  60.6221, 60.6221)
             ),
             fill="#5F6E5D",
-            alpha=0.25
+            alpha=0.1
         ) +
 
         # Na-Cl waters (marine and deep ancient ground waters)
@@ -355,7 +355,7 @@ plot_base_piper = function() {
                 x=c(135, 110, 135, 160),
                 y=c(60.6221, 103.9236, 147.2251, 103.9236)
             ),
-            fill="#40E0D0",
+            fill="#482173",
             alpha=0.25
         ) +
 
@@ -369,7 +369,7 @@ plot_base_piper = function() {
                 x=c(85, 60, 85, 110),
                 y=c(60.6221, 103.9236, 147.2251, 103.9236)
             ),
-            fill="#7FFFD4",
+            fill="#FDE725",
             alpha=0.25
         ) +
 
@@ -383,7 +383,7 @@ plot_base_piper = function() {
                 x=c(110, 85, 110, 135),
                 y=c(147.2251, 147.2251, 190.5266, 147.2251)
             ),
-            fill="#98FB98",
+            fill="#1E9B8A",
             alpha=0.25
         ) +
 
@@ -398,7 +398,7 @@ plot_base_piper = function() {
                 y=c(103.9236, 147.2251, 147.2251)
             ),
             fill="#5F6E5D",
-            alpha=0.25
+            alpha=0.1
         ) +
 
         # -------------------------------------------------------------------- #
@@ -459,7 +459,7 @@ plot_base_piper = function() {
                 x=c(120, 145, 170),
                 y=c(0, 43.3015, 0)
             ),
-            fill="#FCFFA4",
+            fill="#F5DB4C",
             alpha=0.25
         ) +
 
