@@ -26,11 +26,6 @@ Rscript -e "install.packages('remotes')"
 # Install dependencies for smwrGraphs
 mamba install r-akima -y
 
-# Install smwrGraphs (https://code.usgs.gov/water/analysis-tools/smwrGraphs#package-installation)
-Rscript -e "remotes::install_gitlab('water/analysis-tools/smwrData', host='code.usgs.gov')"
-Rscript -e "remotes::install_gitlab('water/analysis-tools/smwrBase', host='code.usgs.gov')"
-Rscript -e "remotes::install_gitlab('water/analysis-tools/smwrGraphs', host='code.usgs.gov')"
-
 # Install devtools for downgrading ggplot2 (see https://stackoverflow.com/a/78098253)
 mamba install r-devtools -y
 Rscript -e "devtools::install_version('ggplot2', version='3.3.5')"
