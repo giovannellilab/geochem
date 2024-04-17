@@ -362,7 +362,7 @@ plot_base_piper = function() {
             aes(
                 x=137.5,
                 y=51.5,
-                label="Alkalinity~as~HCO[3]^'-'"
+                label="HCO[3]^'-'"
             ),
             angle=60,
             size=3.5,
