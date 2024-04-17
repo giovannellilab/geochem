@@ -2,33 +2,82 @@ library(tidyverse)
 
 process_ic_data = function(df) {
 
-    df = df %>%
-        # Remove time column
-        select(-`Determination start`) %>%
-        # Rename ID column
-        rename(ID=Ident)
+    ion_cols = c(
+        # Anions
+        "alk_tot",
+        "cl",
+        "so4",
+        "br",
+        "no3",
+        "po4",
 
-    # Merge anions and cations (see https://stackoverflow.com/a/45518649)
-    df = df %>%
-        group_by(ID) %>%
-        fill(everything(), .direction = "downup") %>%
-        slice(1)
-
-    # Rename columns (see https://stackoverflow.com/a/23518906)
-
-    # Create the mapping for renaming the columns
-    columns_map = as.vector(colnames(df))
-    names(columns_map) = str_extract(
-        string=colnames(df),
-        pattern="(?<=[Anions|Cations]\\.)(.+)(?=\\.Concentration)"
+        # Cations
+        "na",
+        "k",
+        "ca",
+        "mg",
+        "nh4",
+        "li"
     )
 
-    # Deselect the original columns
-    columns_map = columns_map[!is.na(names(columns_map))]
+    ic_df = df %>%
+        # Fill NA (missing ions)
+        mutate(across(all_of(ion_cols), ~replace_na(.x, 0))) %>%
+        # WARNING: Calculate meq for plotting, concentrations must be in mg/L!!!
+        mutate(
+            # Anions
+            HCO3.meq=alk_tot * (1 / 61.0168) * 1.22,
+            Cl.meq=cl * (1 / 35.45),
+            SO4.meq=so4 * (2 / 96.06),
+            Br.meq=br * (1 / 79.904),
+            # NO2.meq=no2 * (1 / 46.005),
+            NO3.meq=no3 * (1 / 62.004),
+            P04.meq=po4 * (3 / 94.9714),
 
-    # Finally, rename the columns using the mapping
-    df = df %>%
-        rename(all_of(columns_map))
+            # Cations
+            Na.meq=na * (1 / 22.990),
+            K.meq=k * (1 / 39.098),
+            Ca.meq=ca * (2 / 40.078),
+            Mg.meq=mg * (2 / 24.305),
+            NH4.meq=nh4 * (1 / 18.039),
+            Li.meq=li * (1 / 6.94)
+        ) %>%
+        # Calculate ion balance
+        mutate(
+            sum_anions=(
+                HCO3.meq + Cl.meq + SO4.meq + Br.meq + NO3.meq + P04.meq
+            ),
+            sum_cations=(
+                Na.meq + K.meq + Ca.meq + Mg.meq + NH4.meq + Li.meq
+            )
+        ) %>%
+        mutate(
+            IB=100 * (sum_cations - sum_anions) / (sum_cations + sum_anions)
+        )
 
-    return(df)
+    # Langelier-Ludwig: add anions and cations transformations as columns
+    ic_df = ic_df %>%
+        mutate(
+            r_bicarb=50 * (HCO3.meq) / (HCO3.meq + Cl.meq + SO4.meq),
+            r_na_k=50 * (Na.meq + K.meq) / (Na.meq + K.meq + Mg.meq + Ca.meq)
+        ) %>%
+        mutate(
+            r_ca_mg=50 - r_na_k,
+            r_cl_so4=50 - r_bicarb
+        )
+
+    # Piper plot: calculate percentages
+    ic_df = ic_df %>%
+        mutate(
+            total_cations=(Mg.meq + Ca.meq + Na.meq + K.meq),
+            total_anions=(HCO3.meq + SO4.meq + Cl.meq)
+        ) %>%
+        mutate(
+            Mg.meq.perc=100 * Mg.meq / total_cations,
+            Ca.meq.perc=100 * Ca.meq / total_cations,
+            Cl.meq.perc=100 * Cl.meq / total_anions,
+            SO4.meq.perc=100 * SO4.meq / total_anions,
+        )
+
+    return(ic_df)
 }
