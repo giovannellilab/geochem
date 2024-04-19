@@ -45,9 +45,23 @@ process_icp_data = function(filepath) {
     colnames(data_df) = new_cols
 
     data_df = data_df %>%
+        # Rename columns
         rename(
             sample="Sample Name",
             dilution="Total Dil."
+        ) %>%
+        # Extract and replace replicates inside the sample name
+        mutate(
+            replicate=str_split_i(
+                string=sample,
+                pattern="_",
+                i=4
+            ),
+            sample=str_replace(
+                string=sample,
+                pattern="_1in\\d+_\\d+$",
+                replacement=""
+            )
         )
 
     # Select all "Conc. RSD" columns (names)
