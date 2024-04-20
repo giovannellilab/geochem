@@ -1,6 +1,6 @@
 ## Creation of the conda environment
 
-IMPORTANT NOTE: you can use either `conda` or `mamba`
+IMPORTANT NOTE: you can either use `conda` or `mamba`
 
 ```{bash}
 mamba create -n geochem r-essentials r-base -y
