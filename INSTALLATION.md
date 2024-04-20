@@ -3,14 +3,14 @@
 IMPORTANT NOTE: you can either use `conda` or `mamba`
 
 ```{bash}
-mamba create -n geochem r-essentials r-base -y
+mamba create -n geochem -y
 ```
 
 * Installation on Mac (chip M1/2)
 
 ```{bash}
 # Must be OSX64 for installing ggtern's dependencies
-CONDA_SUBDIR=osx-64 conda create -n geochem r-essentials r-base -y
+CONDA_SUBDIR=osx-64 conda create -n geochem -y
 ```
 
 
@@ -20,7 +20,10 @@ CONDA_SUBDIR=osx-64 conda create -n geochem r-essentials r-base -y
 mamba activate geochem
 
 # NOTE: Install a specific version of ggtern (see https://stackoverflow.com/a/75723535)
-mamba install r-rio r-ggtern=3.3.5 r-corrplot r-factoextra r-irkernel -y
+mamba install r-essentials r-base r-ggplot2=3.3.5 r-ggtern=3.3.5 -y
+
+# Install other dependencies
+mamba install r-rio r-corrplot r-factoextra r-irkernel -y
 ```
 
 
