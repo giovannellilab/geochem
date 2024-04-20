@@ -19,11 +19,7 @@ CONDA_SUBDIR=osx-64 conda create -n geochem -y
 ```{bash}
 mamba activate geochem
 
-# NOTE: Install a specific version of ggtern (see https://stackoverflow.com/a/75723535)
-mamba install r-essentials r-base r-ggplot2=3.3.5 r-ggtern=3.3.5 -y
-
-# Install other dependencies
-mamba install r-rio r-corrplot r-factoextra r-irkernel -y
+mamba install r-essentials r-base r-ggtern r-rio r-corrplot r-factoextra r-irkernel -y
 ```
 
 
