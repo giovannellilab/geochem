@@ -177,5 +177,13 @@ process_icp = function(filepath) {
             )
         )
 
+    # Convert to wide for better readability
+    measures_df = measures_df %>%
+        pivot_wider(
+            id_cols=c(sample, dilution, replicate, element, isotope, gas),
+            names_from=measurement,
+            values_from=value
+        )
+
     return(measures_df)
 }
