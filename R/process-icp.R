@@ -8,7 +8,7 @@ remove_less_than = function(x) as.numeric(
     )
 )
 
-process_icp_data = function(filepath) {
+process_icp = function(filepath) {
 
     # Get the element names
     elements_row = import(

@@ -1,6 +1,6 @@
 library(tidyverse)
 
-process_ic_data = function(df) {
+process_ic = function(df) {
 
     ion_cols = c(
         # Anions
