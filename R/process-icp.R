@@ -134,37 +134,18 @@ process_icp = function(filepath) {
             bind_rows(row_df)
     }
 
-    # Add checks for standard deviation
+    # Remove unnecessary rows and columns
     measures_df = measures_df %>%
-        mutate(value_sd_perc=100 * value_sd / value_mean) %>%
-        mutate(
-            value_sd_check=case_when(
-                value_sd_perc >=  0.0 & value_sd_perc <= 15.0 ~ "OK",
-                value_sd_perc >  15.0 & value_sd_perc <= 30.0 ~ "CHECK",
-                value_sd_perc >  30.0 ~ "DISCARD"
-            )
-        )
+        # Remove RSD rows
+        filter(!str_detect(name, "RSD")) %>%
+        # Get only concentration rows
+        filter(name == "Concentration") %>%
+        # Remove name column
+        select(-name) %>%
+        # Rename value_mean to concentration
+        rename(concentration=value_mean)
 
-    # Remove RSD rows
-    measures_df = measures_df %>%
-        filter(!str_detect(name, "RSD"))
-
-    # Calculate dilution change for further checks
-    measures_df = measures_df %>%
-        arrange(sample, dilution) %>%
-        group_by(sample, name) %>%
-        mutate(dilution_change=dilution/max(dilution)) %>%
-        mutate(CPS_adj=value_mean * dilution_change) %>%
-        mutate(
-            CPS_perc_change=100 * (abs(CPS_adj - lag(CPS_adj)) / lag(CPS_adj))
-        ) %>%
-        mutate(
-            value_cps_perc_check=case_when(
-                CPS_perc_change <= 5.0 ~ "OK",
-                CPS_perc_change >  5.0 ~ "DISCARD"
-            )
-        )
-
+    # Format element, gas and isotope columns
     measures_df = measures_df %>%
         # Remove leading characters from element column
         mutate(
@@ -205,14 +186,7 @@ process_icp = function(filepath) {
                 pattern=" ",
                 replacement=""
             )
-        ) %>%
-        # Get only concentration rows
-        filter(name == "Concentration") %>%
-        rename(concentration=value_mean)
+        )
 
     return(measures_df)
-}
-
-calculate_stats_icp = function(df) {
-
 }
