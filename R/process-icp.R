@@ -121,7 +121,7 @@ process_icp = function(filepath) {
         row_df = row_df %>%
             # Transform to long format
             pivot_longer(
-                cols=-c(sample, dilution, element),
+                cols=-c(sample, dilution, replicate, element),
                 names_to="name"
             )
 
