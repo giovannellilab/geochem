@@ -19,7 +19,11 @@ CONDA_SUBDIR=osx-64 conda create -n geochem -y
 ```{bash}
 mamba activate geochem
 
+# Pipeline packages
 mamba install r-essentials r-base r-ggtern r-rio r-corrplot r-factoextra r-irkernel -y
+
+# Development packages
+mamba install r-devtools r-roxygen2 r-usethis r-testthat -y
 ```
 
 
