@@ -113,7 +113,7 @@ process_icp = function(filepath) {
             bind_rows(row_df)
     }
 
-    # Format sample, element, gas and isotope columns
+    # Format sample, measurement, element, gas and isotope columns
     measures_df = measures_df %>%
         # Extract and replace replicates inside the sample name
         mutate(
@@ -126,6 +126,14 @@ process_icp = function(filepath) {
                 string=sample,
                 pattern="_1in\\d+_\\d+$",
                 replacement=""
+            )
+        ) %>%
+        # Remove unnecessary characters in measurement column
+        mutate(
+            measurement=str_split_i(
+                string=measurement,
+                pattern="\\.\\.\\.",
+                i=1
             )
         ) %>%
         # Remove leading characters from element column
