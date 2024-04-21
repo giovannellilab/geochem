@@ -84,6 +84,7 @@ process_icp = function(filepath) {
 
     measures_df = data.frame()
 
+    # Iterate 4 by 4 (step) to get all columns for the respective element
     step = 4
 
     for (col_idx in seq(1, length(conc_rsd_cols_all), by=step)) {
@@ -112,7 +113,8 @@ process_icp = function(filepath) {
             # Round dilutions to match them
             mutate(dilution=round(dilution, digits=0))
 
-        row_df = row_df %>% 
+        row_df = row_df %>%
+            # Create element column (unformatted)
             mutate(element=rep(element_name, n=length(row_df))) %>%
             rename(Concentration=eval(element_name))
 
