@@ -121,13 +121,6 @@ process_icp = function(filepath) {
             pivot_longer(
                 cols=-c(sample, dilution, element),
                 names_to="name"
-            ) %>%
-            # Calculate mean
-            group_by(sample, dilution, name, element) %>%
-            summarise(
-                .groups="keep",
-                value_mean=mean(value, na.rm=TRUE),
-                value_sd=sd(value, na.rm=FALSE)
             )
 
         measures_df = measures_df %>%
@@ -141,9 +134,7 @@ process_icp = function(filepath) {
         # Get only concentration rows
         filter(name == "Concentration") %>%
         # Remove name column
-        select(-name) %>%
-        # Rename value_mean to concentration
-        rename(concentration=value_mean)
+        select(-name)
 
     # Format element, gas and isotope columns
     measures_df = measures_df %>%
