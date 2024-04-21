@@ -238,7 +238,7 @@ process_icp = function(filepath) {
             DATA_DIR,
             PROJECT_NAME,
             "ICP-MS",
-            paste0(ICP_FILENAME, "_check.csv")
+            paste0(ICP_FILENAME, "_grouped.csv")
         ),
         row.names=FALSE
     )
