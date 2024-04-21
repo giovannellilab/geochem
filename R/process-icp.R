@@ -44,24 +44,11 @@ process_icp = function(filepath) {
     new_cols = new_cols %>% str_replace(" NA", "")
     colnames(data_df) = new_cols
 
+    # Rename columns
     data_df = data_df %>%
-        # Rename columns
         rename(
             sample="Sample Name",
             dilution="Total Dil."
-        ) %>%
-        # Extract and replace replicates inside the sample name
-        mutate(
-            replicate=str_split_i(
-                string=sample,
-                pattern="_",
-                i=4
-            ),
-            sample=str_replace(
-                string=sample,
-                pattern="_1in\\d+_\\d+$",
-                replacement=""
-            )
         )
 
     # Select all "Conc. RSD" columns (names)
@@ -116,30 +103,31 @@ process_icp = function(filepath) {
         row_df = row_df %>%
             # Create element column (unformatted)
             mutate(element=rep(element_name, n=length(row_df))) %>%
-            rename(Concentration=eval(element_name))
-
-        row_df = row_df %>%
             # Transform to long format
             pivot_longer(
-                cols=-c(sample, dilution, replicate, element),
-                names_to="name"
+                cols=-c(sample, dilution, element),
+                names_to="measurement"
             )
 
         measures_df = measures_df %>%
             bind_rows(row_df)
     }
 
-    # Remove unnecessary rows and columns
+    # Format sample, element, gas and isotope columns
     measures_df = measures_df %>%
-        # Remove RSD rows
-        filter(!str_detect(name, "RSD")) %>%
-        # Get only concentration rows
-        filter(name == "Concentration") %>%
-        # Remove name column
-        select(-name)
-
-    # Format element, gas and isotope columns
-    measures_df = measures_df %>%
+        # Extract and replace replicates inside the sample name
+        mutate(
+            replicate=str_split_i(
+                string=sample,
+                pattern="_",
+                i=4
+            ),
+            sample=str_replace(
+                string=sample,
+                pattern="_1in\\d+_\\d+$",
+                replacement=""
+            )
+        ) %>%
         # Remove leading characters from element column
         mutate(
             element=str_replace(element, "Conc. \\[ ppb \\] ", "")
