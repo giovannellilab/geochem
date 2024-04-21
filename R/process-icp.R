@@ -1,6 +1,6 @@
 library(tidyverse)
 
-remove_less_than = function(x) as.numeric(
+replace_lod_values = function(x) as.numeric(
     str_replace(
     string=x,
     pattern="<0.000|<LOD",
@@ -104,10 +104,10 @@ process_icp = function(filepath) {
                     all_of(selected_cols)
                 )
             ) %>%
-            # Remove "less than" values
+            # Replace "less than" values by NA
             mutate_at(
                 selected_cols_names,
-                remove_less_than
+                replace_lod_values
             ) %>%
             # Round dilutions to match them
             mutate(dilution=round(dilution, digits=0))
