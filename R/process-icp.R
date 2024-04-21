@@ -178,12 +178,76 @@ process_icp = function(filepath) {
         )
 
     # Convert to wide for better readability
-    measures_df = measures_df %>%
+    measures_df_raw = measures_df %>%
         pivot_wider(
             id_cols=c(sample, dilution, replicate, element, isotope, gas),
             names_from=measurement,
             values_from=value
-        )
+        ) %>%
+        arrange(sample, dilution, element, isotope, gas)
+
+    write.csv(
+        x=measures_df_raw,
+        file=file.path(
+            DATA_DIR,
+            PROJECT_NAME,
+            "ICP-MS",
+            paste0(ICP_FILENAME, "_raw.csv")
+        ),
+        row.names=FALSE
+    )
+
+    measures_df = measures_df %>%
+        group_by(
+            sample,
+            dilution,
+            replicate,
+            element,
+            isotope,
+            gas,
+            measurement
+        ) %>%
+        # Calculate mean and standard deviation
+        summarise(
+            .groups="keep",
+            value_mean=mean(value, na.rm=TRUE),
+            value_sd=sd(value, na.rm=FALSE)
+        ) %>%
+        # Add checks for standard deviation
+        mutate(value_sd_perc=100 * value_sd / value_mean) %>%
+        mutate(
+            value_sd_check=case_when(
+                value_sd_perc >=  0.0 & value_sd_perc <= 15.0 ~ "OK",
+                value_sd_perc >  15.0 & value_sd_perc <= 30.0 ~ "CHECK",
+                value_sd_perc >  30.0 ~ "DISCARD"
+            )
+        ) %>%
+        # Calculate dilution change for further checks
+        arrange(sample, dilution) %>%
+        group_by(sample, replicate, element, isotope, gas, measurement) %>%
+        mutate(dilution_change=dilution/max(dilution)) %>%
+        mutate(CPS_adj=value_mean * dilution_change) %>%
+        mutate(
+            CPS_perc_change=100 * (abs(CPS_adj - lag(CPS_adj)) / lag(CPS_adj))
+        ) %>%
+        mutate(
+            value_cps_perc_check=case_when(
+                CPS_perc_change <= 5.0 ~ "OK",
+                CPS_perc_change >  5.0 ~ "DISCARD"
+            )
+        ) %>%
+        arrange(sample, dilution, element, isotope, gas, measurement)
+
+    write.csv(
+        x=measures_df,
+        file=file.path(
+            DATA_DIR,
+            PROJECT_NAME,
+            "ICP-MS",
+            paste0(ICP_FILENAME, "_check.csv")
+        ),
+        row.names=FALSE
+    )
 
     return(measures_df)
 }
