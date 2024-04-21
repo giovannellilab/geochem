@@ -198,15 +198,8 @@ process_icp = function(filepath) {
     )
 
     measures_df = measures_df %>%
-        group_by(
-            sample,
-            dilution,
-            replicate,
-            element,
-            isotope,
-            gas,
-            measurement
-        ) %>%
+        # Exclude replicate to calculate the mean
+        group_by(sample, dilution, element, isotope, gas, measurement) %>%
         # Calculate mean and standard deviation
         summarise(
             .groups="keep",
@@ -223,9 +216,10 @@ process_icp = function(filepath) {
             )
         ) %>%
         # Calculate dilution change for further checks
-        arrange(sample, dilution) %>%
-        group_by(sample, replicate, element, isotope, gas, measurement) %>%
-        mutate(dilution_change=dilution/max(dilution)) %>%
+        arrange(sample, dilution, element, isotope, gas, measurement) %>%
+        # Exclude dilution to calculate dilution change
+        group_by(sample, element, isotope, gas, measurement) %>%
+        mutate(dilution_change=dilution/min(dilution)) %>%
         mutate(CPS_adj=value_mean * dilution_change) %>%
         mutate(
             CPS_perc_change=100 * (abs(CPS_adj - lag(CPS_adj)) / lag(CPS_adj))
@@ -235,8 +229,7 @@ process_icp = function(filepath) {
                 CPS_perc_change <= 5.0 ~ "OK",
                 CPS_perc_change >  5.0 ~ "DISCARD"
             )
-        ) %>%
-        arrange(sample, dilution, element, isotope, gas, measurement)
+        )
 
     write.csv(
         x=measures_df,
