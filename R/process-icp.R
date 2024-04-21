@@ -231,7 +231,7 @@ process_icp = function(filepath) {
             value_sd_check=case_when(
                 value_sd_perc >=  0.0 & value_sd_perc <= 15.0 ~ "OK",
                 value_sd_perc >  15.0 & value_sd_perc <= 30.0 ~ "CHECK",
-                value_sd_perc >  30.0 ~ "DISCARD"
+                value_sd_perc >  30.0 | is.na(value_sd_perc)  ~ "DISCARD"
             )
         )
 
