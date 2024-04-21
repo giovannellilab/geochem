@@ -177,14 +177,30 @@ process_icp = function(filepath) {
             )
         )
 
-    # Convert to wide for better readability
     measures_df_raw = measures_df %>%
+        # Convert to wide for better readability
         pivot_wider(
             id_cols=c(sample, dilution, replicate, element, isotope, gas),
             names_from=measurement,
             values_from=value
         ) %>%
-        arrange(sample, dilution, element, isotope, gas)
+        arrange(sample, dilution, element, isotope, gas) %>%
+
+        # NOTE: do these calculations here to avoid removal by summarise!
+        # Exclude dilution to calculate dilution change
+        group_by(sample, element, isotope, gas) %>%
+        # Calculate dilution change for further checks
+        mutate(dilution_change=dilution/min(dilution)) %>%
+        mutate(CPS_adj=CPS * dilution_change) %>%
+        mutate(
+            CPS_perc_change=100 * (abs(CPS_adj - lag(CPS_adj)) / lag(CPS_adj))
+        ) %>%
+        mutate(
+            CPS_perc_check=case_when(
+                CPS_perc_change <= 5.0 ~ "OK",
+                CPS_perc_change >  5.0 ~ "DISCARD"
+            )
+        )
 
     write.csv(
         x=measures_df_raw,
@@ -213,21 +229,6 @@ process_icp = function(filepath) {
                 value_sd_perc >=  0.0 & value_sd_perc <= 15.0 ~ "OK",
                 value_sd_perc >  15.0 & value_sd_perc <= 30.0 ~ "CHECK",
                 value_sd_perc >  30.0 ~ "DISCARD"
-            )
-        ) %>%
-        # Calculate dilution change for further checks
-        arrange(sample, dilution, element, isotope, gas, measurement) %>%
-        # Exclude dilution to calculate dilution change
-        group_by(sample, element, isotope, gas, measurement) %>%
-        mutate(dilution_change=dilution/min(dilution)) %>%
-        mutate(CPS_adj=value_mean * dilution_change) %>%
-        mutate(
-            CPS_perc_change=100 * (abs(CPS_adj - lag(CPS_adj)) / lag(CPS_adj))
-        ) %>%
-        mutate(
-            value_cps_perc_check=case_when(
-                CPS_perc_change <= 5.0 ~ "OK",
-                CPS_perc_change >  5.0 ~ "DISCARD"
             )
         )
 
