@@ -214,8 +214,11 @@ process_icp = function(filepath) {
     )
 
     measures_df = measures_df %>%
+        # Select only concentration columns
+        filter(measurement == "Conc. [ ppb ]") %>%
+        select(-measurement) %>%
         # Exclude replicate to calculate the mean
-        group_by(sample, dilution, element, isotope, gas, measurement) %>%
+        group_by(sample, dilution, element, isotope, gas) %>%
         # Calculate mean and standard deviation
         summarise(
             .groups="keep",
