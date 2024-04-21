@@ -130,19 +130,6 @@ process_icp = function(filepath) {
                 value_sd=sd(value, na.rm=FALSE)
             )
 
-        # Add as SD the value from RSD since there are no replicates
-        row_df = row_df %>%
-            mutate(
-                value_sd=ifelse(
-                    str_detect(string=name, pattern="RSD"),
-                    value_mean,
-                    value_sd
-                )
-            ) %>%
-            group_by(sample, dilution, element) %>%
-            fill(value_sd, .direction="up") %>%
-            fill(value_sd, .direction="down")
-
         measures_df = measures_df %>%
             bind_rows(row_df)
     }
@@ -224,4 +211,8 @@ process_icp = function(filepath) {
         rename(concentration=value_mean)
 
     return(measures_df)
+}
+
+calculate_stats_icp = function(df) {
+
 }
