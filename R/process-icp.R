@@ -211,16 +211,16 @@ process_icp = function(filepath) {
         # Calculate mean and standard deviation
         summarise(
             .groups="keep",
-            value_mean=mean(value, na.rm=TRUE),
-            value_sd=sd(value, na.rm=FALSE)
+            conc_mean=mean(value, na.rm=TRUE),
+            conc_sd=sd(value, na.rm=FALSE)
         ) %>%
         # Add checks for standard deviation
-        mutate(value_sd_perc=100 * value_sd / value_mean) %>%
+        mutate(conc_sd_perc=100 * conc_sd / conc_mean) %>%
         mutate(
-            value_sd_check=case_when(
-                value_sd_perc >=  0.0 & value_sd_perc <= 15.0 ~ "OK",
-                value_sd_perc >  15.0 & value_sd_perc <= 30.0 ~ "CHECK",
-                value_sd_perc >  30.0 | is.na(value_sd_perc)  ~ "DISCARD"
+            conc_sd_check=case_when(
+                conc_sd_perc >=  0.0 & conc_sd_perc <= 15.0 ~ "OK",
+                conc_sd_perc >  15.0 & conc_sd_perc <= 30.0 ~ "CHECK",
+                conc_sd_perc >  30.0 | is.na(conc_sd_perc)  ~ "DISCARD"
             )
         )
 
