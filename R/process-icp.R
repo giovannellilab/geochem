@@ -202,17 +202,6 @@ process_icp = function(filepath) {
             )
         )
 
-    write.csv(
-        x=measures_df_raw,
-        file=file.path(
-            DATA_DIR,
-            PROJECT_NAME,
-            "ICP-MS",
-            paste0(ICP_FILENAME, "_raw.csv")
-        ),
-        row.names=FALSE
-    )
-
     measures_df = measures_df %>%
         # Select only concentration columns
         filter(measurement == "Conc. [ ppb ]") %>%
@@ -235,13 +224,20 @@ process_icp = function(filepath) {
             )
         )
 
+    # Merge both CPS and SD checks
+    measures_df = left_join(
+        x=measures_df_raw,
+        y=measures_df,
+        by=c("sample", "dilution", "element", "isotope", "gas")
+    )
+
     write.csv(
         x=measures_df,
         file=file.path(
             DATA_DIR,
             PROJECT_NAME,
             "ICP-MS",
-            paste0(ICP_FILENAME, "_grouped.csv")
+            paste0(ICP_FILENAME, "_check.csv")
         ),
         row.names=FALSE
     )
