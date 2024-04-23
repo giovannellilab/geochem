@@ -231,17 +231,6 @@ process_icp = function(filepath) {
         by=c("sample", "dilution", "element", "isotope", "gas")
     )
 
-    write.csv(
-        x=measures_df,
-        file=file.path(
-            DATA_DIR,
-            PROJECT_NAME,
-            "ICP-MS",
-            paste0(ICP_FILENAME, "_check.csv")
-        ),
-        row.names=FALSE
-    )
-
     return(measures_df)
 }
 
