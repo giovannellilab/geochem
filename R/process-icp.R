@@ -8,7 +8,7 @@ replace_lod_values = function(x) as.numeric(
     )
 )
 
-process_icp = function(filepath) {
+process_icp = function(filepath, blank_name) {
 
     # Get the element names
     elements_row = import(
@@ -230,6 +230,18 @@ process_icp = function(filepath) {
         y=measures_df,
         by=c("sample", "dilution", "element", "isotope", "gas")
     )
+
+    # Sort samples and put blank first
+    sample_order = c(
+        blank_name,
+        measures_df %>%
+            filter(sample != blank_name) %>%
+            pull(sample) %>%
+            unique()
+    )
+    measures_df = measures_df %>%
+        mutate(sample=factor(sample, levels=sample_order)) %>%
+        arrange(sample)
 
     return(measures_df)
 }
