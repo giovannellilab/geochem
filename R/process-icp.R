@@ -244,3 +244,27 @@ process_icp = function(filepath) {
 
     return(measures_df)
 }
+
+select_icp_auto = function(df, blank_name) {
+    # Automatically select values that passed the checks
+    final_df = df %>%
+        # Discard values that didn't pass the checks (keep blank)
+        filter(
+            (
+                CPS_perc_check != "DISCARD" & sample != blank_name |
+                sample == blank_name
+            ),
+            (
+                conc_sd_check != "DISCARD" & sample != blank_name |
+                sample == blank_name
+            ),
+        ) %>%
+        # Get unique values in conc_mean: there are duplicates because the
+        # original data points are kept for the CPS_perc_check
+        select(sample, dilution, element, isotope, gas, conc_mean) %>%
+        distinct() %>%
+        # Rename concentration column for further plots
+        rename(concentration=conc_mean)
+
+    return(final_df)
+}
