@@ -2,9 +2,9 @@ library(tidyverse)
 
 replace_lod_values = function(x) as.numeric(
     str_replace(
-    string=x,
-    pattern="<0.000|<LOD",
-    replacement="NA"
+        string=x,
+        pattern="<0.000|<LOD|N/A",
+        replacement=0.0
     )
 )
 
