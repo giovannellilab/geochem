@@ -1,20 +1,21 @@
 library(ggplot2)
 library(gridExtra)
 
-plot_metals = function(df, log_y=FALSE) {
+plot_metals = function(df) {
 
     # Add absolute barplot on the top
     figure_metals_abs = ggplot(
             data=df,
             aes(
                 x=sample,
-                y=concentration,
+                y=1 + concentration,
                 fill=element
             )
         ) +
         geom_col(stat="identity") +
         xlab("Sample") +
-        ylab("Concentration (ppb)") +
+        ylab("log(1 + Concentration (ppb))") +
+        scale_y_continuous(trans="log10") +
 
         # Manually color the metals
         scale_colour_manual(
@@ -48,20 +49,6 @@ plot_metals = function(df, log_y=FALSE) {
 
         theme_glab() +
         theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1))
-
-    # Scale y axis in the absolute barplot
-    if (log_y) {
-        figure_metals_abs = figure_metals_abs +
-            ylab("log(Concentration (ppb))") +
-            scale_y_continuous(trans="log10") +
-
-            # Add horizontal line on y=0
-            geom_hline(
-                yintercept=1,
-                linetype="solid",
-                color="grey"
-            )
-    }
 
     plot = grid.arrange(
         figure_metals_abs,
