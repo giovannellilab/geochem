@@ -211,11 +211,11 @@ process_icp = function(filepath, blank_name) {
         # Calculate mean and standard deviation
         summarise(
             .groups="keep",
-            conc_mean=mean(value, na.rm=TRUE),
+            concentration=mean(value, na.rm=TRUE),
             conc_sd=sd(value, na.rm=FALSE)
         ) %>%
         # Add checks for standard deviation
-        mutate(conc_sd_perc=100 * conc_sd / conc_mean) %>%
+        mutate(conc_sd_perc=100 * conc_sd / concentration) %>%
         mutate(
             conc_sd_check=case_when(
                 conc_sd_perc >=  0.0 & conc_sd_perc <= 15.0 ~ "OK",
@@ -260,12 +260,10 @@ select_icp_auto = function(df, blank_name) {
                 sample == blank_name
             ),
         ) %>%
-        # Get unique values in conc_mean: there are duplicates because the
+        # Get unique values in concentration: there are duplicates because the
         # original data points are kept for the CPS_perc_check
-        select(sample, dilution, element, isotope, gas, conc_mean) %>%
-        distinct() %>%
-        # Rename concentration column for further plots
-        rename(concentration=conc_mean)
+        select(sample, dilution, element, isotope, gas, concentration) %>%
+        distinct()
 
     return(final_df)
 }
