@@ -52,3 +52,6 @@ rsconnect/
 data/
 .DS_Store
 old/
+
+# R project files
+*.Rproj
