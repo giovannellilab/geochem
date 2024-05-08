@@ -1,9 +1,16 @@
-# Adapted from the following sources:
-# https://gist.github.com/johnDorian/5561272
-# https://github.com/markolipka/ggplot_Piper/blob/master/ggplot_Piper.R
-
-library(ggplot2)
-
+#' Transforms input concentrations to match the coordinates in the Piper plot.
+#' Adapted from the following sources:
+#' * https://gist.github.com/johnDorian/5561272
+#' * https://github.com/markolipka/ggplot_Piper/blob/master/ggplot_Piper.R
+#' 
+#' @return A data.frame object.
+#' 
+#' @examples
+#' df = transform_data_piper(Mg, Ca, Cl, SO4, id)
+#' 
+#' @seealso [geochem::plot_base_piper()]
+#' 
+#' @export
 transform_data_piper = function(Mg, Ca, Cl, SO4, id) {
 
     y1 = Mg * 0.86603
@@ -35,6 +42,18 @@ transform_data_piper = function(Mg, Ca, Cl, SO4, id) {
     )
 }
 
+#' Plots the base Piper plot
+#' 
+#' @return A `ggplot2` object.
+#' 
+#' @examples
+#' plot_base_piper()
+#' 
+#' @seealso [geochem::transform_data_piper()]
+#' 
+#' @import ggplot2
+#' 
+#' @export
 plot_base_piper = function() {
 
     # ------------------------------------------------------------------------ #

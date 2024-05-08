@@ -1,5 +1,27 @@
-library(tidyverse)
-
+#' Processes IC results for further geochemistry plots:
+#' * Calculates miliequivalents for the given species
+#' * Adds coordinate transformations for the Langelier-Ludwig diagram
+#' * Adds percentage transformations for the Piper plot
+#' 
+#' @param df Data frame containing the following columns:
+#' * Anions: alk_tot, cl, so4, br, no3, po4
+#' * Cations: na, k, ca, mg, nh4, li
+#' 
+#' @return A data.frame object.
+#' 
+#' @examples
+#' df = process_ic(df)
+#' 
+#' @seealso [geochem::plot_base_gibbs()]
+#' @seealso [geochem::plot_base_gigg_anions()]
+#' @seealso [geochem::plot_base_ll()]
+#' @seealso [geochem::plot_base_major_cations()]
+#' @seealso [geochem::plot_base_piper()]
+#' @seealso [geochem::plot_base_water_maturity()]
+#' 
+#' @import dplyr
+#' 
+#' @export
 process_ic = function(df) {
 
     ion_cols = c(

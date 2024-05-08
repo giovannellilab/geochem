@@ -1,5 +1,19 @@
-library(ggplot2)
-
+#' Plots the base Gibbs diagram
+#' 
+#' @return A `ggplot2` object.
+#' 
+#' @examples
+#' plot_base_gibbs()
+#' 
+#' @seealso [geochem::plot_base_gigg_anions()]
+#' @seealso [geochem::plot_base_ll()]
+#' @seealso [geochem::plot_base_major_cations()]
+#' @seealso [geochem::plot_base_piper()]
+#' @seealso [geochem::plot_base_water_maturity()]
+#' 
+#' @import ggplot2
+#' 
+#' @export
 plot_base_gibbs = function() {
     plot = ggplot() +
 

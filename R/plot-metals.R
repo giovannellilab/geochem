@@ -1,9 +1,21 @@
-library(ggplot2)
-library(gridExtra)
-
+#' Plots the absolute and relative metal concentration as bar plots
+#' 
+#' @param df Data frame containing sample, concentration and element columns
+#' 
+#' @return A `ggplot2` object.
+#' 
+#' @examples
+#' plot_metals(df)
+#' 
+#' @seealso [geochem::process_icp()]
+#' 
+#' @import ggplot2
+#' @import gridExtra
+#' 
+#' @export
 plot_metals = function(df) {
 
-    # Add absolute barplot on the top
+    # Add absolute bar plot on the top
     figure_metals_abs = ggplot(
             data=df,
             aes(
@@ -27,7 +39,7 @@ plot_metals = function(df) {
         theme_glab() +
         theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1))
 
-    # Add relative barplot on the bottom
+    # Add relative bar plot on the bottom
     figure_metals_rel = ggplot(
             data=df,
             aes(

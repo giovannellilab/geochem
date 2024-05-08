@@ -1,6 +1,20 @@
-library(ggplot2)
-library(ggtern)
-
+#' Plots the base ternary diagram for major cations
+#' 
+#' @return A `ggplot2` object.
+#' 
+#' @examples
+#' plot_base_major_cations()
+#' 
+#' @seealso [geochem::plot_base_gibbs()]
+#' @seealso [geochem::plot_base_gigg_anions()]
+#' @seealso [geochem::plot_base_ll()]
+#' @seealso [geochem::plot_base_piper()]
+#' @seealso [geochem::plot_base_water_maturity()]
+#' 
+#' @import ggplot2
+#' @import ggtern
+#' 
+#' @export
 plot_base_major_cations = function() {
 
     # Add division lines to the ternary plot

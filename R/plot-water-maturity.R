@@ -1,6 +1,24 @@
-library(ggplot2)
-library(ggtern)
-
+#' Plots the base ternary diagram for water maturity
+#' 
+#' @param type String indicating whether Giggenbach's or Duchi's coordinates
+#' should be used
+#' 
+#' @return A `ggplot2` object.
+#' 
+#' @examples
+#' plot_base_water_maturity(type="giggenbach")
+#' plot_base_water_maturity(type="duchi")
+#' 
+#' @seealso [geochem::plot_base_gibbs()]
+#' @seealso [geochem::plot_base_gigg_anions()]
+#' @seealso [geochem::plot_base_ll()]
+#' @seealso [geochem::plot_base_major_cations()]
+#' @seealso [geochem::plot_base_piper()]
+#' 
+#' @import ggplot2
+#' @import ggtern
+#' 
+#' @export
 plot_base_water_maturity = function(type) {
 
     # Giggenbach values

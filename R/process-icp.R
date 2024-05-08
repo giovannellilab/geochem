@@ -1,13 +1,41 @@
-library(tidyverse)
-
-replace_lod_values = function(x) as.numeric(
-    str_replace(
+#' Replaces <LOD, <0.000 and N/A values in ICP-MS with zeroes
+#' 
+#' @param x The column in the data frame to be processed.
+#' 
+#' @return The processed column.
+#' 
+#' @examples
+#' .replace_lod_values(df$x)
+#' 
+#' @seealso [geochem::process_icp()]
+#' 
+#' @import stringr
+.replace_lod_values = function(x) as.numeric(
+    stringr::str_replace(
         string=x,
         pattern="<0.000|<LOD|N/A",
         replacement="0.0"
     )
 )
 
+#' Processes ICP-MS as given by the instrument
+#' 
+#' @param filepath String indicating the location of the raw data file.
+#' @param blank_name String indicating the name of the blank in the file.
+#' 
+#' @return A data.frame object.
+#' 
+#' @examples
+#' process_icp(filepath="icp-ms.csv", blank_name="blank")
+#' 
+#' @seealso [geochem::.replace_lod_values()]
+#' @seealso [geochem::select_icp_auto()]
+#' @seealso [geochem::plot_metals()]
+#' 
+#' @import dplyr
+#' @import stringr
+#' 
+#' @export
 process_icp = function(filepath, blank_name) {
 
     # Get the element names
@@ -95,7 +123,7 @@ process_icp = function(filepath, blank_name) {
             # Replace "less than" values by NA
             mutate_at(
                 selected_cols_names,
-                replace_lod_values
+                .replace_lod_values
             ) %>%
             # Round dilutions to match them
             mutate(dilution=round(dilution, digits=0))
@@ -246,6 +274,21 @@ process_icp = function(filepath, blank_name) {
     return(measures_df)
 }
 
+#' Automatically selects the processed ICP-MS data according to defined checks
+#' 
+#' @param df Data frame as given by [geochem::process_icp()] function
+#' @param blank_name String indicating the name of the blank in the file.
+#' 
+#' @return A data.frame object.
+#' 
+#' @examples
+#' select_icp_auto(df=df, blank_name="blank")
+#' 
+#' @seealso [geochem::process_icp()]
+#' 
+#' @import dplyr
+#' 
+#' @export
 select_icp_auto = function(df, blank_name) {
     # Automatically select values that passed the checks
     final_df = df %>%
