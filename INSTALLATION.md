@@ -2,13 +2,13 @@
 
 IMPORTANT NOTE: you can either use `conda` or `mamba`
 
-```{bash}
+``` bash
 mamba create -n geochem -y
 ```
 
 * Installation on Mac (chip M1/2)
 
-```{bash}
+``` bash
 # Must be OSX64 for installing ggtern's dependencies
 CONDA_SUBDIR=osx-64 conda create -n geochem -y
 ```
@@ -16,7 +16,7 @@ CONDA_SUBDIR=osx-64 conda create -n geochem -y
 
 ## Installation of dependencies
 
-```{bash}
+``` bash
 mamba activate geochem
 
 # Install pipeline packages
@@ -29,6 +29,6 @@ mamba install r-devtools r-roxygen2 r-usethis r-testthat -y
 
 ## Creation of environment.yml for further installations
 
-```{bash}
+``` bash
 conda env export --no-builds | grep -v "^prefix: " > environment.yml
 ```
