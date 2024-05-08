@@ -17,118 +17,118 @@
 #' @export
 plot_base_gigg_anions = function() {
 
-    # Add division lines to the ternary plot
-    lines = data.frame(
-        x=c(0.5, 0.0, 0.5),
-        y=c(0.5, 0.5, 0.0),
-        z=c(0.0, 0.5, 0.5),
-        xend=c(1, 1, 1) / 3,
-        yend=c(1, 1, 1) / 3,
-        zend=c(1, 1, 1) / 3
-    )
+  # Add division lines to the ternary plot
+  lines = data.frame(
+    x=c(0.5, 0.0, 0.5),
+    y=c(0.5, 0.5, 0.0),
+    z=c(0.0, 0.5, 0.5),
+    xend=c(1, 1, 1) / 3,
+    yend=c(1, 1, 1) / 3,
+    zend=c(1, 1, 1) / 3
+  )
+
+  # Add mature waters area
+  polygon = data.frame(
+    x=c(0.1, 0.1, 0.0, 0.0),
+    y=c(0.9, 0.6, 0.6, 1.0),
+    z=c(0.0, 0.3, 0.4, 0.0)
+  )
+
+  plot = ggtern() +
+
+    # Add division lines
+    geom_segment(
+      data=lines,
+      aes(
+        x=x,
+        y=y,
+        z=z,
+        xend=xend,
+        yend=yend,
+        zend=zend
+      ),
+      color="grey",
+      alpha=0.5,
+      size=0.25, # linewidth in newer ggplot2 versions
+      linetype="dashed"
+    ) +
 
     # Add mature waters area
-    polygon = data.frame(
-        x=c(0.1, 0.1, 0.0, 0.0),
-        y=c(0.9, 0.6, 0.6, 1.0),
-        z=c(0.0, 0.3, 0.4, 0.0)
-    )
+    geom_polygon(
+      data=polygon,
+      aes(
+        x=x,
+        y=y,
+        z=z
+      ),
+      fill="grey",
+      alpha=0.15,
+      color="grey",
+      size=0.25, # linewidth in newer ggplot2 versions
+      linetype="dashed"
+    ) +
 
-    plot = ggtern() +
+    # Create the guides and labels
+    guides(fill=guide_legend(override.aes=list(shape=21))) +
+    labs(
+      x=expression(SO[4]^-2),
+      y=expression(Cl^-1),
+      z=expression(HCO[3]^-1)
+    ) +
 
-        # Add division lines
-        geom_segment(
-            data=lines,
-            aes(
-                x=x,
-                y=y,
-                z=z,
-                xend=xend,
-                yend=yend,
-                zend=zend
-            ),
-            color="grey",
-            alpha=0.5,
-            size=0.25, # linewidth in newer ggplot2 versions
-            linetype="dashed"
-        ) +
+    # Add annotations
+    annotate(
+      "text",
+      label="Steam heated waters",
+      color="grey",
+      x=0.7,
+      y=0.05,
+      z=0.3,
+      size=3,
+      alpha=1.0,
+      fontface="bold"
+    ) +
+    annotate(
+      "text",
+      label="Sulfate waters",
+      color="grey",
+      x=0.75,
+      y=0.25,
+      z=0.05,
+      size=3,
+      alpha=1.0,
+      angle=60,
+      fontface="bold"
+    ) +
+    annotate(
+      "text",
+      label="Bicarbonate waters",
+      color="grey",
+      x=0.05,
+      y=0.3,
+      z=0.7,
+      size=3,
+      alpha=1.0,
+      angle=300,
+      fontface="bold"
+    ) +
+    annotate(
+      "text",
+      label="Chloride waters",
+      color="grey",
+      x=0.2,
+      y=2.25,
+      z=0.7,
+      size=3,
+      alpha=1.0,
+      angle=300,
+      fontface="bold"
+    ) +
 
-        # Add mature waters area
-        geom_polygon(
-            data=polygon,
-            aes(
-                x=x,
-                y=y,
-                z=z
-            ),
-            fill="grey",
-            alpha=0.15,
-            color="grey",
-            size=0.25, # linewidth in newer ggplot2 versions
-            linetype="dashed"
-        ) +
+    # Add theme options
+    ggtern::theme_showgrid() +
+    ggtern::theme_ticksoutside() +
+    ggtern::theme_ticklength_major(major=unit(3.5, "mm"))
 
-        # Create the guides and labels
-        guides(fill=guide_legend(override.aes=list(shape=21))) +
-        labs(
-            x=expression(SO[4]^-2),
-            y=expression(Cl^-1),
-            z=expression(HCO[3]^-1)
-        ) +
-
-        # Add annotations
-        annotate(
-            "text",
-            label="Steam heated waters",
-            color="grey",
-            x=0.7,
-            y=0.05,
-            z=0.3,
-            size=3,
-            alpha=1.0,
-            fontface="bold"
-        ) +
-        annotate(
-            "text",
-            label="Sulfate waters",
-            color="grey",
-            x=0.75,
-            y=0.25,
-            z=0.05,
-            size=3,
-            alpha=1.0,
-            angle=60,
-            fontface="bold"
-        ) +
-        annotate(
-            "text",
-            label="Bicarbonate waters",
-            color="grey",
-            x=0.05,
-            y=0.3,
-            z=0.7,
-            size=3,
-            alpha=1.0,
-            angle=300,
-            fontface="bold"
-        ) +
-        annotate(
-            "text",
-            label="Chloride waters",
-            color="grey",
-            x=0.2,
-            y=2.25,
-            z=0.7,
-            size=3,
-            alpha=1.0,
-            angle=300,
-            fontface="bold"
-        ) +
-
-        # Add theme options
-        ggtern::theme_showgrid() +
-        ggtern::theme_ticksoutside() +
-        ggtern::theme_ticklength_major(major=unit(3.5, "mm"))
-
-    return(plot)
+  return(plot)
 }
