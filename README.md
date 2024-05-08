@@ -15,9 +15,7 @@ Installation of the package can be done by running the following code in R:
 devtools::install_github("giovannellilab/geochem")
 ```
 
-#### Manual installation
-
-For a manual installation, please refer to the [INSTALLATION.md](INSTALLATION.md) file.
+For the manual installation of dependencies, please refer to the [INSTALLATION.md](INSTALLATION.md) file.
 
 
 ## Running the template
