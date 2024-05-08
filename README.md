@@ -6,7 +6,18 @@
 
 Geochemistry pipeline for processing data from IRMS, IC and ICP-MS.
 
+
 ## Installation
+
+Installation of the package can be done by running the following code in R:
+
+``` r
+devtools::install_github("giovannellilab/geochem")
+```
+
+#### Manual installation
+
+For a manual installation, please refer to the [INSTALLATION.md](INSTALLATION.md) file.
 
 
 ## Running the template
