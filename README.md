@@ -16,10 +16,3 @@ devtools::install_github("giovannellilab/geochem", dependencies=TRUE)
 ```
 
 For the manual installation of dependencies, please refer to the [INSTALLATION.md](INSTALLATION.md) file.
-
-
-## Running the template
-
-
-## Contribute
-
