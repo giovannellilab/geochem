@@ -14,7 +14,7 @@ Installation of the package and its dependencies can be done either using a cond
 
 <br>
 
-### Option 1: Using a conda environment
+### Option 1: Install using a conda environment
 
 Creating a conda environment simplifies having different R and packages versions.
 It is strongly recommended to create an environment and install all required packages in there.
@@ -48,7 +48,7 @@ devtools::install_github("giovannellilab/geochem")
 
 <br>
 
-### Option 2: Directly installing in R
+### Option 2: Install using R
 
 ```r
 devtools::install_github("giovannellilab/geochem", dependencies=TRUE)
