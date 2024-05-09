@@ -435,6 +435,71 @@ figure_piper
 ```
 
 
+#### Figure: bubble plot
+
+```{r}
+figure_bubble = ggplot(
+    data_df,
+    aes(
+      x=temp,
+      y=ph,
+      size=alk_tot,
+      color=rockType,
+      stroke=0.25
+    )
+  ) +
+  geom_point(alpha=0.75) +
+  scale_size(name="Total alkalinity (mg/L)") +
+  scale_color_manual(
+    data_df$rockType,
+    name="Rock type",
+    values=c("#238443", "#c6dbef", "#fed976"),
+    breaks=c("sed_silicic", "sed_evaporite", "ign_felsic")
+  ) +
+  geom_text(
+    aes(label=SiteID),
+    colour="darkgrey",
+    size=2.5,
+    hjust=-1.5,
+    vjust=1.5,
+    check_overlap=TRUE
+  ) +
+  labs(
+    title="",
+    subtitle="",
+    color="Rock type",
+    y="pH",
+    x="Temperature (°C)",
+    size="Total Alkalinity (mg/L of bicarbonate)"
+  ) +
+  scale_x_continuous(
+    minor_breaks=seq(-20, 130, by=10),
+    breaks=seq(-20, 130, by=20),
+    limits=c(-20, 130),
+    guide=guide_axis(minor.ticks=TRUE)
+  ) +
+  scale_y_continuous(
+    minor_breaks=seq(0, 14, by=0.5),
+    breaks=seq(0, 14, by=2),
+    limits=c(0, 14),
+    guide=guide_axis(minor.ticks=TRUE)
+  ) +
+  theme_glab()
+
+ggsave(
+    plot=figure_bubble,
+    filename=file.path(
+        FIGURES_DIR,
+        paste0(PROJECT_NAME, "-bubble.svg")
+    ),
+    width=7,
+    height=7
+)
+
+figure_bubble
+```
+
+
 <br>
 
 
