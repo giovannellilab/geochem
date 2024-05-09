@@ -326,7 +326,7 @@ figure_maturity_duchi
 
 #### Figure: Langelier-Ludwig diagram
 
-```{r, warning=FALSE}
+```{r}
 figure_ll = plot_base_ll() +
   geom_point(
     data=ic_df,
