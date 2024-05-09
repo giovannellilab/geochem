@@ -11,7 +11,7 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
-#' @importFrom ggplot2 aes annotate geom_segment guides labs
+#' @importFrom ggplot2 aes annotate geom_segment geom_polygon guides labs
 #' @importFrom ggtern theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
@@ -54,7 +54,7 @@ plot_base_major_anions = function() {
     ) +
 
     # Add mature waters area
-    ggtern::geom_polygon(
+    ggplot2::geom_polygon(
       data=polygon,
       ggplot2::aes(
         x=x,
