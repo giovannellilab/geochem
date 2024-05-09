@@ -56,6 +56,7 @@ plot_base_major_cations = function() {
     ) +
 
     # Add theme options
+    ggtern::theme_bw() +
     ggtern::theme_showgrid() +
     ggtern::theme_ticksoutside() +
     ggtern::theme_ticklength_major(major=unit(3.5, "mm"))
