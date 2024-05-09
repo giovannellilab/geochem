@@ -11,8 +11,8 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
-#' @import ggplot2
-#' @import ggtern
+#' @importFrom ggplot2 geom_segment guides labs
+#' @importFrom ggtern aes theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
 plot_base_major_cations = function() {
@@ -28,12 +28,12 @@ plot_base_major_cations = function() {
   )
 
   # Create plot
-  plot = ggtern() +
+  plot = ggtern::ggtern() +
 
     # Add division lines
-    geom_segment(
+    ggtern::geom_segment(
       data=lines,
-      aes(
+      ggtern::aes(
         x=x,
         y=y,
         z=z,
@@ -48,8 +48,8 @@ plot_base_major_cations = function() {
     ) +
 
     # Create the guides and labels
-    guides(fill=guide_legend(override.aes=list(shape=21))) +
-    labs(
+    ggplot2::guides(fill=guide_legend(override.aes=list(shape=21))) +
+    ggplot2::labs(
       x="Ca",
       y="Mg",
       z="Na + K",
