@@ -77,12 +77,41 @@ theme_glab = function(
 }
 ```
 
+
+<br>
+
+
+## Data folder
+
+Here you define where your data folder is located:
+
 ```{r setup_variables}
 PROJECT_NAME = "ARG23"
-DATA_DIR = "../data"
+DATA_DIR     = file.path("../data", PROJECT_NAME)
+FIGURES_DIR  = file.path("../data", PROJECT_NAME, "geochem-figures")
+```
+
+We strongly recommend the following folder structure, where PROJECT_NAME is the name of your project and the geochem-figures folder will contain the generated figures **after** running the pipeline:
+
+```
+../data/
+├── PROJECT_NAME
+│   ├── PROJECT_NAME_env_dataset.xlsx
+│   ├── PROJECT_NAME_icp.xlsx
+│   └── geochem-figures # This folder is empty before running the pipeline!
+│       ├── PROJECT_NAME-dic.svg
+│       ├── PROJECT_NAME-gibbs.svg
+│       ├── PROJECT_NAME-giggenbach-anions.svg
+│       ├── PROJECT_NAME-langelier-ludwig.svg
+│       ├── PROJECT_NAME-major-cations.svg
+│       ├── PROJECT_NAME-metals.svg
+│       ├── PROJECT_NAME-piper.svg
+│       ├── PROJECT_NAME-water-maturity-duchi.svg
+│       └── PROJECT_NAME-water-maturity-giggenbach.svg
 ```
 
 <br>
+
 
 ## Load project's *env_dataset*
 
