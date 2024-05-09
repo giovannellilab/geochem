@@ -9,7 +9,7 @@
 #' 
 #' @seealso [geochem::process_icp()]
 #' 
-#' @import stringr
+#' @importFrom stringr str_replace
 .replace_lod_values = function(x) as.numeric(
   stringr::str_replace(
     string=x,
@@ -32,6 +32,7 @@
 #' @seealso [geochem::select_icp_auto()]
 #' @seealso [geochem::plot_metals()]
 #' 
+#' @importFrom rio import
 #' @import dplyr
 #' @import stringr
 #' 
@@ -39,7 +40,7 @@
 process_icp = function(filepath, blank_name) {
 
   # Get the element names
-  elements_row = import(
+  elements_row = rio::import(
     filepath,
     header=FALSE,
     nrows=1
@@ -58,7 +59,7 @@ process_icp = function(filepath, blank_name) {
     unlist(., use.names=FALSE)
 
   # Load the whole file
-  data_df = import(
+  data_df = rio::import(
     filepath,
     skip=1,
     header=TRUE
@@ -232,7 +233,7 @@ process_icp = function(filepath, blank_name) {
 
   measures_df = measures_df %>%
     # Select only concentration columns
-    filter(measurement == "Conc. [ ppb ]") %>%
+    dplyr::filter(measurement == "Conc. [ ppb ]") %>%
     select(-measurement) %>%
     # Exclude replicate to calculate the mean
     group_by(sample, dilution, element, isotope, gas) %>%
@@ -263,7 +264,7 @@ process_icp = function(filepath, blank_name) {
   sample_order = c(
     blank_name,
     measures_df %>%
-      filter(sample != blank_name) %>%
+      dplyr::filter(sample != blank_name) %>%
       pull(sample) %>%
       unique()
   )
@@ -293,7 +294,7 @@ select_icp_auto = function(df, blank_name) {
   # Automatically select values that passed the checks
   final_df = df %>%
     # Discard values that didn't pass the checks (keep blank)
-    filter(
+    dplyr::filter(
       (
         CPS_perc_check != "DISCARD" & sample != blank_name |
         sample == blank_name
