@@ -16,64 +16,64 @@ knitr::opts_chunk$set(
 
 ```{r setup_libraries, message=FALSE, warning=FALSE}
 library(geochem)
+library(rio)
 library(dplyr)
 library(ggplot2)
-library(rio)
 ```
 
 ```{r setup_theme}
 theme_glab = function(
-    base_size=12,
-    base_family="",
-    base_line_size=base_size / 180,
-    base_rect_size=base_size / 180
+  base_size=12,
+  base_family="",
+  base_line_size=base_size / 180,
+  base_rect_size=base_size / 180
 ) {
 
-    # Assign font family up front
-    font = "Helvetica"
+  # Assign font family up front
+  font = "Helvetica"
 
-    ggplot2::theme_bw(
-        base_size=base_size, 
-        base_family=base_family,
-        base_line_size=base_line_size
-    ) %+replace%
-    ggplot2::theme(
-        legend.background=element_blank(),
-        legend.title=element_text(
-            color=rgb(100, 100, 100, maxColorValue=255),
-            size=rel(0.65),
-            hjust=0
-        ),
-        legend.text=element_text(
-            color=rgb(100, 100, 100, maxColorValue=255),
-            size=rel(0.65)
-        ),
-        legend.key.size=unit(0.8, "lines"),
-        plot.title=element_text(
-            color=rgb(100, 100, 100, maxColorValue=255), 
-            hjust=0
-        ),
-        axis.title=element_text(
-            color=rgb(100, 100, 100, maxColorValue=255),
-            size=rel(0.65)
-        ),
-        axis.text=element_text(
-            color=rgb(100, 100, 100, maxColorValue=255),
-            size=rel(0.65)
-        ),
-        plot.caption=element_text(
-            color=rgb(100, 100, 100, maxColorValue=255),
-            size=rel(0.35),
-            hjust=1
-        ), 
-        panel.grid.major=element_blank(),   
-        panel.grid.minor=element_blank(),   
-        panel.border=element_rect(
-            colour=rgb(100, 100, 100, maxColorValue=255),
-            fill=NA
-        ),
-        complete=TRUE
-    )
+  ggplot2::theme_bw(
+    base_size=base_size, 
+    base_family=base_family,
+    base_line_size=base_line_size
+  ) %+replace%
+  ggplot2::theme(
+    legend.background=element_blank(),
+    legend.title=element_text(
+      color=rgb(100, 100, 100, maxColorValue=255),
+      size=rel(0.65),
+      hjust=0
+    ),
+    legend.text=element_text(
+      color=rgb(100, 100, 100, maxColorValue=255),
+      size=rel(0.65)
+    ),
+    legend.key.size=unit(0.8, "lines"),
+    plot.title=element_text(
+      color=rgb(100, 100, 100, maxColorValue=255), 
+      hjust=0
+    ),
+    axis.title=element_text(
+      color=rgb(100, 100, 100, maxColorValue=255),
+      size=rel(0.65)
+    ),
+    axis.text=element_text(
+      color=rgb(100, 100, 100, maxColorValue=255),
+      size=rel(0.65)
+    ),
+    plot.caption=element_text(
+      color=rgb(100, 100, 100, maxColorValue=255),
+      size=rel(0.35),
+      hjust=1
+    ), 
+    panel.grid.major=element_blank(),   
+    panel.grid.minor=element_blank(),   
+    panel.border=element_rect(
+      colour=rgb(100, 100, 100, maxColorValue=255),
+      fill=NA
+    ),
+    complete=TRUE
+  )
 }
 ```
 
@@ -87,28 +87,25 @@ Here you define where your data folder is located:
 
 ```{r setup_variables}
 PROJECT_NAME = "PROJECT_NAME"
-DATA_DIR     = file.path("../data", PROJECT_NAME)
+DATA_DIR   = file.path("../data", PROJECT_NAME)
 FIGURES_DIR  = file.path("../data", PROJECT_NAME, "geochem-figures")
 ```
 
-We strongly recommend the following folder structure, where PROJECT_NAME is the name of your project and the geochem-figures folder will contain the generated figures **after** running the pipeline:
+We strongly recommend the following folder structure, where:
+
+* `PROJECT_NAME` is the name of your project
+* The `icp-ms` folder should only contain the `PROJECT_NAME.xlsx` file **before** running the pipeline
+* The `geochem-figures` folder should be empty **before** running the pipeline
 
 ```
-../data/
-├── PROJECT_NAME
-│   ├── PROJECT_NAME_env_dataset.xlsx
-│   ├── PROJECT_NAME_icp.xlsx
-│   └── geochem-figures # This folder is empty before running the pipeline!
-│       ├── PROJECT_NAME-dic.svg
-│       ├── PROJECT_NAME-gibbs.svg
-│       ├── PROJECT_NAME-giggenbach-anions.svg
-│       ├── PROJECT_NAME-langelier-ludwig.svg
-│       ├── PROJECT_NAME-major-cations.svg
-│       ├── PROJECT_NAME-metals.svg
-│       ├── PROJECT_NAME-piper.svg
-│       ├── PROJECT_NAME-water-maturity-duchi.svg
-│       └── PROJECT_NAME-water-maturity-giggenbach.svg
+data
+└── PROJECT_NAME
+    ├── PROJECT_NAME_env_dataset.xlsx
+    ├── icp-ms
+    │   ├── PROJECT_NAME.xlsx
+    └── geochem-figures
 ```
+
 
 <br>
 
@@ -121,8 +118,8 @@ However, ICP-MS data should be carefully curated (see ICP-MS section).
 ```{r}
 data_df = rio::import(
   file=file.path(
-    DATA_DIR,
-    paste0(PROJECT_NAME, "_env_dataset.xlsx")
+  DATA_DIR,
+  paste0(PROJECT_NAME, "_env_dataset.xlsx")
   ),
   sheet="envdata_template",
   skip=1
@@ -139,4 +136,3 @@ data_df = data_df %>% mutate(SiteID=factor(SiteID, levels=data_df$SiteID))
 
 head(data_df)
 ```
-
