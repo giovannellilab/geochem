@@ -11,8 +11,8 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
-#' @import ggplot2
-#' @import ggtern
+#' @importFrom ggplot2 geom_segment guides labs
+#' @importFrom ggtern aes annotate theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
 plot_base_gigg_anions = function() {
@@ -34,12 +34,12 @@ plot_base_gigg_anions = function() {
     z=c(0.0, 0.3, 0.4, 0.0)
   )
 
-  plot = ggtern() +
+  plot = ggtern::ggtern() +
 
     # Add division lines
-    geom_segment(
+    ggtern::geom_segment(
       data=lines,
-      aes(
+      ggtern::aes(
         x=x,
         y=y,
         z=z,
@@ -54,9 +54,9 @@ plot_base_gigg_anions = function() {
     ) +
 
     # Add mature waters area
-    geom_polygon(
+    ggtern::geom_polygon(
       data=polygon,
-      aes(
+      ggtern::aes(
         x=x,
         y=y,
         z=z
@@ -69,15 +69,15 @@ plot_base_gigg_anions = function() {
     ) +
 
     # Create the guides and labels
-    guides(fill=guide_legend(override.aes=list(shape=21))) +
-    labs(
+    ggplot2::guides(fill=guide_legend(override.aes=list(shape=21))) +
+    ggplot2::labs(
       x=expression(SO[4]^-2),
       y=expression(Cl^-1),
       z=expression(HCO[3]^-1)
     ) +
 
     # Add annotations
-    annotate(
+    ggtern::annotate(
       "text",
       label="Steam heated waters",
       color="grey",
@@ -88,7 +88,7 @@ plot_base_gigg_anions = function() {
       alpha=1.0,
       fontface="bold"
     ) +
-    annotate(
+    ggtern::annotate(
       "text",
       label="Sulfate waters",
       color="grey",
@@ -100,7 +100,7 @@ plot_base_gigg_anions = function() {
       angle=60,
       fontface="bold"
     ) +
-    annotate(
+    ggtern::annotate(
       "text",
       label="Bicarbonate waters",
       color="grey",
@@ -112,7 +112,7 @@ plot_base_gigg_anions = function() {
       angle=300,
       fontface="bold"
     ) +
-    annotate(
+    ggtern::annotate(
       "text",
       label="Chloride waters",
       color="grey",
