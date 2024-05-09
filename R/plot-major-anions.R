@@ -3,7 +3,7 @@
 #' @return A `ggplot2` object.
 #' 
 #' @examples
-#' plot_base_gigg_anions()
+#' plot_base_major_anions()
 #' 
 #' @seealso [geochem::plot_base_gibbs()]
 #' @seealso [geochem::plot_base_ll()]
@@ -15,7 +15,7 @@
 #' @importFrom ggtern theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
-plot_base_gigg_anions = function() {
+plot_base_major_anions = function() {
 
   # Add division lines to the ternary plot
   lines = data.frame(
