@@ -15,8 +15,8 @@
 #' @seealso [geochem::plot_base_major_cations()]
 #' @seealso [geochem::plot_base_piper()]
 #' 
-#' @importFrom ggplot2 aes annotate geom_point geom_text guides labs
-#' @importFrom ggtern theme_showgrid theme_ticksoutside theme_ticklength_major
+#' @importFrom ggplot2 aes geom_point geom_text guides labs
+#' @importFrom ggtern annotate theme_showgrid theme_ticksoutside theme_ticklength_major
 #' @importFrom dplyr filter
 #' 
 #' @export
@@ -142,7 +142,7 @@ plot_base_water_maturity = function(type) {
     ) +
 
     # Add annotations
-    ggplot2::annotate(
+    ggtern::annotate(
       "text",
       label="Fully Equilibrated",
       color="grey",
@@ -153,7 +153,7 @@ plot_base_water_maturity = function(type) {
       alpha=1.0,
       fontface="bold"
     ) +
-    ggplot2::annotate(
+    ggtern::annotate(
       "text",
       label="Partially Equilibrated",
       color="grey",
@@ -164,7 +164,7 @@ plot_base_water_maturity = function(type) {
       alpha=1.0,
       fontface="bold"
     ) +
-    ggplot2::annotate(
+    ggtern::annotate(
       "text",
       label="Immature Waters",
       color="grey",

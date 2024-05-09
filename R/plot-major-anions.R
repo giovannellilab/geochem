@@ -11,8 +11,8 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
-#' @importFrom ggplot2 aes annotate geom_segment geom_polygon guides labs
-#' @importFrom ggtern theme_showgrid theme_ticksoutside theme_ticklength_major
+#' @importFrom ggplot2 aes geom_segment geom_polygon guides labs
+#' @importFrom ggtern annotate theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
 plot_base_major_anions = function() {
@@ -77,7 +77,7 @@ plot_base_major_anions = function() {
     ) +
 
     # Add annotations
-    ggplot2::annotate(
+    ggtern::annotate(
       "text",
       label="Steam heated waters",
       color="grey",
@@ -88,7 +88,7 @@ plot_base_major_anions = function() {
       alpha=1.0,
       fontface="bold"
     ) +
-    ggplot2::annotate(
+    ggtern::annotate(
       "text",
       label="Sulfate waters",
       color="grey",
@@ -100,7 +100,7 @@ plot_base_major_anions = function() {
       angle=60,
       fontface="bold"
     ) +
-    ggplot2::annotate(
+    ggtern::annotate(
       "text",
       label="Bicarbonate waters",
       color="grey",
@@ -112,7 +112,7 @@ plot_base_major_anions = function() {
       angle=300,
       fontface="bold"
     ) +
-    ggplot2::annotate(
+    ggtern::annotate(
       "text",
       label="Chloride waters",
       color="grey",
