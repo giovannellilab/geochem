@@ -86,7 +86,7 @@ theme_glab = function(
 Here you define where your data folder is located:
 
 ```{r setup_variables}
-PROJECT_NAME = "ARG23"
+PROJECT_NAME = "PROJECT_NAME"
 DATA_DIR     = file.path("../data", PROJECT_NAME)
 FIGURES_DIR  = file.path("../data", PROJECT_NAME, "geochem-figures")
 ```
