@@ -11,15 +11,15 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
-#' @import ggplot2
+#' @importFrom ggplot2 ggplot geom_segment aes annotate scale_y_log10 annotation_logticks labs
 #' 
 #' @export
 plot_base_gibbs = function() {
-  plot = ggplot() +
+  plot = ggplot2::ggplot() +
 
     # Add lines
-    geom_segment(
-      aes(
+    ggplot2::geom_segment(
+      ggplot2::aes(
         x=0.05,
         y=1e+2,
         xend=0.9,
@@ -28,8 +28,8 @@ plot_base_gibbs = function() {
       colour="lightgrey",
       alpha=0.3
     ) +
-    geom_segment(
-      aes(
+    ggplot2::geom_segment(
+      ggplot2::aes(
         x=0.05,
         y=1e+3,
         xend=0.9,
@@ -38,8 +38,8 @@ plot_base_gibbs = function() {
       colour="lightgrey",
       alpha=0.3
     ) +
-    geom_segment(
-      aes(
+    ggplot2::geom_segment(
+      ggplot2::aes(
         x=0.6,
         y=1e+3,
         xend=0.9,
@@ -48,8 +48,8 @@ plot_base_gibbs = function() {
       colour="lightgrey",
       alpha=0.3
     ) +
-    geom_segment(
-      aes(
+    ggplot2::geom_segment(
+      ggplot2::aes(
         x=0.6,
         y=1e+3,
         xend=0.9,
@@ -60,7 +60,7 @@ plot_base_gibbs = function() {
     ) +
 
     # Add annotations
-    annotate(
+    ggplot2::annotate(
       geom="text",
       x=0.2,
       y=2e+2,
@@ -69,7 +69,7 @@ plot_base_gibbs = function() {
       size=3,
       alpha=0.6
     ) +
-    annotate(
+    ggplot2::annotate(
       geom="text",
       x=0.6,
       y=1e+2,
@@ -78,7 +78,7 @@ plot_base_gibbs = function() {
       size=3,
       alpha=0.6
     ) +
-    annotate(
+    ggplot2::annotate(
       geom="text",
       x=0.4,
       y=2e+4,
@@ -89,10 +89,10 @@ plot_base_gibbs = function() {
     ) +
 
     # Format axes
-    scale_y_log10() +
-    annotation_logticks(sides="l") +
+    ggplot2::scale_y_log10() +
+    ggplot2::annotation_logticks(sides="l") +
 
-    labs(
+    ggplot2::labs(
       x="Na/(Na+Ca)",
       y="TDS (ppm)",
       fill="Temperature (°C)"
