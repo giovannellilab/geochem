@@ -37,11 +37,11 @@ Imports:
     ggplot2,
     ggtern,
     gridExtra,
-    stringr
+    stringr,
+    rio
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0),
-    rio
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
