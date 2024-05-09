@@ -24,7 +24,7 @@ plot_metals = function(df) {
         fill=element
       )
     ) +
-    ggplot2::geom_col(stat="identity") +
+    ggplot2::geom_col() +
     ggplot2::xlab("Sample") +
     ggplot2::ylab("log(1 + Concentration (ppb))") +
     ggplot2::scale_y_continuous(trans="log10") +
