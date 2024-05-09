@@ -52,8 +52,7 @@ plot_base_major_cations = function() {
     ggplot2::labs(
       x="Ca",
       y="Mg",
-      z="Na + K",
-      fill="samples"
+      z="Na + K"
     ) +
 
     # Add theme options
