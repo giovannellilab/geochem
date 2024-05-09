@@ -33,6 +33,7 @@
 #' @seealso [geochem::plot_metals()]
 #' 
 #' @importFrom rio import
+#' @importFrom tidyr fill pivot_longer pivot_wider
 #' @import dplyr
 #' @import stringr
 #' 
@@ -54,7 +55,7 @@ process_icp = function(filepath, blank_name) {
   elements_row = elements_row %>%
     t() %>%
     as.data.frame() %>%
-    fill(1, .direction="down") %>%
+    tidyr::fill(1, .direction="down") %>%
     t() %>%
     unlist(., use.names=FALSE)
 
@@ -133,7 +134,7 @@ process_icp = function(filepath, blank_name) {
       # Create element column (unformatted)
       mutate(element=rep(element_name, n=length(row_df))) %>%
       # Transform to long format
-      pivot_longer(
+      tidyr::pivot_longer(
         cols=-c(sample, dilution, element),
         names_to="measurement"
       )
@@ -208,7 +209,7 @@ process_icp = function(filepath, blank_name) {
 
   measures_df_raw = measures_df %>%
     # Convert to wide for better readability
-    pivot_wider(
+    tidyr::pivot_wider(
       id_cols=c(sample, dilution, replicate, element, isotope, gas),
       names_from=measurement,
       values_from=value
