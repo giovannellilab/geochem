@@ -107,7 +107,7 @@ plot_base_water_maturity = function(type) {
     ggplot2::guides(fill=guide_legend(override.aes=list(shape=21))) +
 
     # Create the first half of the temperature curves
-    ggtern::geom_point(
+    ggplot2::geom_point(
       data=gigg_df %>% filter(TK %in% c("tkn")),
       size=1,
       shape=22,
@@ -124,7 +124,7 @@ plot_base_water_maturity = function(type) {
     ) +
 
     # Create the second half of the temperature curves
-    ggtern::geom_point(
+    ggplot2::geom_point(
       data=gigg_df %>% filter(TK %in% c("tkm")),
       size=1,
       shape=22,
