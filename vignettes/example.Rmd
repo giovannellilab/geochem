@@ -110,9 +110,9 @@ data
 <br>
 
 
-## Load project's *env_dataset*
+## Load project's `env_dataset`
 
-The *env_dataset* will be used for plotting both DIC and IC data.
+The `env_dataset` will be used for plotting both DIC and IC data.
 However, ICP-MS data should be carefully curated (see ICP-MS section).
 
 ```{r data_load, message=FALSE}
@@ -186,7 +186,7 @@ In this section, data from IC will be used to analyse the content of anions and 
 
 #### Preprocessing
 
-Before running the pipeline, we need to preprocess the values in the *env_dataset*:
+Before running the pipeline, we need to preprocess the values in the `env_dataset`:
 
 ```{r process_ic}
 # Perform unit conversions and calculate values for the different plots
@@ -432,4 +432,169 @@ ggsave(
 )
 
 figure_piper
+```
+
+
+<br>
+
+
+### ICP-MS analysis
+
+The raw data from the instrument must be processed for easier examination.
+The selection of reasonable measurements can be performed manually or automatically.
+
+To perform a **manual selection**, run the next chunk and examine the generated file:
+`PROJECT_NAME_check.xlsx`
+
+To perform an **automatic selection**, run the following line:
+
+`icp_df = icp_df %>% dplyr::filter(value_sd_check != "DISCARD")`
+
+
+```{r setup_variables_icp}
+# NOTE: set these two variables
+ICP_FILENAME = "PROJECT_NAME.xlsx"
+ICP_BLANK_NAME = "BLANK"
+
+# NOTE: automatically set by the package
+ICP_DIR = file.path(DATA_DIR, "icp-ms")
+```
+
+
+#### Load and preprocess the data to a readable format
+
+```{r process_icp, warning=FALSE, message=FALSE}
+icp_df_check = process_icp(
+  filepath=file.path(ICP_DIR, ICP_FILENAME),
+  blank_name=ICP_BLANK_NAME
+)
+
+write.csv(
+  x=icp_df_check,
+  file=file.path(
+    ICP_DIR,
+    paste0(tools::file_path_sans_ext(ICP_FILENAME), "_check.csv")
+  ),
+  row.names=FALSE
+)
+
+dim(icp_df_check)
+```
+
+
+#### Perform the selection
+
+```{r select_icp}
+# NOTE: icp_df is the selected data, whether manually or automatically selected
+
+icp_df = select_icp_auto(
+  df=icp_df_check,
+  blank_name=ICP_BLANK_NAME
+)
+
+# icp_df = icp_df_check
+
+dim(icp_df)
+```
+
+
+#### Filter metals
+
+```{r filter_metals}
+# Remove selected elements
+icp_df = icp_df %>%
+  dplyr::filter(
+    element != "Li",
+    !(element == "Na" & gas == "No Gas"),
+    element != "Mg",
+    !(element == "P" & gas == "No Gas"),
+    !(element == "S" & gas == "No Gas"),
+    element != "K",
+    element != "Ca",
+    !(element == "Si" & gas == "No Gas")
+  )
+```
+
+
+#### Figure: metals
+
+```{r metal_color_mapping}
+# Set the color for each metal
+selected_metals = read.csv(
+    text="element,color
+      Fe,#f57900
+      V,#4e9a06
+      Mn,#563566
+      Co,#204a87
+      Ni,#555753
+      Cu,#8ae234
+      Zn,#babdb6
+      Se,#edd400
+      Mo,#a40000
+      W,#8f5902"
+  ) %>%
+  # Replace indentation whitespaces
+  mutate(
+    element=stringr::str_replace(
+      string=element,
+      pattern="\\s+",
+      replacement=""
+    )
+  )
+
+# Create a named vector
+selected_metals = selected_metals %>% tibble::deframe()
+
+icp_df_selected = icp_df %>%
+  dplyr::filter(element %in% names(selected_metals))
+```
+
+```{r figure_metals}
+figure_metals = plot_metals(icp_df_selected)
+
+ggsave(
+  plot=figure_metals,
+  filename=file.path(
+    FIGURES_DIR,
+    paste0(PROJECT_NAME, "-metals.svg")
+  ),
+  width=7,
+  height=7
+)
+
+figure_metals
+```
+
+
+#### Integration with the `env_dataset`
+
+The next chunk of code saves the data in wide format, ready to be copied into the `env_dataset`:
+
+```{r icp_env_dataset}
+# Save processed ICP-MS data in wide format
+icp_df_wide = icp_df %>%
+  ungroup() %>%
+  select(sample, element, isotope, dilution, gas, concentration) %>%
+  tidyr::pivot_wider(
+    id_cols=c(
+      sample,
+      dilution,
+      gas
+    ),
+    names_from=c(
+      isotope,
+      element
+    ),
+    names_sep="_",
+    values_from=concentration
+  )
+
+write.csv(
+  x=icp_df_wide,
+  file=file.path(
+    ICP_DIR,
+    paste0(tools::file_path_sans_ext(ICP_FILENAME), "_env_dataset_icp.csv")
+  ),
+  row.names=FALSE
+)
 ```
