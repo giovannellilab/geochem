@@ -114,7 +114,7 @@ plot_base_water_maturity = function(type) {
       fill="grey",
       stroke=.3
     ) +
-    ggtern::geom_text(
+    ggplot2::geom_text(
       data=gigg_df %>% filter(TK %in% c("tkn")),
       mapping=ggplot2::aes(label=as.factor(Temperature)),
       color="grey",
@@ -131,7 +131,7 @@ plot_base_water_maturity = function(type) {
       fill="grey",
       stroke=.3
     ) +
-    ggtern::geom_text(
+    ggplot2::geom_text(
       data=gigg_df %>% filter(TK %in% c("tkm")),
       mapping=ggplot2::aes(label=as.factor(Temperature)),
       color="grey",
