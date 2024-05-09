@@ -9,7 +9,7 @@ Geochemistry pipeline for processing data from IRMS, IC and ICP-MS.
 
 ## Installation
 
-#### Creation of a conda environment
+### (Optional) Creation of a conda environment
 
 Creating a conda environment simplifies having different R and packages versions.
 It is strongly recommended to create an environment and install all required packages in there.
@@ -21,7 +21,7 @@ conda create -n geochem -y
 CONDA_SUBDIR=osx-64 conda create -n geochem -y
 ```
 
-#### Installation of dependencies
+Installation of dependencies:
 
 ``` bash
 conda activate geochem
@@ -35,7 +35,7 @@ conda activate geochem
 rstudio
 ```
 
-#### Installation of `geochem`
+### Installation of `geochem`
 
 Installation of the geochem package can be done by running the following code in `R`:
 
