@@ -136,3 +136,42 @@ data_df = data_df %>% mutate(SiteID=factor(SiteID, levels=data_df$SiteID))
 
 head(data_df)
 ```
+
+
+<br>
+
+
+## Geochemistry analysis
+
+
+### IRMS analysis
+
+In this section, data from IRMS will be used to analyse the dissolved inorganic carbon (DIC) content.
+
+```{r}
+figure_dic = ggplot(
+    data=data_df,
+    aes(
+      x=SiteID,
+      y=d13DIC
+    )
+  ) +
+  geom_boxplot(fill="lightgray") +
+  scale_x_discrete(limits=unique(data_df$SiteID)) +
+  theme_glab() +
+  # Rotate X axis labels
+  theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1))
+
+ggsave(
+  plot=figure_dic,
+  filename=file.path(
+    FIGURES_DIR,
+    paste0(PROJECT_NAME, "-dic.svg")
+  ),
+  width=7,
+  height=7
+)
+
+figure_dic
+```
+
