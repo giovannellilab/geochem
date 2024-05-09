@@ -9,60 +9,60 @@
 #' 
 #' @seealso [geochem::process_icp()]
 #' 
-#' @import ggplot2
-#' @import gridExtra
+#' @importFrom ggplot2 ggplot aes geom_col xlab ylab scale_y_continuous scale_color_manual theme
+#' @importFrom gridExtra grid.arrange
 #' 
 #' @export
 plot_metals = function(df) {
 
   # Add absolute bar plot on the top
-  figure_metals_abs = ggplot(
+  figure_metals_abs = ggplot2::ggplot(
       data=df,
-      aes(
+      ggplot2::aes(
         x=sample,
         y=1 + concentration,
         fill=element
       )
     ) +
-    geom_col(stat="identity") +
-    xlab("Sample") +
-    ylab("log(1 + Concentration (ppb))") +
-    scale_y_continuous(trans="log10") +
+    ggplot2::geom_col(stat="identity") +
+    ggplot2::xlab("Sample") +
+    ggplot2::ylab("log(1 + Concentration (ppb))") +
+    ggplot2::scale_y_continuous(trans="log10") +
 
     # Manually color the metals
-    scale_colour_manual(
+    ggplot2::scale_colour_manual(
       name="Metals",
       values=selected_metals,
       aesthetics="fill"
     ) +
 
     theme_glab() +
-    theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1))
+    ggplot2::theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1))
 
   # Add relative bar plot on the bottom
-  figure_metals_rel = ggplot(
+  figure_metals_rel = ggplot2::ggplot(
       data=df,
-      aes(
+      ggplot2::aes(
         x=sample,
         y=concentration,
         fill=element
       )
     ) +
-    geom_bar(position="fill", stat="identity") +
-    xlab("Sample") +
-    ylab("Concentration (%)") +
+    ggplot2::geom_bar(position="fill", stat="identity") +
+    ggplot2::xlab("Sample") +
+    ggplot2::ylab("Concentration (%)") +
 
     # Manually color the metals
-    scale_colour_manual(
+    ggplot2::scale_colour_manual(
       name="Metals",
       values=selected_metals,
       aesthetics="fill"
     ) +
 
     theme_glab() +
-    theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1))
+    ggplot2::theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1))
 
-  plot = grid.arrange(
+  plot = gridExtra::grid.arrange(
     figure_metals_abs,
     figure_metals_rel,
     nrow=2
