@@ -20,6 +20,7 @@
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
 #' @import dplyr
+#' @importFrom tidyr replace_na
 #' 
 #' @export
 process_ic = function(df) {
@@ -44,7 +45,7 @@ process_ic = function(df) {
 
   ic_df = df %>%
     # Fill NA (missing ions)
-    mutate(across(all_of(ion_cols), ~replace_na(.x, 0))) %>%
+    mutate(across(all_of(ion_cols), ~tidyr::replace_na(.x, 0))) %>%
     # WARNING: Calculate meq for plotting, concentrations must be in mg/L!!!
     mutate(
       # Anions
