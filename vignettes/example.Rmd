@@ -195,3 +195,130 @@ ic_df = process_ic(data_df)
 head(ic_df %>% select(SiteID, HCO3.meq, Cl.meq, SO4.meq, Na.meq, K.meq, IB))
 ```
 
+
+#### Figure: major anions
+
+```{r, warning=FALSE}
+figure_major_anions = plot_base_major_anions() +
+  geom_point(
+    data=ic_df,
+    aes(
+      x=SO4.meq,
+      y=Cl.meq,
+      z=HCO3.meq,
+      fill=SiteID
+    ),
+    size=4.5,
+    shape=21,
+    stroke=0.3
+  ) +
+  theme_glab()
+
+ggsave(
+  plot=figure_major_anions,
+  filename=file.path(
+    FIGURES_DIR,
+    paste0(PROJECT_NAME, "-major-anions.svg")
+  ),
+  width=7,
+  height=7
+)
+
+figure_major_anions
+```
+
+
+#### Figure: major cations
+
+```{r, warning=FALSE}
+figure_major_cations = plot_base_major_cations() +
+  geom_point(
+    data=ic_df,
+    aes(
+      x=Ca.meq,
+      y=Mg.meq,
+      z=Na.meq + K.meq,
+      fill=SiteID
+    ),
+    size=4.5,
+    shape=21,
+    stroke=0.3
+  ) +
+  theme_glab()
+
+ggsave(
+  plot=figure_major_cations,
+  filename=file.path(
+    FIGURES_DIR,
+    paste0(PROJECT_NAME, "-major-cations.svg")
+  ),
+  width=7,
+  height=7
+)
+
+figure_major_cations
+```
+
+
+#### Figure: water maturity (Giggenbach)
+
+```{r, warning=FALSE}
+figure_maturity_gigg = plot_base_water_maturity(type="giggenbach") +
+  geom_point(
+    data=ic_df,
+    aes(
+      x=k/100,
+      y=na/1000,
+      z=sqrt(mg),
+      fill=SiteID
+    ),
+    size=4.5,
+    shape=21,
+    stroke=0.3
+  ) +
+  theme_glab()
+
+ggsave(
+  plot=figure_maturity_gigg,
+  filename=file.path(
+    FIGURES_DIR,
+    paste0(PROJECT_NAME, "-water-maturity-giggenbach.svg")
+  ),
+  width=7,
+  height=7
+)
+
+figure_maturity_gigg
+```
+
+
+#### Figure: water maturity (Duchi)
+
+```{r, warning=FALSE}
+figure_maturity_duchi = plot_base_water_maturity(type="duchi") +
+  geom_point(
+    data=ic_df,
+    aes(
+      x=k/10,
+      y=na/400,
+      z=sqrt(mg),
+      fill=SiteID
+    ),
+    size=4.5,
+    shape=21,
+    stroke=0.3
+  ) +
+  theme_glab()
+
+ggsave(
+  plot=figure_maturity_duchi,
+  filename=file.path(
+    FIGURES_DIR,
+    paste0(PROJECT_NAME, "-water-maturity-duchi.svg")
+  ),
+  width=7,
+  height=7
+)
+
+figure_maturity_duchi
+```
