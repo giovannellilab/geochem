@@ -134,7 +134,7 @@ data_df = type.convert(data_df, as.is=TRUE)
 # Convert SiteID to ordered factor for plotting
 data_df = data_df %>% mutate(SiteID=factor(SiteID, levels=data_df$SiteID))
 
-head(data_df)
+head(data_df %>% select(SiteID, ExpID, year))
 ```
 
 
@@ -146,7 +146,7 @@ head(data_df)
 
 ### IRMS analysis
 
-In this section, data from IRMS will be used to analyse the dissolved inorganic carbon (DIC) content.
+In this section, data from IRMS will be used to analyse the content of dissolved inorganic carbon (DIC).
 
 ```{r}
 figure_dic = ggplot(
@@ -173,5 +173,25 @@ ggsave(
 )
 
 figure_dic
+```
+
+
+<br>
+
+
+### IC analysis
+
+In this section, data from IC will be used to analyse the content of anions and cations.
+
+
+#### Preprocessing
+
+Before running the pipeline, we need to preprocess the values in the *env_dataset*:
+
+```{r}
+# Perform unit conversions and calculate values for the different plots
+ic_df = process_ic(data_df)
+
+head(ic_df %>% select(SiteID, HCO3.meq, Cl.meq, SO4.meq, Na.meq, K.meq, IB))
 ```
 
