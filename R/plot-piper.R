@@ -51,7 +51,7 @@ transform_data_piper = function(Mg, Ca, Cl, SO4, id) {
 #' 
 #' @seealso [geochem::transform_data_piper()]
 #' 
-#' @import ggplot2
+#' @importFrom ggplot2 ggplot geom_polygon aes geom_segment geom_text coord_equal theme_bw theme
 #' 
 #' @export
 plot_base_piper = function() {
@@ -59,14 +59,14 @@ plot_base_piper = function() {
   # ------------------------------------------------------------------------ #
   # Create base plot
 
-  plot = ggplot() +
+  plot = ggplot2::ggplot() +
 
     # -------------------------------------------------------------------- #
     # Add water regions (see https://inside.mines.edu/~epoeter/_GW/18WaterChem2/WaterChem2pdf.pdf)
 
     # Na-HCO3 waters (deeper ground waters influenced by ion exchange)
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -81,8 +81,8 @@ plot_base_piper = function() {
     ) +
 
     # Mixing zone (lower)
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -97,8 +97,8 @@ plot_base_piper = function() {
     ) +
 
     # Na-Cl waters (marine and deep ancient ground waters)
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -113,8 +113,8 @@ plot_base_piper = function() {
     ) +
 
     # Ca-HCO3 waters (shallow, fresh ground waters)
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -129,8 +129,8 @@ plot_base_piper = function() {
     ) +
 
     # Ca-SO4 waters (gypsum ground waters and mine drainage)
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -145,8 +145,8 @@ plot_base_piper = function() {
     ) +
 
     # Mixing zone (upper)
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -164,8 +164,8 @@ plot_base_piper = function() {
     # Add cations regions
 
     # Mg-Ca region
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -180,8 +180,8 @@ plot_base_piper = function() {
     ) +
 
     # Mg-NA+K region
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -196,8 +196,8 @@ plot_base_piper = function() {
     ) +
 
     # Ca-NA+K region
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -215,8 +215,8 @@ plot_base_piper = function() {
     # Add anions regions
 
     # HCO3-Cl region
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -231,8 +231,8 @@ plot_base_piper = function() {
     ) +
 
     # HCO3-SO4 region
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -247,8 +247,8 @@ plot_base_piper = function() {
     ) +
 
     # Cl-SO4 region
-    geom_polygon(
-      aes(
+    ggplot2::geom_polygon(
+      ggplot2::aes(
         x=x,
         y=y
       ),
@@ -266,27 +266,27 @@ plot_base_piper = function() {
     # Add shapes
 
     # Left ternary plot (cations)
-    geom_segment(aes(x=0,  y=0,     xend=100, yend=0)) +
-    geom_segment(aes(x=0,  y=0,     xend=50,  yend=86.603)) +
-    geom_segment(aes(x=50, y=86.603,  xend=100, yend=0)) +
+    ggplot2::geom_segment(ggplot2::aes(x=0,   y=0,        xend=100, yend=0)) +
+    ggplot2::geom_segment(ggplot2::aes(x=0,   y=0,        xend=50,  yend=86.603)) +
+    ggplot2::geom_segment(ggplot2::aes(x=50,  y=86.603,   xend=100, yend=0)) +
 
     # Right ternary plot (anions)
-    geom_segment(aes(x=120, y=0,    xend=220, yend=0)) +
-    geom_segment(aes(x=120, y=0,    xend=170, yend=86.603)) +
-    geom_segment(aes(x=170, y=86.603,   xend=220, yend=0)) +
+    ggplot2::geom_segment(ggplot2::aes(x=120, y=0,        xend=220, yend=0)) +
+    ggplot2::geom_segment(ggplot2::aes(x=120, y=0,        xend=170, yend=86.603)) +
+    ggplot2::geom_segment(ggplot2::aes(x=170, y=86.603,   xend=220, yend=0)) +
 
     # Upper diamond
-    geom_segment(aes(x=110, y=190.5266, xend=60,  yend=103.9236)) +
-    geom_segment(aes(x=110, y=190.5266, xend=160, yend=103.9236)) +
-    geom_segment(aes(x=110, y=17.3206,  xend=160, yend=103.9236)) +
-    geom_segment(aes(x=110, y=17.3206,  xend=60,  yend=103.9236)) +
+    ggplot2::geom_segment(ggplot2::aes(x=110, y=190.5266, xend=60,  yend=103.9236)) +
+    ggplot2::geom_segment(ggplot2::aes(x=110, y=190.5266, xend=160, yend=103.9236)) +
+    ggplot2::geom_segment(ggplot2::aes(x=110, y=17.3206,  xend=160, yend=103.9236)) +
+    ggplot2::geom_segment(ggplot2::aes(x=110, y=17.3206,  xend=60,  yend=103.9236)) +
 
     # -------------------------------------------------------------------- #
     # Add axes ticks
 
     # X Cation
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=c(20, 40, 60, 80),
         y=c(-5, -5, -5, -5),
         label=c(80, 60, 40, 20)
@@ -294,8 +294,8 @@ plot_base_piper = function() {
       size=2.5
     ) +
     # Y Cation
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=c(35, 25, 15, 5),
         y=c(69.2824, 51.9618, 34.6412, 17.3206),
         label=c(80, 60, 40, 20)
@@ -303,8 +303,8 @@ plot_base_piper = function() {
       size=2.5
     ) +
     # Z Cation
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=c(95, 85, 75, 65),
         y=c(17.3206, 34.6412, 51.9618, 69.2824),
         label=c(80, 60, 40, 20)
@@ -312,11 +312,11 @@ plot_base_piper = function() {
       size=2.5
     ) +
 
-    coord_equal(ratio=1) +
+    ggplot2::coord_equal(ratio=1) +
 
     # Y Anion 
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=c(155, 145, 135, 125),
         y=c(69.2824, 51.9618, 34.6412, 17.3206),
         label=c(20, 40, 60, 80)
@@ -324,8 +324,8 @@ plot_base_piper = function() {
       size=2.5
     ) +
     # Z Anion
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=c(215, 205, 195, 185),
         y=c(17.3206, 34.6412, 51.9618, 69.2824),
         label=c(20, 40, 60, 80)
@@ -333,8 +333,8 @@ plot_base_piper = function() {
       size=2.5
     ) +
     # X Anion
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=c(140, 160, 180, 200),
         y=c(-5, -5, -5, -5),
         label=c(20, 40, 60, 80)
@@ -343,8 +343,8 @@ plot_base_piper = function() {
     ) +
 
     # Left upper diamond
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=c(65, 75, 85, 95),
         y=c(121.2442, 138.5648, 155.8854, 173.2060),
         label=c(20, 40, 60, 80)
@@ -352,8 +352,8 @@ plot_base_piper = function() {
       size=2.5
     ) +
     # Right upper diamond
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=c(155, 145, 135, 125),
         y=c(121.2442, 138.5648, 155.8854, 173.2060),
         label=c(20, 40, 60, 80)
@@ -363,8 +363,8 @@ plot_base_piper = function() {
 
     # -------------------------------------------------------------------- #
     # Add axes labels
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=17,
         y=50,
         label="Mg^'2+'"
@@ -373,8 +373,8 @@ plot_base_piper = function() {
       size=3.5,
       parse=TRUE
     ) +
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=82.5,
         y=51.5,
         label="Na^'+'~+~K^'+'"
@@ -383,8 +383,8 @@ plot_base_piper = function() {
       size=3.5,
       parse=TRUE
     ) +
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=50,
         y=-10,
         label="Ca^'2+'"
@@ -392,8 +392,8 @@ plot_base_piper = function() {
       size=3.5,
       parse=TRUE
     ) +
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=170,
         y=-10,
         label="Cl^'-'"
@@ -401,8 +401,8 @@ plot_base_piper = function() {
       size=3.5,
       parse=TRUE
     ) +
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=205,
         y=50,
         label="SO[4]^'2-'"
@@ -411,8 +411,8 @@ plot_base_piper = function() {
       size=3.5,
       parse=TRUE
     ) +
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=137.5,
         y=51.5,
         label="HCO[3]^'-'"
@@ -421,8 +421,8 @@ plot_base_piper = function() {
       size=3.5,
       parse=TRUE
     ) +
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=72.5,
         y=150,
         label="SO[4]^'2-'~+~Cl^'-'"
@@ -431,8 +431,8 @@ plot_base_piper = function() {
       size=3.5,
       parse=TRUE
     ) +
-    geom_text(
-      aes(
+    ggplot2::geom_text(
+      ggplot2::aes(
         x=147.5,
         y=150,
         label="Ca^'2+'~+~Mg^'2+'"
@@ -445,8 +445,8 @@ plot_base_piper = function() {
     # -------------------------------------------------------------------- #
     # Remove axes
 
-    theme_bw() +
-    theme(
+    ggplot2::theme_bw() +
+    ggplot2::theme(
       panel.grid.major=element_blank(),
       panel.grid.minor=element_blank(),
       panel.border=element_blank(),
