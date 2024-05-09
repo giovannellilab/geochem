@@ -11,12 +11,12 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
-#' @importFrom ggplot2 scale_x_continuous scale_y_continuous geom_rect aes  geom_vline geom_hline theme
+#' @importFrom ggplot2 ggplot scale_x_continuous scale_y_continuous geom_rect aes  geom_vline geom_hline theme
 #' 
 #' @export
 plot_base_ll = function() {
 
-  plot = ggplot2:ggplot() +
+  plot = ggplot2::ggplot() +
 
     # Format axes
     ggplot2::scale_x_continuous(
