@@ -115,7 +115,7 @@ data
 The *env_dataset* will be used for plotting both DIC and IC data.
 However, ICP-MS data should be carefully curated (see ICP-MS section).
 
-```{r}
+```{r, message=FALSE}
 data_df = rio::import(
   file=file.path(
   DATA_DIR,
