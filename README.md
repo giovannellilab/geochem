@@ -37,7 +37,7 @@ rstudio
 
 #### Installation of `geochem`
 
-Installation of the package can be done by running the following code in `R`:
+Installation of the geochem package can be done by running the following code in `R`:
 
 ``` r
 devtools::install_github("giovannellilab/geochem")
