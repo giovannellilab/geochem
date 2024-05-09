@@ -443,12 +443,7 @@ figure_piper
 The raw data from the instrument must be processed for easier examination.
 The selection of reasonable measurements can be performed manually or automatically.
 
-To perform a **manual selection**, run the next chunk and examine the generated file:
-`PROJECT_NAME_check.xlsx`
-
-To perform an **automatic selection**, run the following line:
-
-`icp_df = icp_df %>% dplyr::filter(value_sd_check != "DISCARD")`
+**IMPORTANT:** samples (including the blank(s)) should be named according to the following format: `PROJECT_SAMPLE_1inDILUTION_REPLICATE`
 
 
 ```{r setup_variables_icp}
@@ -483,6 +478,14 @@ dim(icp_df_check)
 
 
 #### Perform the selection
+
+To perform a **manual selection**, run the next chunk and examine the generated file:
+`PROJECT_NAME_check.xlsx`
+
+To perform an **automatic selection**, run the following line:
+
+`icp_df = icp_df %>% dplyr::filter(value_sd_check != "DISCARD")`
+
 
 ```{r select_icp}
 # NOTE: icp_df is the selected data, whether manually or automatically selected
