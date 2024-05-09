@@ -15,8 +15,8 @@
 #' @seealso [geochem::plot_base_major_cations()]
 #' @seealso [geochem::plot_base_piper()]
 #' 
-#' @import ggplot2
-#' @import ggtern
+#' @importFrom ggplot2 geom_point geom_text guides labs
+#' @importFrom ggtern aes annotate theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
 plot_base_water_maturity = function(type) {
@@ -62,15 +62,15 @@ plot_base_water_maturity = function(type) {
 
   # Choose between Giggenbach and Duchi plots
   if (type == "giggenbach") {
-    base_plot = ggtern(
+    base_plot = ggtern::ggtern(
       data=gigg_df,
-      aes(
+      ggtern::aes(
         x=Potassium/100,
         y=Sodium/1000,
         z=sqrt(Magnesium)
       )
     ) +
-    labs(
+    ggplot2::labs(
       x="K/100",
       y="Na/1000",
       z=expression(sqrt(Mg)),
@@ -78,15 +78,15 @@ plot_base_water_maturity = function(type) {
     )
 
   } else if (type == "duchi") {
-    base_plot = ggtern(
+    base_plot = ggtern::ggtern(
       data=gigg_df,
-      aes(
+      ggtern::aes(
         x=Potassium/10,
         y=Sodium/400,
         z=sqrt(Magnesium)
       )
     ) +
-    labs(
+    ggplot2::labs(
       x="K/10",
       y="Na/400",
       z=expression(sqrt(Mg)),
@@ -104,19 +104,19 @@ plot_base_water_maturity = function(type) {
   # Create plot
   plot = base_plot +
 
-    guides(fill=guide_legend(override.aes=list(shape=21))) +
+    ggplot2::guides(fill=guide_legend(override.aes=list(shape=21))) +
 
     # Create the first half of the temperature curves
-    geom_point(
+    ggtern::geom_point(
       data=gigg_df %>% filter(TK %in% c("tkn")),
       size=1,
       shape=22,
       fill="grey",
       stroke=.3
     ) +
-    geom_text(
+    ggtern::geom_text(
       data=gigg_df %>% filter(TK %in% c("tkn")),
-      mapping=aes(label=as.factor(Temperature)),
+      mapping=ggtern::aes(label=as.factor(Temperature)),
       color="grey",
       size=2.5,
       hjust=0.5,
@@ -124,16 +124,16 @@ plot_base_water_maturity = function(type) {
     ) +
 
     # Create the second half of the temperature curves
-    geom_point(
+    ggtern::geom_point(
       data=gigg_df %>% filter(TK %in% c("tkm")),
       size=1,
       shape=22,
       fill="grey",
       stroke=.3
     ) +
-    geom_text(
+    ggtern::geom_text(
       data=gigg_df %>% filter(TK %in% c("tkm")),
-      mapping=aes(label=as.factor(Temperature)),
+      mapping=ggtern::aes(label=as.factor(Temperature)),
       color="grey",
       size=2.5,
       hjust=0.5,
@@ -141,7 +141,7 @@ plot_base_water_maturity = function(type) {
     ) +
 
     # Add annotations
-    annotate(
+    ggtern::annotate(
       "text",
       label="Fully Equilibrated",
       color="grey",
@@ -152,7 +152,7 @@ plot_base_water_maturity = function(type) {
       alpha=1.0,
       fontface="bold"
     ) +
-    annotate(
+    ggtern::annotate(
       "text",
       label="Partially Equilibrated",
       color="grey",
@@ -163,7 +163,7 @@ plot_base_water_maturity = function(type) {
       alpha=1.0,
       fontface="bold"
     ) +
-    annotate(
+    ggtern::annotate(
       "text",
       label="Immature Waters",
       color="grey",
