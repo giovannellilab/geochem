@@ -45,7 +45,7 @@ plot_base_ll = function() {
       ggplot2::aes(xmin=0, xmax=7, ymin=45, ymax=50),
       fill="cadetblue 1",
       color="black",
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25,
       alpha=0.5
     ) +
     ggplot2::annotate(
@@ -62,8 +62,8 @@ plot_base_ll = function() {
       ggplot2::aes(xmin=12.5, xmax=23, ymin=44, ymax=49),
       fill="coral 1",
       color="black",
-      size=0.25, # linewidth in newer ggplot2 versions
-      alpha=0.3
+      alpha=0.3,
+      linewidth=0.25
     ) +
     ggplot2::annotate(
       geom="text",
@@ -79,8 +79,8 @@ plot_base_ll = function() {
       ggplot2::aes(xmin=44, xmax=50, ymin=39, ymax=50),
       fill="darkolivegreen 1",
       color="black",
-      size=0.25, # linewidth in newer ggplot2 versions
-      alpha=0.3
+      alpha=0.3,
+      linewidth=0.25
     ) +
     ggplot2::annotate(
       geom="text",
@@ -97,8 +97,8 @@ plot_base_ll = function() {
       ggplot2::aes(xmin=0, xmax=7, ymin=37, ymax=45),
       fill="cadetblue 3",
       color="black",
-      size=0.25, # linewidth in newer ggplot2 versions
-      alpha=0.9
+      alpha=0.9,
+      linewidth=0.25
     ) +
     ggplot2::annotate(
       geom="text",
@@ -114,8 +114,8 @@ plot_base_ll = function() {
       ggplot2::aes(xmin=0, xmax=2.5, ymin=0, ymax=20),
       fill="darkolivegreen 3",
       color="black",
-      size=0.25, # linewidth in newer ggplot2 versions
-      alpha=0.9
+      alpha=0.9,
+      linewidth=0.25
     ) +
     ggplot2::annotate(
       geom="text",
@@ -132,8 +132,8 @@ plot_base_ll = function() {
       ggplot2::aes(xmin=10, xmax=20, ymin=2.5, ymax=10),
       fill="cornsilk 1",
       color="black",
-      size=0.25, # linewidth in newer ggplot2 versions
-      alpha=0.9
+      alpha=0.9,
+      linewidth=0.25
     ) +
     ggplot2::annotate(
       geom="text",
@@ -149,8 +149,8 @@ plot_base_ll = function() {
       ggplot2::aes(xmin=37, xmax=50, ymin=0, ymax=15),
       fill="aliceblue",
       color="black",
-      size=0.25, # linewidth in newer ggplot2 versions
-      alpha=0.9
+      alpha=0.9,
+      linewidth=0.25
     ) +
     ggplot2::annotate(
       geom="text",
@@ -167,13 +167,13 @@ plot_base_ll = function() {
       xintercept=25,
       linetype="dashed",
       color="gray",
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
     ggplot2::geom_hline(
       yintercept=25,
       linetype="solid",
       color="gray",
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # Add arrows
@@ -181,7 +181,7 @@ plot_base_ll = function() {
       ggplot2::aes(x=36.5, y=14, xend=7.5, yend=37.5),
       lineend="butt",
       linejoin="mitre",
-      size=0.5, # linewidth in newer ggplot2 versions
+      linewidth=0.5,
       arrow=arrow(length=unit(0.15, "inches")),
       colour="grey"
     ) +
@@ -198,7 +198,7 @@ plot_base_ll = function() {
       ggplot2::aes(x=7.5, y=44.5, xend=37.5, yend=44.5),
       lineend="butt",
       linejoin="mitre",
-      size=0.5, # linewidth in newer ggplot2 versions
+      linewidth=0.5,
       arrow=arrow(length=unit(0.15, "inches")),
       colour="grey"
     ) +

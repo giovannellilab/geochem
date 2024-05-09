@@ -43,7 +43,7 @@ plot_base_major_cations = function() {
       ),
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25,
       linetype="dashed"
     ) +
 

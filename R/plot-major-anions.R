@@ -49,7 +49,7 @@ plot_base_major_anions = function() {
       ),
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25,
       linetype="dashed"
     ) +
 
@@ -64,7 +64,7 @@ plot_base_major_anions = function() {
       fill="grey",
       alpha=0.15,
       color="grey",
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25,
       linetype="dashed"
     ) +
 

@@ -77,7 +77,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # Mixing zone (lower)
@@ -93,7 +93,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # Na-Cl waters (marine and deep ancient ground waters)
@@ -109,7 +109,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # Ca-HCO3 waters (shallow, fresh ground waters)
@@ -125,7 +125,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # Ca-SO4 waters (gypsum ground waters and mine drainage)
@@ -141,7 +141,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # Mixing zone (upper)
@@ -157,7 +157,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # -------------------------------------------------------------------- #
@@ -176,7 +176,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # Mg-NA+K region
@@ -192,7 +192,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # Ca-NA+K region
@@ -208,7 +208,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # -------------------------------------------------------------------- #
@@ -227,7 +227,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # HCO3-SO4 region
@@ -243,7 +243,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # Cl-SO4 region
@@ -259,7 +259,7 @@ plot_base_piper = function() {
       fill="white",
       color="grey",
       alpha=0.5,
-      size=0.25, # linewidth in newer ggplot2 versions
+      linewidth=0.25
     ) +
 
     # -------------------------------------------------------------------- #
