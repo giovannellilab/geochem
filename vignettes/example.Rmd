@@ -322,3 +322,34 @@ ggsave(
 
 figure_maturity_duchi
 ```
+
+
+#### Langelier-Ludwig diagram
+
+```{r, warning=FALSE}
+figure_ll = plot_base_ll() +
+  geom_point(
+    data=ic_df,
+    aes(
+      x=r_bicarb,
+      y=r_na_k,
+      fill=SiteID
+    ),
+    size=4.5,
+    shape=21,
+    stroke=0.3
+  )
+
+ggsave(
+  plot=figure_ll,
+  filename=file.path(
+    FIGURES_DIR,
+    paste0(PROJECT_NAME, "-langelier-ludwig.svg")
+  ),
+  width=7,
+  height=7
+)
+
+figure_ll
+```
+
