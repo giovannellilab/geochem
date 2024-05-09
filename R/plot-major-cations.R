@@ -11,8 +11,8 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
-#' @importFrom ggplot2 geom_segment guides labs
-#' @importFrom ggtern aes theme_showgrid theme_ticksoutside theme_ticklength_major
+#' @importFrom ggplot2 aes geom_segment guides labs
+#' @importFrom ggtern theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
 plot_base_major_cations = function() {
@@ -33,7 +33,7 @@ plot_base_major_cations = function() {
     # Add division lines
     ggtern::geom_segment(
       data=lines,
-      ggtern::aes(
+      ggplot2::aes(
         x=x,
         y=y,
         z=z,

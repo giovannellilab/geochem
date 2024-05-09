@@ -1,5 +1,5 @@
 ---
-title: "example"
+title: "Geochem pipeline - minimal example"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{example}
@@ -14,6 +14,100 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup_libraries, message=FALSE, warning=FALSE}
 library(geochem)
+library(dplyr)
+library(ggplot2)
+library(rio)
 ```
+
+```{r setup_theme}
+theme_glab = function(
+    base_size=12,
+    base_family="",
+    base_line_size=base_size / 180,
+    base_rect_size=base_size / 180
+) {
+
+    # Assign font family up front
+    font = "Helvetica"
+
+    ggplot2::theme_bw(
+        base_size=base_size, 
+        base_family=base_family,
+        base_line_size=base_line_size
+    ) %+replace%
+    ggplot2::theme(
+        legend.background=element_blank(),
+        legend.title=element_text(
+            color=rgb(100, 100, 100, maxColorValue=255),
+            size=rel(0.65),
+            hjust=0
+        ),
+        legend.text=element_text(
+            color=rgb(100, 100, 100, maxColorValue=255),
+            size=rel(0.65)
+        ),
+        legend.key.size=unit(0.8, "lines"),
+        plot.title=element_text(
+            color=rgb(100, 100, 100, maxColorValue=255), 
+            hjust=0
+        ),
+        axis.title=element_text(
+            color=rgb(100, 100, 100, maxColorValue=255),
+            size=rel(0.65)
+        ),
+        axis.text=element_text(
+            color=rgb(100, 100, 100, maxColorValue=255),
+            size=rel(0.65)
+        ),
+        plot.caption=element_text(
+            color=rgb(100, 100, 100, maxColorValue=255),
+            size=rel(0.35),
+            hjust=1
+        ), 
+        panel.grid.major=element_blank(),   
+        panel.grid.minor=element_blank(),   
+        panel.border=element_rect(
+            colour=rgb(100, 100, 100, maxColorValue=255),
+            fill=NA
+        ),
+        complete=TRUE
+    )
+}
+```
+
+```{r setup_variables}
+PROJECT_NAME = "ARG23"
+DATA_DIR = "../data"
+```
+
+<br>
+
+## Load project's *env_dataset*
+
+The *env_dataset* will be used for plotting both DIC and IC data.
+However, ICP-MS data should be carefully curated (see ICP-MS section).
+
+```{r}
+data_df = rio::import(
+  file=file.path(
+    DATA_DIR,
+    paste0(PROJECT_NAME, "_env_dataset.xlsx")
+  ),
+  sheet="envdata_template",
+  skip=1
+)
+
+# Remove first row containing the units
+data_df = data_df %>% slice(2:nrow(data_df))
+
+# Convert data columns to numeric
+data_df = type.convert(data_df, as.is=TRUE)
+
+# Convert SiteID to ordered factor for plotting
+data_df = data_df %>% mutate(SiteID=factor(SiteID, levels=data_df$SiteID))
+
+head(data_df)
+```
+

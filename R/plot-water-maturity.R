@@ -15,8 +15,8 @@
 #' @seealso [geochem::plot_base_major_cations()]
 #' @seealso [geochem::plot_base_piper()]
 #' 
-#' @importFrom ggplot2 geom_point geom_text guides labs
-#' @importFrom ggtern aes annotate theme_showgrid theme_ticksoutside theme_ticklength_major
+#' @importFrom ggplot2 aes annotate geom_point geom_text guides labs
+#' @importFrom ggtern theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
 plot_base_water_maturity = function(type) {
@@ -64,7 +64,7 @@ plot_base_water_maturity = function(type) {
   if (type == "giggenbach") {
     base_plot = ggtern::ggtern(
       data=gigg_df,
-      ggtern::aes(
+      ggplot2::aes(
         x=Potassium/100,
         y=Sodium/1000,
         z=sqrt(Magnesium)
@@ -80,7 +80,7 @@ plot_base_water_maturity = function(type) {
   } else if (type == "duchi") {
     base_plot = ggtern::ggtern(
       data=gigg_df,
-      ggtern::aes(
+      ggplot2::aes(
         x=Potassium/10,
         y=Sodium/400,
         z=sqrt(Magnesium)
@@ -116,7 +116,7 @@ plot_base_water_maturity = function(type) {
     ) +
     ggtern::geom_text(
       data=gigg_df %>% filter(TK %in% c("tkn")),
-      mapping=ggtern::aes(label=as.factor(Temperature)),
+      mapping=ggplot2::aes(label=as.factor(Temperature)),
       color="grey",
       size=2.5,
       hjust=0.5,
@@ -133,7 +133,7 @@ plot_base_water_maturity = function(type) {
     ) +
     ggtern::geom_text(
       data=gigg_df %>% filter(TK %in% c("tkm")),
-      mapping=ggtern::aes(label=as.factor(Temperature)),
+      mapping=ggplot2::aes(label=as.factor(Temperature)),
       color="grey",
       size=2.5,
       hjust=0.5,
@@ -141,7 +141,7 @@ plot_base_water_maturity = function(type) {
     ) +
 
     # Add annotations
-    ggtern::annotate(
+    ggplot2::annotate(
       "text",
       label="Fully Equilibrated",
       color="grey",
@@ -152,7 +152,7 @@ plot_base_water_maturity = function(type) {
       alpha=1.0,
       fontface="bold"
     ) +
-    ggtern::annotate(
+    ggplot2::annotate(
       "text",
       label="Partially Equilibrated",
       color="grey",
@@ -163,7 +163,7 @@ plot_base_water_maturity = function(type) {
       alpha=1.0,
       fontface="bold"
     ) +
-    ggtern::annotate(
+    ggplot2::annotate(
       "text",
       label="Immature Waters",
       color="grey",
