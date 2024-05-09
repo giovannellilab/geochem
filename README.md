@@ -12,6 +12,8 @@ Geochemistry pipeline for processing data from IRMS, IC and ICP-MS.
 
 Installation of the package and its dependencies can be done either using a conda environment or directly in R.
 
+<br>
+
 ### Option 1: Using a conda environment
 
 Creating a conda environment simplifies having different R and packages versions.
