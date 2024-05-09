@@ -31,7 +31,7 @@ plot_base_major_cations = function() {
   plot = ggtern::ggtern() +
 
     # Add division lines
-    ggtern::geom_segment(
+    ggplot2::geom_segment(
       data=lines,
       ggplot2::aes(
         x=x,
