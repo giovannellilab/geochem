@@ -25,7 +25,7 @@ Installation of dependencies:
 
 ```bash
 conda activate geochem
-conda install r-base r-essentials r-ggtern r-rio r-devtools -y
+conda install r-base r-essentials r-ggtern r-rio r-devtools r-svglite -y
 ```
 
 **IMPORTANT**: if you use `RStudio` you need to [launch it from the terminal](https://stackoverflow.com/a/62737170) with the activated conda environment:
