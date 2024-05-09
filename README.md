@@ -28,6 +28,13 @@ conda activate geochem
 conda install r-base r-essentials r-ggtern r-rio r-devtools -y
 ```
 
+**IMPORTANT**: if you use `RStudio` you need to [launch it from the terminal](https://stackoverflow.com/a/62737170) with the activated conda environment:
+
+``` bash
+conda activate geochem
+rstudio
+```
+
 #### Installation of `geochem`
 
 Installation of the package can be done by running the following code in `R`:
