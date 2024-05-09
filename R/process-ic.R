@@ -92,14 +92,14 @@ process_ic = function(df) {
   # Piper plot: calculate percentages
   ic_df = ic_df %>%
     mutate(
-      total_cations=(Mg.meq + Ca.meq + Na.meq + K.meq),
-      total_anions=(HCO3.meq + SO4.meq + Cl.meq)
+      piper_cations=(Mg.meq + Ca.meq + Na.meq + K.meq),
+      piper_anions=(HCO3.meq + SO4.meq + Cl.meq)
     ) %>%
     mutate(
-      Mg.meq.perc=100 * Mg.meq / total_cations,
-      Ca.meq.perc=100 * Ca.meq / total_cations,
-      Cl.meq.perc=100 * Cl.meq / total_anions,
-      SO4.meq.perc=100 * SO4.meq / total_anions,
+      Mg.meq.perc=100 * Mg.meq / piper_cations,
+      Ca.meq.perc=100 * Ca.meq / piper_cations,
+      Cl.meq.perc=100 * Cl.meq / piper_anions,
+      SO4.meq.perc=100 * SO4.meq / piper_anions,
     )
 
   return(ic_df)
