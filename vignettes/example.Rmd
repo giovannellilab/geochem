@@ -115,7 +115,7 @@ data
 The *env_dataset* will be used for plotting both DIC and IC data.
 However, ICP-MS data should be carefully curated (see ICP-MS section).
 
-```{r, message=FALSE}
+```{r data_load, message=FALSE}
 data_df = rio::import(
   file=file.path(
   DATA_DIR,
@@ -148,7 +148,7 @@ head(data_df %>% select(SiteID, ExpID, year))
 
 In this section, data from IRMS will be used to analyse the content of dissolved inorganic carbon (DIC).
 
-```{r}
+```{r figure_dic}
 figure_dic = ggplot(
     data=data_df,
     aes(
@@ -188,7 +188,7 @@ In this section, data from IC will be used to analyse the content of anions and 
 
 Before running the pipeline, we need to preprocess the values in the *env_dataset*:
 
-```{r}
+```{r process_ic}
 # Perform unit conversions and calculate values for the different plots
 ic_df = process_ic(data_df)
 
@@ -198,7 +198,7 @@ head(ic_df %>% select(SiteID, HCO3.meq, Cl.meq, SO4.meq, Na.meq, K.meq, IB))
 
 #### Figure: major anions
 
-```{r, warning=FALSE}
+```{r figure_major_anions, warning=FALSE}
 figure_major_anions = plot_base_major_anions() +
   geom_point(
     data=ic_df,
@@ -230,7 +230,7 @@ figure_major_anions
 
 #### Figure: major cations
 
-```{r, warning=FALSE}
+```{r figure_major_cations, warning=FALSE}
 figure_major_cations = plot_base_major_cations() +
   geom_point(
     data=ic_df,
@@ -262,7 +262,7 @@ figure_major_cations
 
 #### Figure: water maturity (Giggenbach)
 
-```{r, warning=FALSE}
+```{r figure_maturity_gigg, warning=FALSE}
 figure_maturity_gigg = plot_base_water_maturity(type="giggenbach") +
   geom_point(
     data=ic_df,
@@ -294,7 +294,7 @@ figure_maturity_gigg
 
 #### Figure: water maturity (Duchi)
 
-```{r, warning=FALSE}
+```{r figure_maturity_duchi, warning=FALSE}
 figure_maturity_duchi = plot_base_water_maturity(type="duchi") +
   geom_point(
     data=ic_df,
@@ -326,7 +326,7 @@ figure_maturity_duchi
 
 #### Figure: Langelier-Ludwig diagram
 
-```{r}
+```{r figure_ll}
 figure_ll = plot_base_ll() +
   geom_point(
     data=ic_df,
@@ -356,7 +356,7 @@ figure_ll
 
 #### Figure: Gibbs diagram
 
-```{r}
+```{r figure_gibbs}
 figure_gibbs = plot_base_gibbs() +
     geom_point(
         data=ic_df,
@@ -397,7 +397,7 @@ figure_gibbs
 
 #### Figure: Piper diagram
 
-```{r}
+```{r figure_piper}
 # Project data on the Piper plot
 piper_data = transform_data_piper(
     Mg=ic_df$Mg.meq.perc,
