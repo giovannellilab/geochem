@@ -25,7 +25,7 @@ CONDA_SUBDIR=osx-64 conda create -n geochem -y
 
 ``` bash
 conda activate geochem
-conda install r-base r-essentials r-ggtern r-rio -y
+conda install r-base r-essentials r-ggtern r-rio r-devtools -y
 ```
 
 #### Installation of `geochem`
@@ -33,5 +33,5 @@ conda install r-base r-essentials r-ggtern r-rio -y
 Installation of the package can be done by running the following code in `R`:
 
 ``` r
-devtools::install_github("giovannellilab/geochem", dependencies=TRUE)
+devtools::install_github("giovannellilab/geochem")
 ```
