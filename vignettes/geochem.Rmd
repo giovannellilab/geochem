@@ -1,8 +1,13 @@
 ---
-title: "Geochem pipeline - minimal example"
+title: "geochem"
+author:
+  - name: Guillermo Climent Gargallo
+    affiliation:
+    - University of Naples Federico II
+    email: guillermo.climentgargallo@unina.it
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{example}
+  %\VignetteIndexEntry{geochem}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
