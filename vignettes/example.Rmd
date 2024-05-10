@@ -450,12 +450,6 @@ figure_bubble = ggplot(
   ) +
   geom_point(alpha=0.75) +
   scale_size(name="Total alkalinity (mg/L)") +
-  scale_color_manual(
-    data_df$rockType,
-    name="Rock type",
-    values=c("#238443", "#c6dbef", "#fed976"),
-    breaks=c("sed_silicic", "sed_evaporite", "ign_felsic")
-  ) +
   geom_text(
     aes(label=SiteID),
     colour="darkgrey",
