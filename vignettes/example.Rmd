@@ -87,7 +87,7 @@ Here you define where your data folder is located:
 
 ```{r setup_variables}
 PROJECT_NAME = "PROJECT_NAME"
-DATA_DIR   = file.path("../data", PROJECT_NAME)
+DATA_DIR     = system.file("extdata", PROJECT_NAME, package="geochem")
 FIGURES_DIR  = file.path("../data", PROJECT_NAME, "geochem-figures")
 ```
 
@@ -118,10 +118,10 @@ However, ICP-MS data should be carefully curated (see ICP-MS section).
 ```{r data_load, message=FALSE}
 data_df = rio::import(
   file=file.path(
-  DATA_DIR,
-  paste0(PROJECT_NAME, "_env_dataset.xlsx")
+    DATA_DIR,
+    paste0(PROJECT_NAME, "_env_dataset.xlsx")
   ),
-  sheet="envdata_template",
+  sheet="envdata",
   skip=1
 )
 
@@ -134,7 +134,7 @@ data_df = type.convert(data_df, as.is=TRUE)
 # Convert SiteID to ordered factor for plotting
 data_df = data_df %>% mutate(SiteID=factor(SiteID, levels=data_df$SiteID))
 
-head(data_df %>% select(SiteID, ExpID, year))
+head(data_df)
 ```
 
 
