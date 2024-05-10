@@ -565,7 +565,41 @@ dim(icp_df)
 ```
 
 
-#### Filter metals
+#### Integration with the `env_dataset`
+
+The next chunk of code saves the data in wide format, ready to be copied into the `env_dataset`:
+
+```{r icp_env_dataset}
+# Save processed ICP-MS data in wide format
+icp_df_wide = icp_df %>%
+  ungroup() %>%
+  select(sample, element, isotope, dilution, gas, concentration) %>%
+  tidyr::pivot_wider(
+    id_cols=c(
+      sample,
+      dilution,
+      gas
+    ),
+    names_from=c(
+      isotope,
+      element
+    ),
+    names_sep="_",
+    values_from=concentration
+  )
+
+write.csv(
+  x=icp_df_wide,
+  file=file.path(
+    ICP_DIR,
+    paste0(tools::file_path_sans_ext(ICP_FILENAME), "_env_dataset_icp.csv")
+  ),
+  row.names=FALSE
+)
+```
+
+
+#### Figure: metals
 
 ```{r filter_metals}
 # Remove selected elements
@@ -581,9 +615,6 @@ icp_df = icp_df %>%
     !(element == "Si" & gas == "No Gas")
   )
 ```
-
-
-#### Figure: metals
 
 ```{r metal_color_mapping}
 # Set the color for each metal
@@ -630,38 +661,4 @@ ggsave(
 )
 
 figure_metals
-```
-
-
-#### Integration with the `env_dataset`
-
-The next chunk of code saves the data in wide format, ready to be copied into the `env_dataset`:
-
-```{r icp_env_dataset}
-# Save processed ICP-MS data in wide format
-icp_df_wide = icp_df %>%
-  ungroup() %>%
-  select(sample, element, isotope, dilution, gas, concentration) %>%
-  tidyr::pivot_wider(
-    id_cols=c(
-      sample,
-      dilution,
-      gas
-    ),
-    names_from=c(
-      isotope,
-      element
-    ),
-    names_sep="_",
-    values_from=concentration
-  )
-
-write.csv(
-  x=icp_df_wide,
-  file=file.path(
-    ICP_DIR,
-    paste0(tools::file_path_sans_ext(ICP_FILENAME), "_env_dataset_icp.csv")
-  ),
-  row.names=FALSE
-)
 ```
