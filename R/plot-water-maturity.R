@@ -10,8 +10,8 @@
 #' plot_base_water_maturity(type="duchi")
 #' 
 #' @seealso [geochem::plot_base_gibbs()]
-#' @seealso [geochem::plot_base_major_anions()]
 #' @seealso [geochem::plot_base_ll()]
+#' @seealso [geochem::plot_base_major_anions()]
 #' @seealso [geochem::plot_base_major_cations()]
 #' @seealso [geochem::plot_base_piper()]
 #' 

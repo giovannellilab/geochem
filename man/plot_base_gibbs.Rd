@@ -17,9 +17,9 @@ plot_base_gibbs()
 
 }
 \seealso{
-\code{\link[=plot_base_major_anions]{plot_base_major_anions()}}
-
 \code{\link[=plot_base_ll]{plot_base_ll()}}
+
+\code{\link[=plot_base_major_anions]{plot_base_major_anions()}}
 
 \code{\link[=plot_base_major_cations]{plot_base_major_cations()}}
 
