@@ -33,6 +33,7 @@
 #' @seealso [geochem::plot_metals()]
 #' 
 #' @importFrom rio import
+#' @importFrom stats sd
 #' @importFrom tidyr fill pivot_longer pivot_wider
 #' @import dplyr
 #' @import stringr
@@ -242,7 +243,7 @@ process_icp = function(filepath, blank_name) {
     summarise(
       .groups="keep",
       concentration=mean(value, na.rm=TRUE),
-      conc_sd=sd(value, na.rm=FALSE)
+      conc_sd=stats::sd(value, na.rm=FALSE)
     ) %>%
     # Add checks for standard deviation
     mutate(conc_sd_perc=100 * conc_sd / concentration) %>%
