@@ -15,6 +15,7 @@
 #' @seealso [geochem::plot_base_major_cations()]
 #' @seealso [geochem::plot_base_piper()]
 #' 
+#' @importFrom utils read.csv
 #' @importFrom ggplot2 aes geom_point geom_text guides labs
 #' @importFrom ggtern annotate theme_showgrid theme_ticksoutside theme_ticklength_major
 #' @importFrom dplyr filter
