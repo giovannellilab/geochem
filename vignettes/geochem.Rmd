@@ -517,8 +517,7 @@ Avoid using underscores inside each variable (e.g. PROJECT_TEST).
 ICP_FILENAME = "PROJECT_NAME.xlsx"
 ICP_BLANK_NAME = "BLANK"
 
-# NOTE: automatically set by the package
-ICP_DIR = file.path(DATA_DIR, "icp-ms")
+ICP_DIR = file.path("../data/PROJECT_NAME/icp-ms/")
 ```
 
 
