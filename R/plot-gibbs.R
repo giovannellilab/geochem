@@ -95,7 +95,7 @@ plot_base_gibbs = function() {
     ggplot2::labs(
       x="Na / (Na+Ca)",
       y="TDS (ppm)",
-      fill="Temperature (°C)"
+      fill="Temperature (Celsius)"
     ) +
 
     theme_glab()
