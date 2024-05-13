@@ -509,8 +509,10 @@ The selection of reasonable measurements can be performed manually or automatica
 
 **IMPORTANT:** samples (including the blank(s)) should be named according to the following format: `PROJECT_SAMPLE_1inDILUTION_REPLICATE`
 
+Avoid using underscores inside each variable (e.g. PROJECT_TEST).
 
-```{r setup_variables_icp}
+
+```{r setup_variables_icp, eval=FALSE}
 # NOTE: set these two variables
 ICP_FILENAME = "PROJECT_NAME.xlsx"
 ICP_BLANK_NAME = "BLANK"
@@ -522,7 +524,7 @@ ICP_DIR = file.path(DATA_DIR, "icp-ms")
 
 #### Load and preprocess the data to a readable format
 
-```{r process_icp, warning=FALSE, message=FALSE}
+```{r process_icp, warning=FALSE, message=FALSE, eval=FALSE}
 icp_df_check = process_icp(
   filepath=file.path(ICP_DIR, ICP_FILENAME),
   blank_name=ICP_BLANK_NAME
@@ -551,7 +553,7 @@ To perform an **automatic selection**, run the following line:
 `icp_df = icp_df %>% dplyr::filter(value_sd_check != "DISCARD")`
 
 
-```{r select_icp}
+```{r select_icp, eval=FALSE}
 # NOTE: icp_df is the selected data, whether manually or automatically selected
 
 icp_df = select_icp_auto(
@@ -569,7 +571,7 @@ dim(icp_df)
 
 The next chunk of code saves the data in wide format, ready to be copied into the `env_dataset`:
 
-```{r icp_env_dataset}
+```{r icp_env_dataset, eval=FALSE}
 # Save processed ICP-MS data in wide format
 icp_df_wide = icp_df %>%
   ungroup() %>%
@@ -601,7 +603,7 @@ write.csv(
 
 #### Figure: metals
 
-```{r filter_metals}
+```{r filter_metals, eval=FALSE}
 # Remove selected elements
 icp_df = icp_df %>%
   dplyr::filter(
@@ -616,7 +618,7 @@ icp_df = icp_df %>%
   )
 ```
 
-```{r metal_color_mapping}
+```{r metal_color_mapping, eval=FALSE}
 # Set the color for each metal
 selected_metals = read.csv(
     text="element,color
@@ -647,7 +649,7 @@ icp_df_selected = icp_df %>%
   dplyr::filter(element %in% names(selected_metals))
 ```
 
-```{r figure_metals}
+```{r figure_metals, eval=FALSE}
 figure_metals = plot_metals(icp_df_selected)
 
 ggsave(
