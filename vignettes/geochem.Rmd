@@ -93,7 +93,7 @@ Here you define where your data folder is located:
 ```{r setup_variables}
 PROJECT_NAME = "PROJECT_NAME"
 DATA_DIR     = system.file("extdata", PROJECT_NAME, package="geochem")
-FIGURES_DIR  = file.path("../data", PROJECT_NAME, "geochem-figures")
+FIGURES_DIR  = file.path(DATA_DIR, "geochem-figures")
 ```
 
 We strongly recommend the following folder structure, where:
