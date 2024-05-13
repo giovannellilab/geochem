@@ -93,7 +93,7 @@ plot_base_gibbs = function() {
     ggplot2::annotation_logticks(sides="l") +
 
     ggplot2::labs(
-      x="Na/(Na+Ca)",
+      x="Na / (Na+Ca)",
       y="TDS (ppm)",
       fill="Temperature (°C)"
     ) +
