@@ -51,3 +51,9 @@ Installation of the geochem package can then be done by running the following co
 ```r
 devtools::install_github("giovannellilab/geochem", build_vignettes=TRUE)
 ```
+
+<br>
+
+## Usage
+
+For a detailed pipeline, please refer to the [geochem vignette](vignettes/geochem.Rmd).
