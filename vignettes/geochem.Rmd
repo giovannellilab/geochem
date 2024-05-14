@@ -7,6 +7,9 @@ author:
   - name: Alessia Bastianoni
     affiliation: University of Naples Federico II
     email: alessiabenedicta.bastianoni@unina.it
+  - name: Donato Giovannelli
+    affiliation: University of Naples Federico II
+    email: donato.giovannelli@unina.it
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{geochem}
