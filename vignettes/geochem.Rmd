@@ -92,8 +92,7 @@ Here you define where your data folder is located:
 
 ```{r setup_variables}
 PROJECT_NAME = "PROJECT_NAME"
-DATA_DIR     = system.file("extdata", PROJECT_NAME, package="geochem")
-FIGURES_DIR  = file.path(DATA_DIR, "geochem-figures")
+DATA_DIR = system.file("extdata", PROJECT_NAME, package="geochem")
 ```
 
 We strongly recommend the following folder structure, where:
@@ -170,7 +169,6 @@ figure_dic = ggplot(
 ggsave(
   plot=figure_dic,
   filename=file.path(
-    FIGURES_DIR,
     paste0(PROJECT_NAME, "-dic.svg")
   ),
   width=7,
@@ -222,7 +220,6 @@ figure_major_anions = plot_base_major_anions() +
 ggsave(
   plot=figure_major_anions,
   filename=file.path(
-    FIGURES_DIR,
     paste0(PROJECT_NAME, "-major-anions.svg")
   ),
   width=7,
@@ -254,7 +251,6 @@ figure_major_cations = plot_base_major_cations() +
 ggsave(
   plot=figure_major_cations,
   filename=file.path(
-    FIGURES_DIR,
     paste0(PROJECT_NAME, "-major-cations.svg")
   ),
   width=7,
@@ -286,7 +282,6 @@ figure_maturity_gigg = plot_base_water_maturity(type="giggenbach") +
 ggsave(
   plot=figure_maturity_gigg,
   filename=file.path(
-    FIGURES_DIR,
     paste0(PROJECT_NAME, "-water-maturity-giggenbach.svg")
   ),
   width=7,
@@ -318,7 +313,6 @@ figure_maturity_duchi = plot_base_water_maturity(type="duchi") +
 ggsave(
   plot=figure_maturity_duchi,
   filename=file.path(
-    FIGURES_DIR,
     paste0(PROJECT_NAME, "-water-maturity-duchi.svg")
   ),
   width=7,
@@ -348,7 +342,6 @@ figure_ll = plot_base_ll() +
 ggsave(
   plot=figure_ll,
   filename=file.path(
-    FIGURES_DIR,
     paste0(PROJECT_NAME, "-langelier-ludwig.svg")
   ),
   width=7,
@@ -389,7 +382,6 @@ figure_gibbs = plot_base_gibbs() +
 ggsave(
     plot=figure_gibbs,
     filename=file.path(
-        FIGURES_DIR,
         paste0(PROJECT_NAME, "-gibbs.svg")
     ),
     width=7,
@@ -429,7 +421,6 @@ figure_piper = plot_base_piper() +
 ggsave(
     plot=figure_piper,
     filename=file.path(
-        FIGURES_DIR,
         paste0(PROJECT_NAME, "-piper.svg")
     ),
     width=7,
@@ -488,7 +479,6 @@ figure_bubble = ggplot(
 ggsave(
     plot=figure_bubble,
     filename=file.path(
-        FIGURES_DIR,
         paste0(PROJECT_NAME, "-bubble.svg")
     ),
     width=7,
@@ -654,7 +644,6 @@ figure_metals = plot_metals(icp_df_selected)
 ggsave(
   plot=figure_metals,
   filename=file.path(
-    FIGURES_DIR,
     paste0(PROJECT_NAME, "-metals.svg")
   ),
   width=7,
