@@ -57,3 +57,8 @@ devtools::install_github("giovannellilab/geochem", build_vignettes=TRUE)
 ## Usage
 
 For a detailed pipeline, please refer to the [geochem vignette](vignettes/geochem.Rmd).
+You can display it after installation via:
+
+```r
+vignette("geochem")
+```
