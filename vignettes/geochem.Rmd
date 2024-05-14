@@ -96,6 +96,9 @@ Here you define where your data folder is located:
 
 ```{r setup_variables}
 PROJECT_NAME = "PROJECT_NAME"
+
+# WARNING: change system.file by file.path
+# NOTE: system.file loads the data already in the geochem package
 DATA_DIR = system.file("extdata", PROJECT_NAME, package="geochem")
 ```
 
