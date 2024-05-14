@@ -513,7 +513,7 @@ Avoid using underscores inside each variable (e.g. PROJECT_TEST).
 ICP_FILENAME = "PROJECT_NAME.xlsx"
 ICP_BLANK_NAME = "BLANK"
 
-ICP_DIR = file.path("../data/PROJECT_NAME/icp-ms/")
+ICP_DIR = file.path("../../geochem-data/PROJECT_NAME/icp-ms/")
 ```
 
 
