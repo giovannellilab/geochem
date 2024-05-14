@@ -106,12 +106,11 @@ We strongly recommend the following folder structure, where:
 * The `geochem-figures` folder should be empty **before** running the pipeline
 
 ```
-data
-└── PROJECT_NAME
-    ├── PROJECT_NAME_env_dataset.xlsx
-    ├── icp-ms
-    │   ├── PROJECT_NAME.xlsx
-    └── geochem-figures
+PROJECT_NAME
+├── PROJECT_NAME_env_dataset.xlsx
+├── icp-ms
+│   ├── PROJECT_NAME.xlsx
+└── geochem-figures
 ```
 
 
