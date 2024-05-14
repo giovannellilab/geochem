@@ -4,9 +4,6 @@
 #' 
 #' @return The processed column.
 #' 
-#' @examples
-#' .replace_lod_values(df$x)
-#' 
 #' @seealso [geochem::process_icp()]
 #' 
 #' @importFrom stringr str_replace
