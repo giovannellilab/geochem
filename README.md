@@ -16,7 +16,7 @@ Installation of the package and its dependencies can be done either using a cond
 ### Option 1: Install using R
 
 ```r
-devtools::install_github("giovannellilab/geochem", dependencies=TRUE)
+devtools::install_github("giovannellilab/geochem", dependencies=TRUE, build_vignettes=TRUE)
 ```
 
 
@@ -49,5 +49,5 @@ rstudio
 Installation of the geochem package can then be done by running the following code in `R`:
 
 ```r
-devtools::install_github("giovannellilab/geochem")
+devtools::install_github("giovannellilab/geochem", build_vignettes=TRUE)
 ```
