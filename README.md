@@ -12,9 +12,15 @@ Geochemistry pipeline for processing data from IRMS, IC and ICP-MS.
 
 Installation of the package and its dependencies can be done either using a conda environment or directly in R.
 
-<br>
 
-### Option 1: Install using a conda environment
+### Option 1: Install using R
+
+```r
+devtools::install_github("giovannellilab/geochem", dependencies=TRUE)
+```
+
+
+### Option 2: Install using a conda environment
 
 Creating a conda environment simplifies having different R and packages versions.
 It is strongly recommended to create an environment and install all required packages in there.
@@ -44,12 +50,4 @@ Installation of the geochem package can then be done by running the following co
 
 ```r
 devtools::install_github("giovannellilab/geochem")
-```
-
-<br>
-
-### Option 2: Install using R
-
-```r
-devtools::install_github("giovannellilab/geochem", dependencies=TRUE)
 ```
