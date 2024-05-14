@@ -207,7 +207,7 @@ head(ic_df %>% select(SiteID, HCO3.meq, Cl.meq, SO4.meq, Na.meq, K.meq, IB))
 
 #### Figure: major anions
 
-```{r figure_major_anions, warning=FALSE}
+```{r figure_major_anions}
 figure_major_anions = plot_base_major_anions() +
   geom_point(
     data=ic_df,
@@ -238,7 +238,7 @@ figure_major_anions
 
 #### Figure: major cations
 
-```{r figure_major_cations, warning=FALSE}
+```{r figure_major_cations}
 figure_major_cations = plot_base_major_cations() +
   geom_point(
     data=ic_df,
@@ -269,7 +269,7 @@ figure_major_cations
 
 #### Figure: water maturity (Giggenbach)
 
-```{r figure_maturity_gigg, warning=FALSE}
+```{r figure_maturity_gigg}
 figure_maturity_gigg = plot_base_water_maturity(type="giggenbach") +
   geom_point(
     data=ic_df,
@@ -300,7 +300,7 @@ figure_maturity_gigg
 
 #### Figure: water maturity (Duchi)
 
-```{r figure_maturity_duchi, warning=FALSE}
+```{r figure_maturity_duchi}
 figure_maturity_duchi = plot_base_water_maturity(type="duchi") +
   geom_point(
     data=ic_df,
