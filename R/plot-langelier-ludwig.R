@@ -10,6 +10,7 @@
 #' @seealso [geochem::plot_base_major_cations()]
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
+#' @seealso [geochem::process_ic()]
 #' 
 #' @importFrom ggplot2 ggplot scale_x_continuous scale_y_continuous geom_rect aes  geom_vline geom_hline theme
 #' 

@@ -26,4 +26,6 @@ plot_base_ll()
 \code{\link[=plot_base_piper]{plot_base_piper()}}
 
 \code{\link[=plot_base_water_maturity]{plot_base_water_maturity()}}
+
+\code{\link[=process_ic]{process_ic()}}
 }
