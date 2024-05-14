@@ -62,3 +62,7 @@ You can display it after installation via:
 ```r
 vignette("geochem")
 ```
+
+### Processing ICP-MS data
+
+Refer to the ICP-MS section in the [geochem vignette](vignettes/geochem.Rmd), in which the process is detailed.
