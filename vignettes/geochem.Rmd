@@ -2,9 +2,11 @@
 title: "geochem"
 author:
   - name: Guillermo Climent Gargallo
-    affiliation:
-    - University of Naples Federico II
+    affiliation: University of Naples Federico II
     email: guillermo.climentgargallo@unina.it
+  - name: Alessia Bastianoni
+    affiliation: University of Naples Federico II
+    email: alessiabenedicta.bastianoni@unina.it
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{geochem}
