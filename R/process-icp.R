@@ -250,6 +250,14 @@ process_icp = function(filepath, blank_name) {
         conc_sd_perc >  15.0 & conc_sd_perc <= 30.0 ~ "CHECK",
         conc_sd_perc >  30.0 | is.na(conc_sd_perc)  ~ "DISCARD"
       )
+    ) %>%
+    # Add checks for calibration curve
+    mutate(
+      cal_curve_check=case_when(
+        concentration >= 0.01 & concentration <= 100.0 ~ "OK",
+        concentration < 0.01  ~ "BELOW",
+        concentration > 100.0 ~ "ABOVE"
+      )
     )
 
   # Merge both CPS and SD checks
@@ -302,6 +310,10 @@ select_icp_auto = function(df, blank_name) {
         conc_sd_check != "DISCARD" & sample != blank_name |
         sample == blank_name
       ),
+      (
+        cal_curve_check == "OK" & sample != blank_name |
+        sample == blank_name
+      )
     ) %>%
     # Get unique values in concentration: there are duplicates because the
     # original data points are kept for the CPS_perc_check
