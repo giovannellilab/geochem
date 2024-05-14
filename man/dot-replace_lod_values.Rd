@@ -15,10 +15,6 @@ The processed column.
 \description{
 Replaces <LOD, <0.000 and N/A values in ICP-MS with zeroes
 }
-\examples{
-.replace_lod_values(df$x)
-
-}
 \seealso{
 \code{\link[=process_icp]{process_icp()}}
 }
