@@ -571,18 +571,9 @@ The next chunk of code saves the data in wide format, ready to be copied into th
 # Save processed ICP-MS data in wide format
 icp_df_wide = icp_df %>%
   ungroup() %>%
-  select(sample, element, isotope, dilution, gas, concentration) %>%
   tidyr::pivot_wider(
-    id_cols=c(
-      sample,
-      dilution,
-      gas
-    ),
-    names_from=c(
-      isotope,
-      element
-    ),
-    names_sep="_",
+    id_cols=sample,
+    names_from=element,
     values_from=concentration
   )
 
@@ -601,16 +592,20 @@ write.csv(
 
 ```{r filter_metals, eval=FALSE}
 # Remove selected elements
+remove_elements = c(
+  "Li",
+  "Na",
+  "Mg",
+  "P",
+  "S",
+  "K",
+  "Ca",
+  "Si"
+)
+
 icp_df = icp_df %>%
   dplyr::filter(
-    element != "Li",
-    !(element == "Na" & gas == "No Gas"),
-    element != "Mg",
-    !(element == "P" & gas == "No Gas"),
-    !(element == "S" & gas == "No Gas"),
-    element != "K",
-    element != "Ca",
-    !(element == "Si" & gas == "No Gas")
+    !(element %in% remove_elements)
   )
 ```
 

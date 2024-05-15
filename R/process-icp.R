@@ -317,8 +317,8 @@ select_icp_auto = function(df, blank_name) {
     ) %>%
     # Get unique values in concentration: there are duplicates because the
     # original data points are kept for the CPS_perc_check
-    select(sample, dilution, element, isotope, gas, concentration) %>%
-    distinct()
+    group_by(sample, element) %>%
+    summarise(concentration=mean(concentration))
 
   return(final_df)
 }
