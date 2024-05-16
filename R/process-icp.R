@@ -67,9 +67,10 @@ process_icp = function(filepath, blank_name) {
   # Paste elements in the column names
   new_cols = paste(
     colnames(data_df),
-    elements_row
+    elements_row,
+    sep="---"
   )
-  new_cols = new_cols %>% str_replace(" NA", "")
+  new_cols = new_cols %>% str_replace("---NA", "")
   colnames(data_df) = new_cols
 
   # Rename columns
@@ -109,7 +110,11 @@ process_icp = function(filepath, blank_name) {
     selected_cols_names = data_df %>%
       select(all_of(selected_cols)) %>%
       colnames()
-    element_name = selected_cols_names[[1]]
+    element_name = str_split_i(
+      string=selected_cols_names[[1]],
+      pattern="---",
+      i=2
+    )
 
     row_df = data_df %>%
       # Select columns from data_df
@@ -160,7 +165,7 @@ process_icp = function(filepath, blank_name) {
     mutate(
       measurement=str_split_i(
         string=measurement,
-        pattern="\\.\\.\\.",
+        pattern="---",
         i=1
       )
     ) %>%
