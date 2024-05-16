@@ -559,6 +559,14 @@ icp_df = select_icp_auto(
 
 # icp_df = icp_df_check
 
+
+# Get unique values in concentration: there are duplicates because the
+# original data points are kept for the CPS_perc_check, so there are multiple
+# values for different isotopes, gas and dilution.
+icp_df = icp_df %>%
+  group_by(sample, element) %>%
+  summarise(concentration=mean(concentration))
+
 dim(icp_df)
 ```
 

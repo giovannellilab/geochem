@@ -319,11 +319,7 @@ select_icp_auto = function(df, blank_name) {
         cal_curve_check == "OK" & sample != blank_name |
         sample == blank_name
       )
-    ) %>%
-    # Get unique values in concentration: there are duplicates because the
-    # original data points are kept for the CPS_perc_check
-    group_by(sample, element) %>%
-    summarise(concentration=mean(concentration))
+    )
 
   return(final_df)
 }
