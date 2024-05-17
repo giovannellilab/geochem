@@ -21,6 +21,11 @@ plot_base_water_maturity(type="giggenbach")
 plot_base_water_maturity(type="duchi")
 
 }
+\references{
+{
+\insertRef{giggenbach1988_GeothermalSoluteEquilibria}{geochem}
+}
+}
 \seealso{
 \code{\link[=plot_base_gibbs]{plot_base_gibbs()}}
 
