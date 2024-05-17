@@ -7,7 +7,7 @@
 #' 
 #' @return The Giovannelli lab theme.
 #' 
-#' @importFrom ggplot2 theme_bw theme '%+replace%'
+#' @importFrom ggplot2 theme_bw theme '%+replace%' element_blank element_text element_rect
 #' @importFrom grDevices rgb
 #' 
 #' @export
@@ -28,13 +28,13 @@ theme_glab = function(
     base_line_size=base_line_size
   ) %+replace%
   ggplot2::theme(
-    legend.background=element_blank(),
-    legend.title=element_text(
+    legend.background=ggplot2::element_blank(),
+    legend.title=ggplot2::element_text(
       color=rgb(100, 100, 100, maxColorValue=255),
       size=rel(0.65),
       hjust=0
     ),
-    legend.text=element_text(
+    legend.text=ggplot2::element_text(
       color=rgb(100, 100, 100, maxColorValue=255),
       size=rel(0.65)
     ),
@@ -56,9 +56,9 @@ theme_glab = function(
       size=rel(0.35),
       hjust=1
     ), 
-    panel.grid.major=element_blank(),   
-    panel.grid.minor=element_blank(),   
-    panel.border=element_rect(
+    panel.grid.major=ggplot2::element_blank(),   
+    panel.grid.minor=ggplot2::element_blank(),   
+    panel.border=ggplot2::element_rect(
       colour=rgb(100, 100, 100, maxColorValue=255),
       fill=NA
     ),
