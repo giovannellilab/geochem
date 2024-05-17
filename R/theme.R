@@ -7,7 +7,7 @@
 #' 
 #' @return The Giovannelli lab theme.
 #' 
-#' @importFrom ggplot2 theme_bw theme '%+replace%' element_blank element_text element_rect rel
+#' @importFrom ggplot2 theme_bw theme '%+replace%' element_blank element_text element_rect rel unit
 #' @importFrom grDevices rgb
 #' 
 #' @export
@@ -38,20 +38,20 @@ theme_glab = function(
       color=grDevices::rgb(100, 100, 100, maxColorValue=255),
       size=ggplot2::rel(0.65)
     ),
-    legend.key.size=unit(0.8, "lines"),
-    plot.title=element_text(
+    legend.key.size=ggplot2::unit(0.8, "lines"),
+    plot.title=ggplot2::element_text(
       color=grDevices::rgb(100, 100, 100, maxColorValue=255), 
       hjust=0
     ),
-    axis.title=element_text(
+    axis.title=ggplot2::element_text(
       color=grDevices::rgb(100, 100, 100, maxColorValue=255),
       size=ggplot2::rel(0.65)
     ),
-    axis.text=element_text(
+    axis.text=ggplot2::element_text(
       color=grDevices::rgb(100, 100, 100, maxColorValue=255),
       size=ggplot2::rel(0.65)
     ),
-    plot.caption=element_text(
+    plot.caption=ggplot2::element_text(
       color=grDevices::rgb(100, 100, 100, maxColorValue=255),
       size=ggplot2::rel(0.35),
       hjust=1
