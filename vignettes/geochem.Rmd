@@ -102,7 +102,7 @@ PROJECT_NAME = "PROJECT_NAME"
 
 # WARNING: change system.file by file.path
 # NOTE: system.file loads the data already in the geochem package
-DATA_DIR = system.file("extdata", PROJECT_NAME, package="geochem")
+DATA_DIR = system.file(file.path("extdata", PROJECT_NAME), package="geochem")
 ```
 
 We strongly recommend the following folder structure, where:
