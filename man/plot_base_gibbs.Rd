@@ -16,6 +16,11 @@ Plots the base Gibbs diagram
 plot_base_gibbs()
 
 }
+\references{
+{
+\insertRef{gibbs1970_MechanismsControllingWorld}{geochem}
+}
+}
 \seealso{
 \code{\link[=plot_base_ll]{plot_base_ll()}}
 

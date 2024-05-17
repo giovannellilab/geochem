@@ -11,6 +11,10 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
+#' @references{
+#'   \insertRef{gibbs1970_MechanismsControllingWorld}{geochem}
+#' }
+#' 
 #' @importFrom ggplot2 ggplot geom_segment aes scale_y_log10 annotation_logticks labs
 #' 
 #' @export
