@@ -7,7 +7,7 @@
 #' 
 #' @return The Giovannelli lab theme.
 #' 
-#' @importFrom ggplot2 theme_bw theme
+#' @importFrom ggplot2 theme_bw theme '%+replace%'
 #' @importFrom grDevices rgb
 #' 
 #' @export
