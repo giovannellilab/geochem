@@ -14,6 +14,7 @@
 #' @import checkmate
 #' 
 #' @export
+#' 
 plot_metals = function(df) {
 
   checkmate::assertDataFrame(

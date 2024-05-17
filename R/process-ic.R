@@ -24,6 +24,7 @@
 #' @import checkmate
 #' 
 #' @export
+#' 
 process_ic = function(df) {
 
   checkmate::assertDataFrame(

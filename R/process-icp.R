@@ -7,6 +7,7 @@
 #' @seealso [geochem::process_icp()]
 #' 
 #' @importFrom stringr str_replace
+#' 
 .replace_lod_values = function(x) as.numeric(
   stringr::str_replace(
     string=x,
@@ -37,6 +38,7 @@
 #' @import checkmate
 #' 
 #' @export
+#' 
 process_icp = function(filepath, blank_name) {
 
   checkmate::assertString(filepath)
@@ -314,6 +316,7 @@ process_icp = function(filepath, blank_name) {
 #' @import checkmate
 #' 
 #' @export
+#' 
 select_icp_auto = function(df, blank_name) {
   
   checkmate::assertDataFrame(

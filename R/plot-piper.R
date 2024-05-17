@@ -18,6 +18,7 @@
 #' @import checkmate
 #' 
 #' @export
+#' 
 transform_data_piper = function(Mg, Ca, Cl, SO4, id) {
 
   checkmate::assertNumeric(Mg)
@@ -71,6 +72,7 @@ transform_data_piper = function(Mg, Ca, Cl, SO4, id) {
 #' @importFrom ggplot2 ggplot geom_polygon aes geom_segment geom_text coord_equal theme_bw theme
 #' 
 #' @export
+#' 
 plot_base_piper = function() {
 
   # ------------------------------------------------------------------------ #

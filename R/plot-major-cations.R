@@ -15,6 +15,7 @@
 #' @importFrom ggtern theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
+#' 
 plot_base_major_cations = function() {
 
   # Add division lines to the ternary plot

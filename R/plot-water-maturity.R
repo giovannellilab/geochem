@@ -28,6 +28,7 @@
 #' @import checkmate
 #' 
 #' @export
+#' 
 plot_base_water_maturity = function(type) {
 
   checkmate::assertString(type)

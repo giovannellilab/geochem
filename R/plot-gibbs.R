@@ -18,6 +18,7 @@
 #' @importFrom ggplot2 ggplot geom_segment aes scale_y_log10 annotation_logticks labs
 #' 
 #' @export
+#' 
 plot_base_gibbs = function() {
   plot = ggplot2::ggplot() +
 

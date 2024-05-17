@@ -15,6 +15,7 @@
 #' @importFrom ggtern annotate theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
+#' 
 plot_base_major_anions = function() {
 
   # Add division lines to the ternary plot
