@@ -12,6 +12,10 @@
 #' @seealso [geochem::plot_base_water_maturity()]
 #' @seealso [geochem::process_ic()]
 #' 
+#' @references{
+#'   \insertRef{langelier1942_GraphicalMethodsIndicating}{geochem}
+#' }
+#' 
 #' @importFrom ggplot2 ggplot scale_x_continuous scale_y_continuous geom_rect aes  geom_vline geom_hline theme
 #' 
 #' @export

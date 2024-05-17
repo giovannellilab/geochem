@@ -16,6 +16,11 @@ Plots the base Langelier-Ludwig diagram
 plot_base_ll()
 
 }
+\references{
+{
+\insertRef{langelier1942_GraphicalMethodsIndicating}{geochem}
+}
+}
 \seealso{
 \code{\link[=plot_base_gibbs]{plot_base_gibbs()}}
 
