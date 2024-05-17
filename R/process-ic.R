@@ -21,9 +21,15 @@
 #' 
 #' @import dplyr
 #' @importFrom tidyr replace_na
+#' @import checkmate
 #' 
 #' @export
 process_ic = function(df) {
+
+  checkmate::assertDataFrame(
+    x=df,
+    col.names="named"
+  )
 
   ion_cols = c(
     # Anions
@@ -42,6 +48,14 @@ process_ic = function(df) {
     "nh4",
     "li"
   )
+
+  # Check if the required columns are in the dataframe
+  for (col in ion_cols) {
+    checkmate::assertChoice(
+      x=col,
+      choices=colnames(df)
+    )
+  }
 
   ic_df = df %>%
     # Fill NA (missing ions)
