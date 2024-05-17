@@ -17,6 +17,7 @@
 #' 
 #' @references{
 #'   \insertRef{giggenbach1988_GeothermalSoluteEquilibria}{geochem}
+#'   \insertRef{duchi1995_HydrogeochemistryCampaniaRegion}{geochem}
 #' }
 #' 
 #' @importFrom utils read.csv

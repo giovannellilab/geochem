@@ -24,6 +24,7 @@ plot_base_water_maturity(type="duchi")
 \references{
 {
 \insertRef{giggenbach1988_GeothermalSoluteEquilibria}{geochem}
+\insertRef{duchi1995_HydrogeochemistryCampaniaRegion}{geochem}
 }
 }
 \seealso{
