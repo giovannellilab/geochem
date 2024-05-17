@@ -1,0 +1,46 @@
+element,type,color
+Ag,Trace metals,#2E83AD
+Al,Trace metals,#66C2A5
+As,Trace metals,#ABD9E9
+Ba,Trace metals,#E6F598
+Ba,Trace metals,#FFFFBF
+Be,Trace metals,#FEE08B
+Cd,Trace metals,#FDAE61
+Cd,Trace metals,#F46D43
+Ce,Trace metals,#D53E4F
+Co,Biometals,#9E0142
+Cr,Trace metals,#8E0152
+Cs,Trace metals,#C51B7D
+Cu,Biometals,#DE77AE
+Dy,Trace metals,#F1B6DA
+Er,Trace metals,#FDE0EF
+Eu,Trace metals,#e08214
+Fe,Biometals,#F7F7F7
+Ga,Trace metals,#D9F0D3
+Gd,Trace metals,#A6DBA0
+Ho,Trace metals,#5AAE61
+La,Trace metals,#1B7837
+Mn,Biometals,#00441B
+Mo,Biometals,#4D9221
+Nb,Trace metals,#7CB85C
+Nd,Trace metals,#A6D96A
+Ni,Biometals,#D9EF8B
+Pb,Trace metals,#FFFFCC
+Pr,Trace metals,#FDAE61
+Rb,Trace metals,#F46D43
+Re,Trace metals,#D73027
+Se,Biometals,#A50026
+Sm,Trace metals,#67001F
+Sr,Trace metals,#EF8A62
+Ta,Trace metals,#F7F7F7
+Th,Trace metals,#67A9CF
+Ti,Trace metals,#D0E1F0
+Tl,Trace metals,#FFFFB3
+Tm,Trace metals,#F0F0F0
+U,Trace metals,#B3DE69
+V,Biometals,#8DD3C7
+W,Biometals,#80B1D3
+Y,Trace metals,#5E4FA2
+Yb,Trace metals,#BEBADA
+Zn,Biometals,#FDB462
+Zr,Trace metals,#FB8072

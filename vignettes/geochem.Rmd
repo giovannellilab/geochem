@@ -620,32 +620,15 @@ icp_df = icp_df %>%
 ```{r metal_color_mapping, eval=FALSE}
 # Set the color for each metal
 selected_metals = read.csv(
-    text="element,color
-      Fe,#f57900
-      V,#4e9a06
-      Mn,#563566
-      Co,#204a87
-      Ni,#555753
-      Cu,#8ae234
-      Zn,#babdb6
-      Se,#edd400
-      Mo,#a40000
-      W,#8f5902"
-  ) %>%
-  # Replace indentation whitespaces
-  mutate(
-    element=stringr::str_replace(
-      string=element,
-      pattern="\\s+",
-      replacement=""
-    )
-  )
+  file=system.file("extdata", "metal-color-mapping.csv", package="geochem")
+)
 
-# Create a named vector
-selected_metals = selected_metals %>% tibble::deframe()
-
-icp_df_selected = icp_df %>%
-  dplyr::filter(element %in% names(selected_metals))
+icp_df_selected = inner_join(
+  x=icp_df,
+  selected_metals,
+  by="element",
+  relationship="many-to-many"
+)
 ```
 
 ```{r figure_metals, eval=FALSE}

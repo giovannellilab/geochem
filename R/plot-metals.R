@@ -15,6 +15,12 @@
 #' @export
 plot_metals = function(df) {
 
+  color_map = df %>%
+    ungroup() %>%
+    select(element, color) %>%
+    unique() %>%
+    tibble::deframe()
+
   # Add absolute bar plot on the top
   figure_metals_abs = ggplot2::ggplot(
       data=df,
@@ -28,11 +34,11 @@ plot_metals = function(df) {
     ggplot2::xlab("Sample") +
     ggplot2::ylab("log(1 + Concentration (ppb))") +
     ggplot2::scale_y_continuous(trans="log10") +
-
+    
     # Manually color the metals
     ggplot2::scale_colour_manual(
       name="Metals",
-      values=selected_metals,
+      values=color_map,
       aesthetics="fill"
     ) +
 
@@ -51,11 +57,11 @@ plot_metals = function(df) {
     ggplot2::geom_bar(position="fill", stat="identity") +
     ggplot2::xlab("Sample") +
     ggplot2::ylab("Concentration (%)") +
-
+    
     # Manually color the metals
     ggplot2::scale_colour_manual(
       name="Metals",
-      values=selected_metals,
+      values=color_map,
       aesthetics="fill"
     ) +
 
