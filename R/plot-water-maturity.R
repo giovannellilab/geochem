@@ -25,9 +25,16 @@
 #' @importFrom ggtern annotate theme_showgrid theme_ticksoutside theme_ticklength_major
 #' @importFrom dplyr filter
 #' @importFrom Rdpack reprompt
+#' @import checkmate
 #' 
 #' @export
 plot_base_water_maturity = function(type) {
+
+  checkmate::assertString(type)
+  checkmate::assertChoice(
+    x=type,
+    choices=c("giggenbach", "duchi")
+  )
 
   # Giggenbach values
   gigg_df = read.csv(
