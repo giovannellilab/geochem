@@ -311,9 +311,42 @@ process_icp = function(filepath, blank_name) {
 #' @seealso [geochem::process_icp()]
 #' 
 #' @import dplyr
+#' @import checkmate
 #' 
 #' @export
 select_icp_auto = function(df, blank_name) {
+  
+  checkmate::assertDataFrame(
+    x=df,
+    col.names="named",
+    ncols=19
+  )
+  checkmate::assertSetEqual(
+    x=colnames(df),
+    y=c(
+      "sample",
+      "dilution",
+      "replicate",
+      "element",
+      "isotope",
+      "gas",
+      "Conc. [ ppb ]",
+      "Conc. RSD",
+      "CPS",
+      "CPS RSD",
+      "dilution_change",
+      "CPS_adj",
+      "CPS_perc_change",
+      "CPS_perc_check",
+      "concentration",
+      "conc_sd",
+      "conc_sd_perc",
+      "conc_sd_check",
+      "cal_curve_check"
+    )
+  )
+  checkmate::assertString(blank_name)
+
   # Automatically select values that passed the checks
   final_df = df %>%
     # Discard values that didn't pass the checks (keep blank)
