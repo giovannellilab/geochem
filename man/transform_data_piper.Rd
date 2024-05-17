@@ -11,6 +11,17 @@ Adapted from the following sources:
 \usage{
 transform_data_piper(Mg, Ca, Cl, SO4, id)
 }
+\arguments{
+\item{Mg}{Magnesium concentration in ppm.}
+
+\item{Ca}{Calcium concentration in ppm.}
+
+\item{Cl}{Chloride concentration in ppm.}
+
+\item{SO4}{Sulfate concentration in ppm.}
+
+\item{id}{Identifier of the sample.}
+}
 \value{
 A data.frame object.
 }

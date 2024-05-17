@@ -3,6 +3,12 @@
 #' * https://gist.github.com/johnDorian/5561272
 #' * https://github.com/markolipka/ggplot_Piper/blob/master/ggplot_Piper.R
 #' 
+#' @param Mg Magnesium concentration in ppm.
+#' @param Ca Calcium concentration in ppm.
+#' @param Cl Chloride concentration in ppm.
+#' @param SO4 Sulfate concentration in ppm.
+#' @param id Identifier of the sample.
+#' 
 #' @return A data.frame object.
 #' 
 #' @examples
