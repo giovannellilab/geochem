@@ -9,6 +9,8 @@
 #' 
 #' @importFrom ggplot2 theme_bw theme
 #' 
+#' @export
+#' 
 theme_glab = function(
   base_size=12,
   base_family="",
