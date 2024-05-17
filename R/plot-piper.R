@@ -24,7 +24,7 @@ transform_data_piper = function(Mg, Ca, Cl, SO4, id) {
   checkmate::assertNumeric(Ca)
   checkmate::assertNumeric(Cl)
   checkmate::assertNumeric(SO4)
-  checkmate::assertString(id)
+  checkmate::assertFactor(id)
 
   y1 = Mg * 0.86603
   x1 = 100 * (1 - (Ca/100) - (Mg/200))
