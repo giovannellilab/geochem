@@ -40,7 +40,8 @@ Imports:
     gridExtra,
     stringr,
     rio,
-    Rdpack
+    Rdpack,
+    checkmate
 Suggests: 
     knitr,
     rmarkdown,
