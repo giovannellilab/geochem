@@ -34,9 +34,13 @@
 #' @importFrom tidyr fill pivot_longer pivot_wider
 #' @import dplyr
 #' @import stringr
+#' @import checkmate
 #' 
 #' @export
 process_icp = function(filepath, blank_name) {
+
+  checkmate::assertString(filepath)
+  checkmate::assertString(blank_name)
 
   # Get the element names
   elements_row = rio::import(
