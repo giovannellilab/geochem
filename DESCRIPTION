@@ -35,6 +35,7 @@ RoxygenNote: 7.3.1
 Imports:
     tidyr,
     dplyr,
+    tibble,
     ggplot2,
     ggtern,
     gridExtra,

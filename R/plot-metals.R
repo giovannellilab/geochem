@@ -11,6 +11,7 @@
 #' 
 #' @importFrom ggplot2 ggplot aes geom_col xlab ylab scale_y_continuous scale_color_manual theme
 #' @importFrom gridExtra grid.arrange
+#' @importFrom tibble deframe
 #' @import checkmate
 #' 
 #' @export
