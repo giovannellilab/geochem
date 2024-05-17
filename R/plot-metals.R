@@ -35,6 +35,9 @@ plot_metals = function(df) {
     ggplot2::ylab("log(1 + Concentration (ppb))") +
     ggplot2::scale_y_continuous(trans="log10") +
     
+    # Add facet_grid
+    facet_grid(cols=vars(type)) +
+    
     # Manually color the metals
     ggplot2::scale_colour_manual(
       name="Metals",
@@ -57,6 +60,9 @@ plot_metals = function(df) {
     ggplot2::geom_bar(position="fill", stat="identity") +
     ggplot2::xlab("Sample") +
     ggplot2::ylab("Concentration (%)") +
+    
+    # Add facet_grid
+    facet_grid(cols=vars(type)) +
     
     # Manually color the metals
     ggplot2::scale_colour_manual(
