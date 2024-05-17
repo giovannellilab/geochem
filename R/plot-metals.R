@@ -11,9 +11,20 @@
 #' 
 #' @importFrom ggplot2 ggplot aes geom_col xlab ylab scale_y_continuous scale_color_manual theme
 #' @importFrom gridExtra grid.arrange
+#' @import checkmate
 #' 
 #' @export
 plot_metals = function(df) {
+
+  checkmate::assertDataFrame(
+    x=df,
+    col.names="named",
+    ncols=5
+  )
+  checkmate::assertSetEqual(
+    x=colnames(df),
+    y=c("sample", "element", "concentration", "type", "color")
+  )
 
   color_map = df %>%
     ungroup() %>%
