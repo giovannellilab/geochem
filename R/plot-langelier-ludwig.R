@@ -16,7 +16,7 @@
 #'   \insertRef{langelier1942_GraphicalMethodsIndicating}{geochem}
 #' }
 #' 
-#' @importFrom ggplot2 ggplot scale_x_continuous scale_y_continuous geom_rect aes  geom_vline geom_hline theme
+#' @importFrom ggplot2 ggplot scale_x_continuous scale_y_continuous geom_rect aes  geom_vline geom_hline theme sec_axis
 #' 
 #' @export
 #' 
@@ -29,7 +29,7 @@ plot_base_ll = function() {
       name=expression("R"("HCO"[3]^"-")),
       limits=c(0, 50),
       breaks=seq(from=0, to=50, by=10),
-      sec.axis=sec_axis(
+      sec.axis=ggplot2::sec_axis(
         r_cl_so4~.,
         name=expression("R"("Cl"^"-" + "SO"[4]^"2-")),
         labels=rev(seq(from=0, to=50, by=10))
@@ -39,7 +39,7 @@ plot_base_ll = function() {
       name=expression("R"("Na"^"+" + "K"^"+")),
       limits=c(0, 50),
       breaks=seq(from=0, to=50, by=10),
-      sec.axis=sec_axis(
+      sec.axis=ggplot2::sec_axis(
         r_ca_mg~.,
         name=expression("R"("Ca"^"2+" + "Mg"^"2+")),
         labels=rev(seq(from=0, to=50, by=10))
