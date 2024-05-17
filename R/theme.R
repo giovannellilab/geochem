@@ -7,7 +7,7 @@
 #' 
 #' @return The Giovannelli lab theme.
 #' 
-#' @import ggplot2
+#' @importFrom ggplot2 theme_bw theme
 #' 
 theme_glab = function(
   base_size=12,
