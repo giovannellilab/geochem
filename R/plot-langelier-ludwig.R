@@ -16,7 +16,7 @@
 #'   \insertRef{langelier1942_GraphicalMethodsIndicating}{geochem}
 #' }
 #' 
-#' @importFrom ggplot2 ggplot scale_x_continuous scale_y_continuous geom_rect aes  geom_vline geom_hline theme sec_axis
+#' @importFrom ggplot2 ggplot scale_x_continuous scale_y_continuous geom_rect aes  geom_vline geom_hline theme sec_axis arrow
 #' 
 #' @export
 #' 
@@ -188,7 +188,7 @@ plot_base_ll = function() {
       lineend="butt",
       linejoin="mitre",
       linewidth=0.5,
-      arrow=arrow(length=unit(0.15, "inches")),
+      arrow=ggplot2::arrow(length=unit(0.15, "inches")),
       colour="grey"
     ) +
     ggplot2::annotate(
@@ -205,7 +205,7 @@ plot_base_ll = function() {
       lineend="butt",
       linejoin="mitre",
       linewidth=0.5,
-      arrow=arrow(length=unit(0.15, "inches")),
+      arrow=ggplot2::arrow(length=unit(0.15, "inches")),
       colour="grey"
     ) +
     ggplot2::annotate(
