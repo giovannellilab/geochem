@@ -28,4 +28,6 @@ df = transform_data_piper(Mg, Ca, Cl, SO4, id)
 }
 \seealso{
 \code{\link[=plot_base_piper]{plot_base_piper()}}
+
+\code{\link[=process_ic]{process_ic()}}
 }
