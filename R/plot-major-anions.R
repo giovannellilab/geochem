@@ -11,7 +11,7 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
-#' @importFrom ggplot2 aes geom_segment geom_polygon guides labs
+#' @importFrom ggplot2 aes geom_segment geom_polygon guides labs guide_legend
 #' @importFrom ggtern annotate theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
@@ -70,7 +70,7 @@ plot_base_major_anions = function() {
     ) +
 
     # Create the guides and labels
-    ggplot2::guides(fill=guide_legend(override.aes=list(shape=21))) +
+    ggplot2::guides(fill=ggplot2::guide_legend(override.aes=list(shape=21))) +
     ggplot2::labs(
       x=expression(SO[4]^-2),
       y=expression(Cl^-1),

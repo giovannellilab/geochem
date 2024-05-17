@@ -11,7 +11,7 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
-#' @importFrom ggplot2 aes geom_segment guides labs
+#' @importFrom ggplot2 aes geom_segment guides labs guide_legend
 #' @importFrom ggtern theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
@@ -49,7 +49,7 @@ plot_base_major_cations = function() {
     ) +
 
     # Create the guides and labels
-    ggplot2::guides(fill=guide_legend(override.aes=list(shape=21))) +
+    ggplot2::guides(fill=ggplot2::guide_legend(override.aes=list(shape=21))) +
     ggplot2::labs(
       x="Ca",
       y="Mg",
