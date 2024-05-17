@@ -11,6 +11,10 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::process_ic()]
 #' 
+#' @references{
+#'   \insertRef{piper1944_GraphicProcedureGeochemical}{geochem}
+#' }
+#' 
 #' @export
 transform_data_piper = function(Mg, Ca, Cl, SO4, id) {
 
@@ -51,6 +55,10 @@ transform_data_piper = function(Mg, Ca, Cl, SO4, id) {
 #' plot_base_piper()
 #' 
 #' @seealso [geochem::transform_data_piper()]
+#' 
+#' @references{
+#'   \insertRef{piper1944_GraphicProcedureGeochemical}{geochem}
+#' }
 #' 
 #' @importFrom ggplot2 ggplot geom_polygon aes geom_segment geom_text coord_equal theme_bw theme
 #' 

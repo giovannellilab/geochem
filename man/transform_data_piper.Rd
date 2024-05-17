@@ -26,6 +26,11 @@ Adapted from the following sources:
 df = transform_data_piper(Mg, Ca, Cl, SO4, id)
 
 }
+\references{
+{
+\insertRef{piper1944_GraphicProcedureGeochemical}{geochem}
+}
+}
 \seealso{
 \code{\link[=plot_base_piper]{plot_base_piper()}}
 

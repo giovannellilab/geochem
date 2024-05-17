@@ -16,6 +16,11 @@ Plots the base Piper plot
 plot_base_piper()
 
 }
+\references{
+{
+\insertRef{piper1944_GraphicProcedureGeochemical}{geochem}
+}
+}
 \seealso{
 \code{\link[=transform_data_piper]{transform_data_piper()}}
 }
