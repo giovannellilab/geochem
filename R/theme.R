@@ -30,36 +30,36 @@ theme_glab = function(
   ggplot2::theme(
     legend.background=ggplot2::element_blank(),
     legend.title=ggplot2::element_text(
-      color=rgb(100, 100, 100, maxColorValue=255),
+      color=grDevices::rgb(100, 100, 100, maxColorValue=255),
       size=ggplot2::rel(0.65),
       hjust=0
     ),
     legend.text=ggplot2::element_text(
-      color=rgb(100, 100, 100, maxColorValue=255),
+      color=grDevices::rgb(100, 100, 100, maxColorValue=255),
       size=ggplot2::rel(0.65)
     ),
     legend.key.size=unit(0.8, "lines"),
     plot.title=element_text(
-      color=rgb(100, 100, 100, maxColorValue=255), 
+      color=grDevices::rgb(100, 100, 100, maxColorValue=255), 
       hjust=0
     ),
     axis.title=element_text(
-      color=rgb(100, 100, 100, maxColorValue=255),
+      color=grDevices::rgb(100, 100, 100, maxColorValue=255),
       size=ggplot2::rel(0.65)
     ),
     axis.text=element_text(
-      color=rgb(100, 100, 100, maxColorValue=255),
+      color=grDevices::rgb(100, 100, 100, maxColorValue=255),
       size=ggplot2::rel(0.65)
     ),
     plot.caption=element_text(
-      color=rgb(100, 100, 100, maxColorValue=255),
+      color=grDevices::rgb(100, 100, 100, maxColorValue=255),
       size=ggplot2::rel(0.35),
       hjust=1
     ), 
     panel.grid.major=ggplot2::element_blank(),   
     panel.grid.minor=ggplot2::element_blank(),   
     panel.border=ggplot2::element_rect(
-      colour=rgb(100, 100, 100, maxColorValue=255),
+      colour=grDevices::rgb(100, 100, 100, maxColorValue=255),
       fill=NA
     ),
     complete=TRUE
