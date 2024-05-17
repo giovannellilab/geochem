@@ -207,6 +207,10 @@ ic_df = process_ic(data_df)
 head(ic_df %>% select(SiteID, HCO3.meq, Cl.meq, SO4.meq, Na.meq, K.meq, IB))
 ```
 
+Among other columns, the `ionic balance (IB)` is added for user inspection.
+The ionic balance should ideally be zero and any substantial deviation should be accounted for.
+
+<br>
 
 #### Figure: major anions
 
@@ -616,6 +620,8 @@ icp_df = icp_df %>%
     !(element %in% remove_elements)
   )
 ```
+
+In here, the user can specify how to color each metal following the format in the [metal-color-mapping.csv](https://github.com/giovannellilab/geochem/blob/main/inst/extdata/metal-color-mapping.csv) file.
 
 ```{r metal_color_mapping, eval=FALSE}
 # Set the color for each metal
