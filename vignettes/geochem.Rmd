@@ -48,7 +48,7 @@ PROJECT_NAME = "PROJECT_NAME"
 
 # WARNING: change system.file by file.path
 # NOTE: system.file loads the data already in the geochem package
-DATA_DIR = system.file("extdata", package="geochem")
+DATA_DIR = system.file("extdata", PROJECT_NAME, package="geochem")
 ```
 
 We strongly recommend the following folder structure, where:
@@ -466,7 +466,7 @@ Avoid using underscores inside each variable (e.g. PROJECT_TEST).
 ICP_FILENAME = "PROJECT_NAME.xlsx"
 ICP_BLANK_NAME = "BLANK"
 
-ICP_DIR = file.path("../../geochem-data/PROJECT_NAME/icp-ms/")
+ICP_DIR = system.file("extdata", "PROJECT_NAME/icp-ms", package="geochem")
 ```
 
 
