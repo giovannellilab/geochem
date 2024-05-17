@@ -169,6 +169,13 @@ process_icp = function(filepath, blank_name) {
         i=1
       )
     ) %>%
+    mutate(
+      measurement=str_replace(
+        string=measurement,
+        pattern="\\.\\.\\.\\d+$",
+        replacement=""
+      )
+    ) %>%
     # Remove leading characters from element column
     mutate(
       element=str_replace(element, "Conc. \\[ ppb \\] ", "")
