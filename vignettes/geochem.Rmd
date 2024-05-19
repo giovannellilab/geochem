@@ -83,15 +83,15 @@ data_df = rio::import(
   sheet="envdata",
   skip=1
 )
-
+  
 # Remove first row containing the units
-data_df = data_df %>% slice(2:nrow(data_df))
+data_df = data_df %>% dplyr::slice(2:nrow(data_df))
 
 # Convert data columns to numeric
-data_df = type.convert(data_df, as.is=TRUE)
+data_df = utils::type.convert(data_df, as.is=TRUE)
 
 # Convert SiteID to ordered factor for plotting
-data_df = data_df %>% mutate(SiteID=factor(SiteID, levels=data_df$SiteID))
+data_df = data_df %>% dplyr::mutate(SiteID=factor(SiteID, levels=data_df$SiteID))
 
 head(data_df)
 ```
