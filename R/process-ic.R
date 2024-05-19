@@ -61,57 +61,67 @@ process_ic = function(df) {
     # WARNING: Calculate meq for plotting, concentrations must be in mg/L!!!
     mutate(
       # Anions
-      HCO3.meq=alk_tot * (1 / 61.0168) * 1.22,
-      Cl.meq=cl * (1 / 35.45),
-      SO4.meq=so4 * (2 / 96.06),
-      Br.meq=br * (1 / 79.904),
+      HCO3.meq=get("alk_tot") * (1 / 61.0168) * 1.22,
+      Cl.meq=get("cl") * (1 / 35.45),
+      SO4.meq=get("so4") * (2 / 96.06),
+      Br.meq=get("br") * (1 / 79.904),
       # NO2.meq=no2 * (1 / 46.005),
-      NO3.meq=no3 * (1 / 62.004),
-      P04.meq=po4 * (3 / 94.9714),
+      NO3.meq=get("no3") * (1 / 62.004),
+      P04.meq=get("po4") * (3 / 94.9714),
 
       # Cations
-      Na.meq=na * (1 / 22.990),
-      K.meq=k * (1 / 39.098),
-      Ca.meq=ca * (2 / 40.078),
-      Mg.meq=mg * (2 / 24.305),
-      NH4.meq=nh4 * (1 / 18.039),
-      Li.meq=li * (1 / 6.94)
+      Na.meq=get("na") * (1 / 22.990),
+      K.meq=get("k") * (1 / 39.098),
+      Ca.meq=get("ca") * (2 / 40.078),
+      Mg.meq=get("mg") * (2 / 24.305),
+      NH4.meq=get("nh4") * (1 / 18.039),
+      Li.meq=get("li") * (1 / 6.94)
     ) %>%
     # Calculate ion balance
     mutate(
       sum_anions=(
-        HCO3.meq + Cl.meq + SO4.meq + Br.meq + NO3.meq + P04.meq
+        get("HCO3.meq") + get("Cl.meq") + get("SO4.meq") + 
+        get("Br.meq") + get("NO3.meq") + get("P04.meq")
       ),
       sum_cations=(
-        Na.meq + K.meq + Ca.meq + Mg.meq + NH4.meq + Li.meq
+        get("Na.meq") + get("K.meq") + get("Ca.meq") + 
+        get("Mg.meq") + get("NH4.meq") + get("Li.meq")
       )
     ) %>%
     mutate(
-      IB=100 * (sum_cations - sum_anions) / (sum_cations + sum_anions)
+      IB=100 * 
+      (get("sum_cations") - get("sum_anions")) / 
+      (get("sum_cations") + get("sum_anions"))
     )
 
   # Langelier-Ludwig: add anions and cations transformations as columns
   ic_df = ic_df %>%
     mutate(
-      r_bicarb=50 * (HCO3.meq) / (HCO3.meq + Cl.meq + SO4.meq),
-      r_na_k=50 * (Na.meq + K.meq) / (Na.meq + K.meq + Mg.meq + Ca.meq)
+      r_bicarb=50 * (get("HCO3.meq")) / 
+        (get("HCO3.meq") + get("Cl.meq") + get("SO4.meq")),
+      r_na_k=50 * (get("Na.meq") + get("K.meq")) / 
+        (get("Na.meq") + get("K.meq") + get("Mg.meq") + get("Ca.meq"))
     ) %>%
     mutate(
-      r_ca_mg=50 - r_na_k,
-      r_cl_so4=50 - r_bicarb
+      r_ca_mg=50 - get("r_na_k"),
+      r_cl_so4=50 - get("r_bicarb")
     )
 
   # Piper plot: calculate percentages
   ic_df = ic_df %>%
     mutate(
-      piper_cations=(Mg.meq + Ca.meq + Na.meq + K.meq),
-      piper_anions=(HCO3.meq + SO4.meq + Cl.meq)
+      piper_cations=(
+        get("Mg.meq") + get("Ca.meq") + get("Na.meq") + get("K.meq")
+      ),
+      piper_anions=(
+        get("HCO3.meq") + get("SO4.meq") + get("Cl.meq")
+      )
     ) %>%
     mutate(
-      Mg.meq.perc=100 * Mg.meq / piper_cations,
-      Ca.meq.perc=100 * Ca.meq / piper_cations,
-      Cl.meq.perc=100 * Cl.meq / piper_anions,
-      SO4.meq.perc=100 * SO4.meq / piper_anions,
+      Mg.meq.perc=100 * get("Mg.meq") / get("piper_cations"),
+      Ca.meq.perc=100 * get("Ca.meq") / get("piper_cations"),
+      Cl.meq.perc=100 * get("Cl.meq") / get("piper_anions"),
+      SO4.meq.perc=100 * get("SO4.meq") / get("piper_anions"),
     )
 
   return(ic_df)
