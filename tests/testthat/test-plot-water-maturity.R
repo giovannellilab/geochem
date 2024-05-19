@@ -19,4 +19,3 @@ test_that("plot_base_water_maturity fails when type is not accepted", {
     object=geochem::plot_base_water_maturity(type="other")
   )
 })
-
