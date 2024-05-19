@@ -11,7 +11,7 @@
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::plot_base_water_maturity()]
 #' 
-#' @importFrom ggplot2 aes geom_segment geom_polygon guides labs guide_legend
+#' @importFrom ggplot2 aes_string geom_segment geom_polygon guides labs guide_legend
 #' @importFrom ggtern annotate theme_showgrid theme_ticksoutside theme_ticklength_major
 #' 
 #' @export
@@ -40,13 +40,13 @@ plot_base_major_anions = function() {
     # Add division lines
     ggplot2::geom_segment(
       data=lines,
-      ggplot2::aes(
-        x=x,
-        y=y,
-        z=z,
-        xend=xend,
-        yend=yend,
-        zend=zend
+      ggplot2::aes_string(
+        x="x",
+        y="y",
+        z="z",
+        xend="xend",
+        yend="yend",
+        zend="zend"
       ),
       color="grey",
       alpha=0.5,
@@ -57,10 +57,10 @@ plot_base_major_anions = function() {
     # Add mature waters area
     ggplot2::geom_polygon(
       data=polygon,
-      ggplot2::aes(
-        x=x,
-        y=y,
-        z=z
+      ggplot2::aes_string(
+        x="x",
+        y="y",
+        z="z"
       ),
       fill="grey",
       alpha=0.15,
