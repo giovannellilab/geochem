@@ -81,9 +81,9 @@ plot_base_water_maturity = function(type) {
     base_plot = ggtern::ggtern(
       data=gigg_df,
       ggplot2::aes(
-        x=Potassium/100,
-        y=Sodium/1000,
-        z=sqrt(Magnesium)
+        x=get("Potassium")/100,
+        y=get("Sodium")/1000,
+        z=sqrt(get("Magnesium"))
       )
     ) +
     ggplot2::labs(
@@ -97,9 +97,9 @@ plot_base_water_maturity = function(type) {
     base_plot = ggtern::ggtern(
       data=gigg_df,
       ggplot2::aes(
-        x=Potassium/10,
-        y=Sodium/400,
-        z=sqrt(Magnesium)
+        x=get("Potassium")/10,
+        y=get("Sodium")/400,
+        z=sqrt(get("Magnesium"))
       )
     ) +
     ggplot2::labs(
@@ -124,15 +124,15 @@ plot_base_water_maturity = function(type) {
 
     # Create the first half of the temperature curves
     ggplot2::geom_point(
-      data=gigg_df %>% dplyr::filter(TK %in% c("tkn")),
+      data=gigg_df %>% dplyr::filter(get("TK") %in% c("tkn")),
       size=1,
       shape=22,
       fill="grey",
       stroke=.3
     ) +
     ggplot2::geom_text(
-      data=gigg_df %>% dplyr::filter(TK %in% c("tkn")),
-      mapping=ggplot2::aes(label=as.factor(Temperature)),
+      data=gigg_df %>% dplyr::filter(get("TK") %in% c("tkn")),
+      mapping=ggplot2::aes(label=as.factor(get("Temperature"))),
       color="grey",
       size=2.5,
       hjust=0.5,
@@ -141,15 +141,15 @@ plot_base_water_maturity = function(type) {
 
     # Create the second half of the temperature curves
     ggplot2::geom_point(
-      data=gigg_df %>% dplyr::filter(TK %in% c("tkm")),
+      data=gigg_df %>% dplyr::filter(get("TK") %in% c("tkm")),
       size=1,
       shape=22,
       fill="grey",
       stroke=.3
     ) +
     ggplot2::geom_text(
-      data=gigg_df %>% dplyr::filter(TK %in% c("tkm")),
-      mapping=ggplot2::aes(label=as.factor(Temperature)),
+      data=gigg_df %>% dplyr::filter(get("TK") %in% c("tkm")),
+      mapping=ggplot2::aes(label=as.factor(get("Temperature"))),
       color="grey",
       size=2.5,
       hjust=0.5,
