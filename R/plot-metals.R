@@ -4,9 +4,6 @@
 #' 
 #' @return A `ggplot2` object.
 #' 
-#' @examples
-#' plot_metals(df)
-#' 
 #' @seealso [geochem::process_icp()]
 #' 
 #' @importFrom ggplot2 ggplot aes geom_col xlab ylab scale_y_continuous scale_color_manual theme

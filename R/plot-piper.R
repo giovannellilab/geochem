@@ -11,9 +11,6 @@
 #' 
 #' @return A data.frame object.
 #' 
-#' @examples
-#' df = transform_data_piper(Mg, Ca, Cl, SO4, id)
-#' 
 #' @seealso [geochem::plot_base_piper()]
 #' @seealso [geochem::process_ic()]
 #' 

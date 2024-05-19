@@ -17,10 +17,6 @@ A data.frame object.
 \description{
 Automatically selects the processed ICP-MS data according to defined checks
 }
-\examples{
-select_icp_auto(df=df, blank_name="blank")
-
-}
 \seealso{
 \code{\link[=process_icp]{process_icp()}}
 }

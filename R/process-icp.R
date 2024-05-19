@@ -23,9 +23,6 @@
 #' 
 #' @return A data.frame object.
 #' 
-#' @examples
-#' process_icp(filepath="icp-ms.csv", blank_name="blank")
-#' 
 #' @seealso [geochem::.replace_lod_values()]
 #' @seealso [geochem::select_icp_auto()]
 #' @seealso [geochem::plot_metals()]
@@ -306,9 +303,6 @@ process_icp = function(filepath, blank_name) {
 #' @param blank_name String indicating the name of the blank in the file.
 #' 
 #' @return A data.frame object.
-#' 
-#' @examples
-#' select_icp_auto(df=df, blank_name="blank")
 #' 
 #' @seealso [geochem::process_icp()]
 #' 

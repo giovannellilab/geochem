@@ -29,10 +29,6 @@ Processes IC results for further geochemistry plots:
 \item Adds percentage transformations for the Piper plot
 }
 }
-\examples{
-df = process_ic(df)
-
-}
 \seealso{
 \code{\link[=plot_base_gibbs]{plot_base_gibbs()}}
 

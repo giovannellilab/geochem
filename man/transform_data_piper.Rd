@@ -33,10 +33,6 @@ Adapted from the following sources:
 \item https://github.com/markolipka/ggplot_Piper/blob/master/ggplot_Piper.R
 }
 }
-\examples{
-df = transform_data_piper(Mg, Ca, Cl, SO4, id)
-
-}
 \references{
 {
 \insertRef{piper1944_GraphicProcedureGeochemical}{geochem}

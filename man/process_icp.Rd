@@ -17,10 +17,6 @@ A data.frame object.
 \description{
 Processes ICP-MS as given by the instrument
 }
-\examples{
-process_icp(filepath="icp-ms.csv", blank_name="blank")
-
-}
 \seealso{
 \code{\link[=.replace_lod_values]{.replace_lod_values()}}
 

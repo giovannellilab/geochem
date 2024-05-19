@@ -15,10 +15,6 @@ A \code{ggplot2} object.
 \description{
 Plots the absolute and relative metal concentration as bar plots
 }
-\examples{
-plot_metals(df)
-
-}
 \seealso{
 \code{\link[=process_icp]{process_icp()}}
 }

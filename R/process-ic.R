@@ -9,9 +9,6 @@
 #' 
 #' @return A data.frame object.
 #' 
-#' @examples
-#' df = process_ic(df)
-#' 
 #' @seealso [geochem::plot_base_gibbs()]
 #' @seealso [geochem::plot_base_ll()]
 #' @seealso [geochem::plot_base_major_anions()]
