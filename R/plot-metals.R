@@ -6,7 +6,7 @@
 #' 
 #' @seealso [geochem::process_icp()]
 #' 
-#' @importFrom ggplot2 ggplot aes geom_col xlab ylab scale_y_continuous scale_color_manual theme
+#' @importFrom ggplot2 ggplot aes geom_col xlab ylab scale_y_continuous scale_color_manual theme facet_grid
 #' @importFrom gridExtra grid.arrange
 #' @importFrom tibble deframe
 #' @import checkmate
