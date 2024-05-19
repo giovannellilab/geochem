@@ -523,6 +523,8 @@ dim(icp_df)
 
 #### Integration with the `env_dataset`
 
+**IMPORTANT**: before proceeding, concentrations of TE need to be corrected by the sediment weight attacked with acid and microwave digested to report the actual concentration of the metal in ug of element/g of sediment and compare it with other values in the literature.
+
 The next chunk of code saves the data in wide format, ready to be copied into the `env_dataset`:
 
 ```{r icp_env_dataset}
