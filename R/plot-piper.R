@@ -72,7 +72,7 @@ transform_data_piper = function(Mg, Ca, Cl, SO4, id) {
 #'   \insertRef{piper1944_GraphicProcedureGeochemical}{geochem}
 #' }
 #' 
-#' @importFrom ggplot2 ggplot geom_polygon aes geom_segment geom_text coord_equal theme_bw theme
+#' @importFrom ggplot2 ggplot aes_string geom_polygon aes geom_segment geom_text coord_equal theme_bw theme
 #' 
 #' @export
 #' 
@@ -88,9 +88,9 @@ plot_base_piper = function() {
 
     # Na-HCO3 waters (deeper ground waters influenced by ion exchange)
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(110, 85, 135),
@@ -104,9 +104,9 @@ plot_base_piper = function() {
 
     # Mixing zone (lower)
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(110, 85, 135),
@@ -120,9 +120,9 @@ plot_base_piper = function() {
 
     # Na-Cl waters (marine and deep ancient ground waters)
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(135, 110, 135, 160),
@@ -136,9 +136,9 @@ plot_base_piper = function() {
 
     # Ca-HCO3 waters (shallow, fresh ground waters)
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(85, 60, 85, 110),
@@ -152,9 +152,9 @@ plot_base_piper = function() {
 
     # Ca-SO4 waters (gypsum ground waters and mine drainage)
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(110, 85, 110, 135),
@@ -168,9 +168,9 @@ plot_base_piper = function() {
 
     # Mixing zone (upper)
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(110, 85, 135),
@@ -187,9 +187,9 @@ plot_base_piper = function() {
 
     # Mg-Ca region
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(0, 25, 50),
@@ -203,9 +203,9 @@ plot_base_piper = function() {
 
     # Mg-NA+K region
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(25, 50, 75),
@@ -219,9 +219,9 @@ plot_base_piper = function() {
 
     # Ca-NA+K region
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(50, 75, 100),
@@ -238,9 +238,9 @@ plot_base_piper = function() {
 
     # HCO3-Cl region
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(120, 145, 170),
@@ -254,9 +254,9 @@ plot_base_piper = function() {
 
     # HCO3-SO4 region
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(145, 170, 195),
@@ -270,9 +270,9 @@ plot_base_piper = function() {
 
     # Cl-SO4 region
     ggplot2::geom_polygon(
-      ggplot2::aes(
-        x=x,
-        y=y
+      ggplot2::aes_string(
+        x="x",
+        y="y"
       ),
       data=data.frame(
         x=c(170, 195, 220),
