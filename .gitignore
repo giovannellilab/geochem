@@ -53,6 +53,10 @@ data/
 .DS_Store
 old/
 
+# Data files
+*_check.csv
+*_env_dataset_icp.csv
+
 # R project files
 *.Rproj
 inst/doc
