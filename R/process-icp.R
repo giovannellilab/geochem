@@ -57,8 +57,9 @@ process_icp = function(filepath, blank_name) {
     t() %>%
     as.data.frame() %>%
     tidyr::fill(1, .direction="down") %>%
-    t() %>%
-    unlist(., use.names=FALSE)
+    t()
+
+  elements_row = unlist(elements_row, use.names=FALSE)
 
   # Load the whole file
   data_df = rio::import(
@@ -123,8 +124,8 @@ process_icp = function(filepath, blank_name) {
       # Select columns from data_df
       select(
         c(
-          sample,
-          dilution,
+          "sample",
+          "dilution",
           all_of(selected_cols)
         )
       ) %>%
@@ -134,14 +135,14 @@ process_icp = function(filepath, blank_name) {
         .replace_lod_values
       ) %>%
       # Round dilutions to match them
-      mutate(dilution=round(dilution, digits=0))
+      mutate(dilution=round(get("dilution"), digits=0))
 
     row_df = row_df %>%
       # Create element column (unformatted)
       mutate(element=rep(element_name, n=length(row_df))) %>%
       # Transform to long format
       tidyr::pivot_longer(
-        cols=-c(sample, dilution, element),
+        cols=-c("sample", "dilution", "element"),
         names_to="measurement"
       )
 
@@ -154,12 +155,12 @@ process_icp = function(filepath, blank_name) {
     # Extract and replace replicates inside the sample name
     mutate(
       replicate=str_split_i(
-        string=sample,
+        string=get("sample"),
         pattern="_",
         i=4
       ),
       sample=str_replace(
-        string=sample,
+        string=get("sample"),
         pattern="_1in\\d+_\\d+$",
         replacement=""
       )
@@ -167,26 +168,26 @@ process_icp = function(filepath, blank_name) {
     # Remove unnecessary characters in measurement column
     mutate(
       measurement=str_split_i(
-        string=measurement,
+        string=get("measurement"),
         pattern="---",
         i=1
       )
     ) %>%
     mutate(
       measurement=str_replace(
-        string=measurement,
+        string=get("measurement"),
         pattern="\\.\\.\\.\\d+$",
         replacement=""
       )
     ) %>%
     # Remove leading characters from element column
     mutate(
-      element=str_replace(element, "Conc. \\[ ppb \\] ", "")
+      element=str_replace(get("element"), "Conc. \\[ ppb \\] ", "")
     ) %>%
     # Remove leading characters from element column (another format)
     mutate(
       element=str_replace(
-        string=element,
+        string=get("element"),
         pattern="Conc\\. \\[ ppb \\]\\.\\.\\.\\d+ ",
         replacement=""
       )
@@ -194,27 +195,27 @@ process_icp = function(filepath, blank_name) {
     # Extract gas column (https://stackoverflow.com/a/61296180)
     mutate(
       gas=str_extract(
-        string=element,
+        string=get("element"),
         pattern="(?<=\\[\\s).*(?=\\s\\]$)"
       )
     ) %>%
     # Extract isotope from the element column
     mutate(
       isotope=str_extract(
-        string=element,
+        string=get("element"),
         pattern="^\\d+(?= .*)"
       )
     ) %>%
     # Extract actual element name from the element column
     mutate(
       element=str_extract(
-        string=element,
+        string=get("element"),
         pattern="(?<=[\\d+] ).*(?= \\[.*\\])"
       )
     ) %>%
     mutate(
       element=str_replace_all(
-        string=element,
+        string=get("element"),
         pattern=" ",
         replacement=""
       )
@@ -223,55 +224,63 @@ process_icp = function(filepath, blank_name) {
   measures_df_raw = measures_df %>%
     # Convert to wide for better readability
     tidyr::pivot_wider(
-      id_cols=c(sample, dilution, replicate, element, isotope, gas),
-      names_from=measurement,
-      values_from=value
+      id_cols=c("sample", "dilution", "replicate", "element", "isotope", "gas"),
+      names_from="measurement",
+      values_from="value"
     ) %>%
-    arrange(sample, dilution, element, isotope, gas) %>%
+    arrange(
+      across(all_of(c("sample", "dilution", "element", "isotope", "gas")))
+    ) %>%
 
     # NOTE: do these calculations here to avoid removal by summarise!
     # Exclude dilution to calculate dilution change
-    group_by(sample, element, isotope, gas) %>%
+    group_by(
+      across(all_of(c("sample", "element", "isotope", "gas")))
+    ) %>%
     # Calculate dilution change for further checks
-    mutate(dilution_change=dilution/min(dilution)) %>%
-    mutate(CPS_adj=CPS * dilution_change) %>%
+    mutate(dilution_change=get("dilution")/min(get("dilution"))) %>%
+    mutate(CPS_adj=get("CPS") * get("dilution")) %>%
     mutate(
-      CPS_perc_change=100 * (abs(CPS_adj - lag(CPS_adj)) / lag(CPS_adj))
+      CPS_perc_change=100 * (
+        abs(get("CPS_adj") - lag(get("CPS_adj"))) / lag(get("CPS_adj"))
+      )
     ) %>%
     mutate(
       CPS_perc_check=case_when(
-        CPS_perc_change <= 5.0 ~ "OK",
-        CPS_perc_change >  5.0 ~ "DISCARD"
+        get("CPS_perc_change") <= 5.0 ~ "OK",
+        get("CPS_perc_change") >  5.0 ~ "DISCARD"
       )
     )
 
   measures_df = measures_df %>%
     # Select only concentration columns
-    dplyr::filter(measurement == "Conc. [ ppb ]") %>%
-    select(-measurement) %>%
+    dplyr::filter(get("measurement") == "Conc. [ ppb ]") %>%
+    select(-"measurement") %>%
     # Exclude replicate to calculate the mean
-    group_by(sample, dilution, element, isotope, gas) %>%
+    group_by(
+      across(all_of(c("sample", "dilution", "element", "isotope", "gas")))
+    ) %>%
     # Calculate mean and standard deviation
     summarise(
       .groups="keep",
-      concentration=mean(value, na.rm=TRUE),
-      conc_sd=stats::sd(value, na.rm=FALSE)
+      concentration=mean(get("value"), na.rm=TRUE),
+      conc_sd=stats::sd(get("value"), na.rm=FALSE)
     ) %>%
     # Add checks for standard deviation
-    mutate(conc_sd_perc=100 * conc_sd / concentration) %>%
+    mutate(conc_sd_perc=100 * get("conc_sd") / get("concentration")) %>%
     mutate(
       conc_sd_check=case_when(
-        conc_sd_perc >=  0.0 & conc_sd_perc <= 15.0 ~ "OK",
-        conc_sd_perc >  15.0 & conc_sd_perc <= 30.0 ~ "CHECK",
-        conc_sd_perc >  30.0 | is.na(conc_sd_perc)  ~ "DISCARD"
+        get("conc_sd_perc") >=  0.0 & get("conc_sd_perc") <= 15.0 ~ "OK",
+        get("conc_sd_perc") >  15.0 & get("conc_sd_perc") <= 30.0 ~ "CHECK",
+        get("conc_sd_perc") >  30.0 | is.na(get("conc_sd_perc"))  ~ "DISCARD"
       )
     ) %>%
     # Add checks for calibration curve
     mutate(
       cal_curve_check=case_when(
-        concentration >= 0.01 & concentration <= 100.0 ~ "OK",
-        concentration < 0.01  ~ "BELOW",
-        concentration > 100.0 ~ "ABOVE"
+        get("concentration") >= 0.01 & get("concentration") <= 100.0 ~ "OK",
+        get("concentration") < 0.01  ~ "BELOW",
+        get("concentration") > 100.0 ~ "ABOVE"
       )
     )
 
@@ -286,13 +295,13 @@ process_icp = function(filepath, blank_name) {
   sample_order = c(
     blank_name,
     measures_df %>%
-      dplyr::filter(sample != blank_name) %>%
-      pull(sample) %>%
+      dplyr::filter(get("sample") != blank_name) %>%
+      pull("sample") %>%
       unique()
   )
   measures_df = measures_df %>%
-    mutate(sample=factor(sample, levels=sample_order)) %>%
-    arrange(sample)
+    mutate(sample=factor(get("sample"), levels=sample_order)) %>%
+    arrange(get("sample"))
 
   return(measures_df)
 }
