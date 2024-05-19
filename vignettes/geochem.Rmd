@@ -530,7 +530,6 @@ The next chunk of code saves the data in wide format, ready to be copied into th
 ```{r icp_env_dataset}
 # Save processed ICP-MS data in wide format
 icp_df_wide = icp_df %>%
-  ungroup() %>%
   tidyr::pivot_wider(
     id_cols=sample,
     names_from=element,

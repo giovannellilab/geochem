@@ -309,6 +309,9 @@ process_icp = function(filepath, blank_name) {
     mutate(sample=factor(get("sample"), levels=sample_order)) %>%
     arrange(get("sample"))
 
+  # Ungroup because of group_by
+  measures_df = measures_df %>% ungroup() %>% as.data.frame()
+
   return(measures_df)
 }
 
