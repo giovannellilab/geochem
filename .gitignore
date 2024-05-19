@@ -60,3 +60,4 @@ old/
 # R project files
 *.Rproj
 inst/doc
+Rplots.pdf
