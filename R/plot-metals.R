@@ -27,7 +27,7 @@ plot_metals = function(df) {
 
   color_map = df %>%
     ungroup() %>%
-    select(element, color) %>%
+    select("element", "color") %>%
     unique() %>%
     tibble::deframe()
 
@@ -35,9 +35,9 @@ plot_metals = function(df) {
   figure_metals_abs = ggplot2::ggplot(
       data=df,
       ggplot2::aes(
-        x=sample,
-        y=1 + concentration,
-        fill=element
+        x=get("sample"),
+        y=1 + get("concentration"),
+        fill=get("element")
       )
     ) +
     ggplot2::geom_col() +
@@ -46,7 +46,7 @@ plot_metals = function(df) {
     ggplot2::scale_y_continuous(trans="log10") +
     
     # Add facet_grid
-    facet_grid(cols=vars(type)) +
+    ggplot2::facet_grid(cols=vars(get("type"))) +
     
     # Manually color the metals
     ggplot2::scale_colour_manual(
@@ -62,9 +62,9 @@ plot_metals = function(df) {
   figure_metals_rel = ggplot2::ggplot(
       data=df,
       ggplot2::aes(
-        x=sample,
-        y=concentration,
-        fill=element
+        x=get("sample"),
+        y=get("concentration"),
+        fill=get("element")
       )
     ) +
     ggplot2::geom_bar(position="fill", stat="identity") +
@@ -72,7 +72,7 @@ plot_metals = function(df) {
     ggplot2::ylab("Concentration (%)") +
     
     # Add facet_grid
-    facet_grid(cols=vars(type)) +
+    facet_grid(cols=vars(get("type"))) +
     
     # Manually color the metals
     ggplot2::scale_colour_manual(
