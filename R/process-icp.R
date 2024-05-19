@@ -358,16 +358,19 @@ select_icp_auto = function(df, blank_name) {
     # Discard values that didn't pass the checks (keep blank)
     dplyr::filter(
       (
-        CPS_perc_check != "DISCARD" & sample != blank_name |
-        sample == blank_name
+        get("CPS_perc_check") != "DISCARD" & 
+        get("sample") != get("blank_name") | 
+        get("sample") == get("blank_name")
       ),
       (
-        conc_sd_check != "DISCARD" & sample != blank_name |
-        sample == blank_name
+        get("conc_sd_check")  != "DISCARD" & 
+        get("sample") != get("blank_name") | 
+        get("sample") == get("blank_name")
       ),
       (
-        cal_curve_check == "OK" & sample != blank_name |
-        sample == blank_name
+        get("cal_curve_check") == "OK" & 
+        get("sample") != get("blank_name") |
+        get("sample") == get("blank_name")
       )
     )
 
