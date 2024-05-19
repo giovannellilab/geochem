@@ -461,7 +461,7 @@ The selection of reasonable measurements can be performed manually or automatica
 Avoid using underscores inside each variable (e.g. PROJECT_TEST).
 
 
-```{r setup_variables_icp, eval=FALSE}
+```{r setup_variables_icp}
 # NOTE: set these two variables
 ICP_FILENAME = "PROJECT_NAME.xlsx"
 ICP_BLANK_NAME = "BLANK"
@@ -472,7 +472,7 @@ ICP_DIR = system.file("extdata", "PROJECT_NAME/icp-ms", package="geochem")
 
 #### Load and preprocess the data to a readable format
 
-```{r process_icp, warning=FALSE, message=FALSE, eval=FALSE}
+```{r process_icp, warning=FALSE, message=FALSE}
 icp_df_check = process_icp(
   filepath=file.path(ICP_DIR, ICP_FILENAME),
   blank_name=ICP_BLANK_NAME
@@ -499,7 +499,7 @@ To perform a **manual selection**, run the next chunk and examine the generated 
 To perform an **automatic selection**, run the `select_icp_auto` function.
 
 
-```{r select_icp, eval=FALSE}
+```{r select_icp}
 # NOTE: icp_df is the selected data, whether manually or automatically selected
 
 icp_df = select_icp_auto(
@@ -525,7 +525,7 @@ dim(icp_df)
 
 The next chunk of code saves the data in wide format, ready to be copied into the `env_dataset`:
 
-```{r icp_env_dataset, eval=FALSE}
+```{r icp_env_dataset}
 # Save processed ICP-MS data in wide format
 icp_df_wide = icp_df %>%
   ungroup() %>%
@@ -548,7 +548,7 @@ write.csv(
 
 #### Figure: metals
 
-```{r filter_metals, eval=FALSE}
+```{r filter_metals}
 # Remove selected elements
 remove_elements = c(
   "Li",
@@ -569,7 +569,7 @@ icp_df = icp_df %>%
 
 In here, the user can specify how to color each metal following the format in the [metal-color-mapping.csv](https://github.com/giovannellilab/geochem/blob/main/inst/extdata/metal-color-mapping.csv) file.
 
-```{r metal_color_mapping, eval=FALSE}
+```{r metal_color_mapping}
 # Set the color for each metal
 selected_metals = read.csv(
   file=system.file("extdata", "metal-color-mapping.csv", package="geochem")
@@ -583,7 +583,7 @@ icp_df_selected = inner_join(
 )
 ```
 
-```{r figure_metals, eval=FALSE}
+```{r figure_metals}
 figure_metals = plot_metals(icp_df_selected)
 
 ggsave(
