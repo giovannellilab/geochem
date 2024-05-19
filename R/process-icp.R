@@ -112,7 +112,7 @@ process_icp = function(filepath, blank_name) {
     # Get name of the element
     selected_cols = conc_rsd_cols_all[col_idx:(col_idx + step - 1)]
     selected_cols_names = data_df %>%
-      select(all_of(selected_cols)) %>%
+      select(dplyr::all_of(selected_cols)) %>%
       colnames()
     element_name = str_split_i(
       string=selected_cols_names[[1]],
@@ -126,7 +126,7 @@ process_icp = function(filepath, blank_name) {
         c(
           "sample",
           "dilution",
-          all_of(selected_cols)
+          dplyr::all_of(selected_cols)
         )
       ) %>%
       # Replace "less than" values by NA
@@ -229,13 +229,17 @@ process_icp = function(filepath, blank_name) {
       values_from="value"
     ) %>%
     arrange(
-      across(all_of(c("sample", "dilution", "element", "isotope", "gas")))
+      dplyr::across(
+        dplyr::all_of(c("sample", "dilution", "element", "isotope", "gas"))
+      )
     ) %>%
 
     # NOTE: do these calculations here to avoid removal by summarise!
     # Exclude dilution to calculate dilution change
     group_by(
-      across(all_of(c("sample", "element", "isotope", "gas")))
+      dplyr::across(
+        dplyr::all_of(c("sample", "element", "isotope", "gas"))
+      )
     ) %>%
     # Calculate dilution change for further checks
     mutate(dilution_change=get("dilution")/min(get("dilution"))) %>%
@@ -258,7 +262,9 @@ process_icp = function(filepath, blank_name) {
     select(-"measurement") %>%
     # Exclude replicate to calculate the mean
     group_by(
-      across(all_of(c("sample", "dilution", "element", "isotope", "gas")))
+      dplyr::across(
+        dplyr::all_of(c("sample", "dilution", "element", "isotope", "gas"))
+      )
     ) %>%
     # Calculate mean and standard deviation
     summarise(
