@@ -14,7 +14,7 @@ test_that("process_ic returns the same data.frame", {
   # Convert data columns to numeric
   data_df = utils::type.convert(data_df, as.is=TRUE)
   
-  ic_df = process_ic(data_df)
+  ic_df = geochem::process_ic(data_df)
   ic_df_expected = read.csv(test_path("testdata", "ic-data-processed.csv"))
   
   testthat::expect_true(
