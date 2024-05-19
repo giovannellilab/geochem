@@ -42,10 +42,8 @@ test_that("transform_data_piper returns the same data.frame", {
     stringsAsFactors=TRUE
   )
   
-  testthat::expect_true(
-    all.equal(
-      target=piper_data_expected,
-      current=piper_data
-    )
+  testthat::expect_equal(
+    object=piper_data,
+    expected=piper_data_expected
   )
 })

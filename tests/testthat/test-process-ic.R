@@ -17,10 +17,8 @@ test_that("process_ic returns the same data.frame", {
   ic_df = geochem::process_ic(data_df)
   ic_df_expected = read.csv(test_path("testdata", "ic-data-processed.csv"))
   
-  testthat::expect_true(
-    all.equal(
-      target=ic_df_expected,
-      current=ic_df
-    )
+  testthat::expect_equal(
+    object=ic_df,
+    expected=ic_df_expected
   )
 })
