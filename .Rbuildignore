@@ -5,3 +5,4 @@
 .*_check.csv
 .*_env_dataset_icp.csv
 Rplots.pdf
+.github
