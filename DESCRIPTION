@@ -1,6 +1,6 @@
 Package: geochem
 Title: Geochemistry pipeline for processing and visualising data from IRMS, IC and ICP-MS
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: c(
         person(
             given="Guillermo",
