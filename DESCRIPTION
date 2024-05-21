@@ -19,6 +19,14 @@ Authors@R: c(
             comment=c(ORCID="0000-0003-0314-1610")
         ),
         person(
+            given="Davide",
+            family="Corso",
+            middle=NULL,
+            email="davidecrs92@gmail.com",
+            role=c("aut"),
+            comment=c(ORCID="0000-0001-8845-3693")
+        ),
+        person(
             given="Donato",
             family="Giovannelli",
             middle=NULL,

@@ -7,6 +7,9 @@ author:
   - name: Alessia Bastianoni
     affiliation: University of Naples Federico II
     email: alessiabenedicta.bastianoni@unina.it
+  - name: Davide Corso
+    affiliation: University of Naples Federico II
+    email: davidecrs92@gmail.com
   - name: Donato Giovannelli
     affiliation: University of Naples Federico II
     email: donato.giovannelli@unina.it
