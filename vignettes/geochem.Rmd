@@ -223,6 +223,45 @@ figure_major_cations
 ```
 
 
+#### Figure: Piper diagram
+
+```{r figure_piper}
+# Project data on the Piper plot
+piper_data = transform_data_piper(
+    Mg=ic_df$Mg.meq.perc,
+    Ca=ic_df$Ca.meq.perc,
+    Cl=ic_df$Cl.meq.perc,
+    SO4=ic_df$SO4.meq.perc,
+    id=ic_df$SiteID
+)
+piper_data = piper_data %>% rename(SiteID=id)
+
+figure_piper = plot_base_piper() +
+    geom_point(
+        data=piper_data,
+        aes(
+            x=x,
+            y=y,
+            fill=SiteID
+        ),
+        size=4.5,
+        shape=21,
+        stroke=0.3
+    )
+
+ggsave(
+    plot=figure_piper,
+    filename=file.path(
+        paste0(PROJECT_NAME, "-piper.svg")
+    ),
+    width=7,
+    height=7
+)
+
+figure_piper
+```
+
+
 #### Figure: water maturity (Giggenbach)
 
 ```{r figure_maturity_gigg}
@@ -351,45 +390,6 @@ ggsave(
 )
 
 figure_gibbs
-```
-
-
-#### Figure: Piper diagram
-
-```{r figure_piper}
-# Project data on the Piper plot
-piper_data = transform_data_piper(
-    Mg=ic_df$Mg.meq.perc,
-    Ca=ic_df$Ca.meq.perc,
-    Cl=ic_df$Cl.meq.perc,
-    SO4=ic_df$SO4.meq.perc,
-    id=ic_df$SiteID
-)
-piper_data = piper_data %>% rename(SiteID=id)
-
-figure_piper = plot_base_piper() +
-    geom_point(
-        data=piper_data,
-        aes(
-            x=x,
-            y=y,
-            fill=SiteID
-        ),
-        size=4.5,
-        shape=21,
-        stroke=0.3
-    )
-
-ggsave(
-    plot=figure_piper,
-    filename=file.path(
-        paste0(PROJECT_NAME, "-piper.svg")
-    ),
-    width=7,
-    height=7
-)
-
-figure_piper
 ```
 
 
