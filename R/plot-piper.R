@@ -236,7 +236,7 @@ plot_base_piper = function() {
     # -------------------------------------------------------------------- #
     # Add anions regions
 
-    # HCO3-Cl region
+    # HCO3-Cl region
     ggplot2::geom_polygon(
       ggplot2::aes_string(
         x="x",
