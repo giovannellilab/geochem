@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Climent Gargallo
+    given-names: Guillermo
+    orcid: https://orcid.org/0000-0002-0127-7795
+  - family-names: Bastianoni
+    given-names: Alessia
+    orcid: https://orcid.org/0000-0003-0314-1610
+  - family-names: Corso
+    given-names: Davide
+    orcid: https://orcid.org/0000-0001-8845-3693
+  - family-names: Giovannelli
+    given-names: Donato
+title: "geochem: a user-friendly geochemistry pipeline for processing and visualising data from IRMS, IC and ICP-MS"
+version: 1.0.0
+# identifiers:
+#   - type: doi
+#     value: NA
+date-released: 2024
